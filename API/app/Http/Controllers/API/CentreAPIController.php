@@ -126,4 +126,15 @@ class CentreAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Centre deleted successfully');
     }
+
+    public function professionnelle($id){
+        $centre = $this->centreRepository->findWithoutFail($id);
+
+        if (empty($centre)) {
+            return $this->sendError('Centre not found');
+        }
+        //dump($centre->professionnelles);
+
+        return $this->sendResponse($centre->professionnelles,'bo3');
+    }
 }

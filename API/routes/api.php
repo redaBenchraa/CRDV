@@ -17,8 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-
+Route::get('/centres/{id}/professionnelles', 'CentreAPIController@professionnelle');
 
 
 Route::resource('actes', 'ActeAPIController');
@@ -42,3 +41,4 @@ Route::resource('professionnelles', 'ProfessionnelleAPIController');
 Route::resource('usagers', 'UsagerAPIController');
 
 Route::resource('sous_categories', 'SousCategorieAPIController');
+
