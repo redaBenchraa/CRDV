@@ -180,7 +180,7 @@ create table sousCategorie
 )
 engine = innodb;
 
-alter table acte add constraint fk_association_5 foreign key (acte_id)
+alter table acte add constraint fk_association_5 foreign key (activite_id)
       references activite (id) on delete restrict on update restrict;
 
 alter table acte add constraint fk_association_6 foreign key (usager_id)
