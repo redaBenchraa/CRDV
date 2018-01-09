@@ -42,7 +42,7 @@ trait MakeAdaptationTrait
         $fake = Faker::create();
 
         return array_merge([
-            'id' => $fake->randomDigitNotNull,
+            'acte_id' => $fake->randomDigitNotNull,
             'nom' => $fake->randomDigitNotNull,
             'created_at' => $fake->date('Y-m-d H:i:s'),
             'updated_at' => $fake->date('Y-m-d H:i:s'),

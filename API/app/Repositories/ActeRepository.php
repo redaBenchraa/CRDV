@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class ActeRepository
  * @package App\Repositories
- * @version January 8, 2018, 11:52 pm UTC
+ * @version January 9, 2018, 12:30 am UTC
  *
  * @method Acte findWithoutFail($id, $columns = ['*'])
  * @method Acte find($id, $columns = ['*'])
@@ -21,7 +21,7 @@ class ActeRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'usager_id',
-        'acte_id',
+        'activite_id',
         'duree',
         'modeSaisie'
     ];

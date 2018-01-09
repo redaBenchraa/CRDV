@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Acte
  * @package App\Models
- * @version January 8, 2018, 11:52 pm UTC
+ * @version January 9, 2018, 12:30 am UTC
  *
  * @property \App\Models\Activite activite
  * @property \App\Models\Usager usager
- * @property \App\Models\Adaptation adaptation
+ * @property \Illuminate\Database\Eloquent\Collection Adaptation
  * @property \Illuminate\Database\Eloquent\Collection categorieProfessionnelle
  * @property \Illuminate\Database\Eloquent\Collection emploiDuTemps
  * @property integer usager_id
- * @property integer acte_id
+ * @property integer activite_id
  * @property integer duree
  * @property string modeSaisie
  */
@@ -48,7 +48,7 @@ class Acte extends Model
     protected $casts = [
         'id' => 'integer',
         'usager_id' => 'integer',
-        'acte_id' => 'integer',
+        'activite_id' => 'integer',
         'duree' => 'integer',
         'modeSaisie' => 'string'
     ];
@@ -79,10 +79,10 @@ class Acte extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function adaptation()
+    public function adaptations()
     {
-        return $this->hasOne(\App\Models\Adaptation::class);
+        return $this->hasMany(\App\Models\Adaptation::class);
     }
 }

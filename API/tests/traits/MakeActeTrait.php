@@ -43,7 +43,7 @@ trait MakeActeTrait
 
         return array_merge([
             'usager_id' => $fake->randomDigitNotNull,
-            'acte_id' => $fake->randomDigitNotNull,
+            'activite_id' => $fake->randomDigitNotNull,
             'duree' => $fake->randomDigitNotNull,
             'modeSaisie' => $fake->word,
             'created_at' => $fake->date('Y-m-d H:i:s'),

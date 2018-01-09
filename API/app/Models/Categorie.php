@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Categorie
  * @package App\Models
- * @version January 8, 2018, 11:52 pm UTC
+ * @version January 9, 2018, 12:31 am UTC
  *
  * @property \App\Models\Centre centre
  * @property \Illuminate\Database\Eloquent\Collection acte
  * @property \Illuminate\Database\Eloquent\Collection categorieProfessionnelle
  * @property \Illuminate\Database\Eloquent\Collection emploiDuTemps
- * @property \App\Models\SousCategorie sousCategorie
+ * @property \Illuminate\Database\Eloquent\Collection SousCategorie
  * @property integer centre_id
  * @property string intitule
  */
@@ -73,10 +73,10 @@ class Categorie extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function sousCategorie()
+    public function sousCategories()
     {
-        return $this->hasOne(\App\Models\SousCategorie::class);
+        return $this->hasMany(\App\Models\SousCategorie::class);
     }
 }

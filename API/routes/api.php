@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
+
 Route::resource('actes', 'ActeAPIController');
 
 Route::resource('activites', 'ActiviteAPIController');

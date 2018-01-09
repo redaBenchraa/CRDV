@@ -8,7 +8,7 @@ use InfyOm\Generator\Common\BaseRepository;
 /**
  * Class CategorieProfessionnelleRepository
  * @package App\Repositories
- * @version January 8, 2018, 11:52 pm UTC
+ * @version January 9, 2018, 12:31 am UTC
  *
  * @method CategorieProfessionnelle findWithoutFail($id, $columns = ['*'])
  * @method CategorieProfessionnelle find($id, $columns = ['*'])

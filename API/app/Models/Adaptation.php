@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Adaptation
  * @package App\Models
- * @version January 8, 2018, 11:52 pm UTC
+ * @version January 9, 2018, 12:30 am UTC
  *
  * @property \App\Models\Acte acte
  * @property \Illuminate\Database\Eloquent\Collection acte
  * @property \Illuminate\Database\Eloquent\Collection categorieProfessionnelle
  * @property \Illuminate\Database\Eloquent\Collection emploiDuTemps
- * @property integer id
+ * @property integer acte_id
  * @property integer nom
  */
 class Adaptation extends Model
@@ -31,7 +31,7 @@ class Adaptation extends Model
 
 
     public $fillable = [
-        'id',
+        'acte_id',
         'nom'
     ];
 
