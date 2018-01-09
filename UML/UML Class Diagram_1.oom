@@ -3796,7 +3796,7 @@ Shadow=0</a:DisplayPreferences>
 <a:CreationDate>1512931705</a:CreationDate>
 <a:ModificationDate>1512954576</a:ModificationDate>
 <a:SourceTextOffset>(937, 690)</a:SourceTextOffset>
-<a:Rect>((-3045,2745), (17898,4904))</a:Rect>
+<a:Rect>((-3045,2744), (17898,4903))</a:Rect>
 <a:ListOfPoints>((-2645,3728),(17498,3728))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>8</a:ArrowStyle>
@@ -3955,7 +3955,7 @@ SOURCE 0 Arial,8,N</a:FontList>
 <o:AssociationSymbol Id="o28">
 <a:CreationDate>1512936506</a:CreationDate>
 <a:ModificationDate>1512941195</a:ModificationDate>
-<a:Rect>((-3045,8094), (18724,10041))</a:Rect>
+<a:Rect>((-3045,8093), (18724,10040))</a:Rect>
 <a:ListOfPoints>((-2645,9074),(18324,9074))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>3336</a:ArrowStyle>

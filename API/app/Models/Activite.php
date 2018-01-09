@@ -1,0 +1,114 @@
+<?php
+
+namespace App\Models;
+
+use Eloquent as Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+/**
+ * Class Activite
+ * @package App\Models
+ * @version January 8, 2018, 11:52 pm UTC
+ *
+ * @property \App\Models\SousCategorie sousCategorie
+ * @property \App\Models\Usager usager
+ * @property \App\Models\Professionnelle professionnelle
+ * @property \Illuminate\Database\Eloquent\Collection Acte
+ * @property \Illuminate\Database\Eloquent\Collection categorieProfessionnelle
+ * @property \Illuminate\Database\Eloquent\Collection EmploiDuTemp
+ * @property integer professionnelle_id
+ * @property integer usager_id
+ * @property integer categorie_id
+ * @property integer sousCategorie_id
+ * @property integer duree
+ * @property boolean cloture
+ * @property boolean planifie
+ */
+class Activite extends Model
+{
+    use SoftDeletes;
+
+    public $table = 'activite';
+    
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+
+
+    protected $dates = ['deleted_at'];
+
+
+    public $fillable = [
+        'professionnelle_id',
+        'usager_id',
+        'categorie_id',
+        'sousCategorie_id',
+        'duree',
+        'cloture',
+        'planifie'
+    ];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'id' => 'integer',
+        'professionnelle_id' => 'integer',
+        'usager_id' => 'integer',
+        'categorie_id' => 'integer',
+        'sousCategorie_id' => 'integer',
+        'duree' => 'integer',
+        'cloture' => 'boolean',
+        'planifie' => 'boolean'
+    ];
+
+    /**
+     * Validation rules
+     *
+     * @var array
+     */
+    public static $rules = [
+        
+    ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function sousCategorie()
+    {
+        return $this->belongsTo(\App\Models\SousCategorie::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function usager()
+    {
+        return $this->belongsTo(\App\Models\Usager::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function professionnelle()
+    {
+        return $this->belongsTo(\App\Models\Professionnelle::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function actes()
+    {
+        return $this->hasMany(\App\Models\Acte::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     **/
+    public function emploiDuTemps()
+    {
+        return $this->hasMany(\App\Models\EmploiDuTemp::class);
+    }
+}

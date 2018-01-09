@@ -1,0 +1,13 @@
+php artisan infyom:api Acte --fromTable --tableName=acte
+php artisan infyom:api Activite --fromTable --tableName=activite
+php artisan infyom:api Adaptation --fromTable --tableName=adaptation
+php artisan infyom:api CategorieProfessionnelle --fromTable --tableName=categorieProfessionnelle
+php artisan infyom:api Categorie --fromTable --tableName=categorie
+php artisan infyom:api Centre --fromTable --tableName=centre
+php artisan infyom:api EmploiDuTemps --fromTable --tableName=emploiDuTemps
+php artisan infyom:api Parametre --fromTable --tableName=parametre
+php artisan infyom:api Professionnelle --fromTable --tableName=professionnelle
+php artisan infyom:api Usager --fromTable --tableName=usager
+php artisan infyom:api SousCategorie --fromTable --tableName=sousCategorie
+
+

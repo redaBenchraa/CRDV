@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Repositories;
+
+use App\Models\Professionnelle;
+use InfyOm\Generator\Common\BaseRepository;
+
+/**
+ * Class ProfessionnelleRepository
+ * @package App\Repositories
+ * @version January 8, 2018, 11:52 pm UTC
+ *
+ * @method Professionnelle findWithoutFail($id, $columns = ['*'])
+ * @method Professionnelle find($id, $columns = ['*'])
+ * @method Professionnelle first($columns = ['*'])
+*/
+class ProfessionnelleRepository extends BaseRepository
+{
+    /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'centre_id',
+        'nom',
+        'prenom'
+    ];
+
+    /**
+     * Configure the Model
+     **/
+    public function model()
+    {
+        return Professionnelle::class;
+    }
+}
