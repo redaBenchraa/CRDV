@@ -18,6 +18,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/centres/{id}/professionnelles', 'CentreAPIController@professionnelle');
+Route::get('/centres/{id}/categories', 'CentreAPIController@categories');
+Route::get('/centres/{id}/usagers', 'CentreAPIController@usagers');
+Route::get('/centres/{id}/parametre', 'CentreAPIController@parametre');
+
+Route::get('/actes/{id}/usager', 'ActeAPIController@usager');
+Route::get('/actes/{id}/adaptations', 'ActeAPIController@adaptations');
+Route::get('/actes/{id}/activite', 'ActeAPIController@activite');
+
+Route::get('/activites/{id}/sousCategorie', 'ActiviteAPIController@sousCategorie');
+Route::get('/activites/{id}/usager', 'ActiviteAPIController@usager');
+Route::get('/activites/{id}/professionnelle', 'ActiviteAPIController@professionnelle');
+Route::get('/activites/{id}/actes', 'ActiviteAPIController@actes');
+Route::get('/activites/{id}/emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
 
 
 Route::resource('actes', 'ActeAPIController');

@@ -126,4 +126,54 @@ class ActiviteAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Activite deleted successfully');
     }
+
+    public function sousCategorie($id){
+        $activite = $this->activiteRepository->findWithoutFail($id);
+
+        if (empty($activite)) {
+            return $this->sendError('Activite not found');
+        }
+
+        return $this->sendResponse($activite->sousCategorie,'sousCategorie retrieved successfully');
+    }
+
+    public function usager($id){
+        $activite = $this->activiteRepository->findWithoutFail($id);
+
+        if (empty($activite)) {
+            return $this->sendError('Activite not found');
+        }
+
+        return $this->sendResponse($activite->usager,'usager retrieved successfully');
+    }
+
+    public function professionnelle($id){
+        $activite = $this->activiteRepository->findWithoutFail($id);
+
+        if (empty($activite)) {
+            return $this->sendError('Activite not found');
+        }
+
+        return $this->sendResponse($activite->professionnelle,'professionnelle retrieved successfully');
+    }
+
+    public function actes($id){
+        $activite = $this->activiteRepository->findWithoutFail($id);
+
+        if (empty($activite)) {
+            return $this->sendError('Activite not found');
+        }
+
+        return $this->sendResponse($activite->actes,'actes retrieved successfully');
+    }
+
+    public function emploiDuTemps($id){
+        $activite = $this->activiteRepository->findWithoutFail($id);
+
+        if (empty($activite)) {
+            return $this->sendError('Activite not found');
+        }
+
+        return $this->sendResponse($activite->emploiDuTemps,'emploiDuTemps retrieved successfully');
+    }
 }
