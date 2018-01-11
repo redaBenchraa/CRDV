@@ -51,7 +51,7 @@ create table activite
    professionnelle_id                         int                            not null,
    usager_id                         int                            not null,
    categorie_id                         int                            not null,
-   sousCategorie_id                         int                            not null,
+   sous_categorie_id                         int                            not null,
    duree                          int,
    cloture                        bool,
    planifie                       bool,
@@ -186,7 +186,7 @@ alter table acte add constraint fk_association_5 foreign key (activite_id)
 alter table acte add constraint fk_association_6 foreign key (usager_id)
       references usager (id) on delete restrict on update restrict;
 
-alter table activite add constraint fk_association_13 foreign key (sousCategorie_id)
+alter table activite add constraint fk_association_13 foreign key (sous_categorie_id)
       references sousCategorie (id) on delete restrict on update restrict;
 
 alter table activite add constraint fk_association_14 foreign key (usager_id)
