@@ -24,6 +24,30 @@ import { AdministrationComponent } from './administration/administration.compone
 import {routing} from './app.routing';
 import {ProfessionalsComponent} from './professional/professionals.component';
 import { NewActivityComponent } from './professional/new-activity/new-activity.component';
+import { ListActivityComponent } from './administration/activity/list-activity/list-activity.component';
+import { AddActivityComponent } from './administration/activity/add-activity/add-activity.component';
+import { DeleteActivityComponent } from './administration/activity/delete-activity/delete-activity.component';
+import { EditActivityComponent } from './administration/activity/edit-activity/edit-activity.component';
+import { ListCategoryComponent } from './administration/category/list-category/list-category.component';
+import { AddCategoryComponent } from './administration/category/add-category/add-category.component';
+import { DeleteCategoryComponent } from './administration/category/delete-category/delete-category.component';
+import { EditCategoryComponent } from './administration/category/edit-category/edit-category.component';
+import { ListProfessionalComponent } from './administration/professional/list-professional/list-professional.component';
+import { AddProfessionalComponent } from './administration/professional/add-professional/add-professional.component';
+import { EditProfessionalComponent } from './administration/professional/edit-professional/edit-professional.component';
+import { DeleteProfessionalComponent } from './administration/professional/delete-professional/delete-professional.component';
+import { ListUserComponent } from './administration/user/list-user/list-user.component';
+import { AddUserComponent } from './administration/user/add-user/add-user.component';
+import { EditUserComponent } from './administration/user/edit-user/edit-user.component';
+import { DeleteUserComponent } from './administration/user/delete-user/delete-user.component';
+import { ListAdaptationComponent } from './professional/adaptation/list-adaptation/list-adaptation.component';
+import { AddAdaptationComponent } from './professional/adaptation/add-adaptation/add-adaptation.component';
+import { EditAdaptationComponent } from './professional/adaptation/edit-adaptation/edit-adaptation.component';
+import { DeleteAdaptationComponent } from './professional/adaptation/delete-adaptation/delete-adaptation.component';
+import { AddTimetableComponent } from './professional/timetable/add-timetable/add-timetable.component';
+import { DeleteTimetableComponent } from './professional/timetable/delete-timetable/delete-timetable.component';
+import { EditTimetableComponent } from './professional/timetable/edit-timetable/edit-timetable.component';
+import { ShowTimetableComponent } from './professional/timetable/show-timetable/show-timetable.component';
 
 
 @NgModule({
@@ -48,6 +72,30 @@ import { NewActivityComponent } from './professional/new-activity/new-activity.c
     NotFoundComponent,
     AdministrationComponent,
     NewActivityComponent,
+    ListActivityComponent,
+    AddActivityComponent,
+    DeleteActivityComponent,
+    EditActivityComponent,
+    ListCategoryComponent,
+    AddCategoryComponent,
+    DeleteCategoryComponent,
+    EditCategoryComponent,
+    ListProfessionalComponent,
+    AddProfessionalComponent,
+    EditProfessionalComponent,
+    DeleteProfessionalComponent,
+    ListUserComponent,
+    AddUserComponent,
+    EditUserComponent,
+    DeleteUserComponent,
+    ListAdaptationComponent,
+    AddAdaptationComponent,
+    EditAdaptationComponent,
+    DeleteAdaptationComponent,
+    AddTimetableComponent,
+    DeleteTimetableComponent,
+    EditTimetableComponent,
+    ShowTimetableComponent,
   ],
   imports: [
     BrowserModule,
