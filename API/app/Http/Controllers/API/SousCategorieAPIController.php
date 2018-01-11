@@ -126,4 +126,24 @@ class SousCategorieAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Sous Categorie deleted successfully');
     }
+
+    public function categorie($id){
+        $sousCategorie = $this->sousCategorieRepository->findWithoutFail($id);
+        
+        if (empty($sousCategorie)) {
+            return $this->sendError('Sous Categorie not found');
+        }
+
+        return $this->sendResponse($sousCategorie->categorie,'categorie retrieved successfully');
+    }
+
+    public function activites($id){
+        $sousCategorie = $this->sousCategorieRepository->findWithoutFail($id);
+        
+        if (empty($sousCategorie)) {
+            return $this->sendError('Sous Categorie not found');
+        }
+
+        return $this->sendResponse($sousCategorie->activites,'activites retrieved successfully');
+    }
 }

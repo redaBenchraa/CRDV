@@ -126,4 +126,34 @@ class ActeAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Acte deleted successfully');
     }
+
+    public function usager($id){
+        $acte = $this->acteRepository->findWithoutFail($id);
+
+        if (empty($acte)) {
+            return $this->sendError('Acte not found');
+        }
+
+        return $this->sendResponse($acte->usager,'Usage retrieved successfully');
+    }
+
+    public function adaptations($id){
+        $acte = $this->acteRepository->findWithoutFail($id);
+
+        if (empty($acte)) {
+            return $this->sendError('Acte not found');
+        }
+
+        return $this->sendResponse($acte->adaptations,'adaptations retrieved successfully');
+    }
+
+    public function activite($id){
+        $acte = $this->acteRepository->findWithoutFail($id);
+
+        if (empty($acte)) {
+            return $this->sendError('Acte not found');
+        }
+
+        return $this->sendResponse($acte->activite,'activite retrieved successfully');
+    }
 }

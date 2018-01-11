@@ -126,4 +126,24 @@ class EmploiDuTempsAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Emploi Du Temps deleted successfully');
     }
+
+    public function activite($id){
+        $emploiDuTemps = $this->emploiDuTempsRepository->findWithoutFail($id);
+        
+        if (empty($emploiDuTemps)) {
+            return $this->sendError('Emploi Du Temps not found');
+        }
+
+        return $this->sendResponse($emploiDuTemps->activite,'activite retrieved successfully');
+    }
+
+    public function professionnelle($id){
+        $emploiDuTemps = $this->emploiDuTempsRepository->findWithoutFail($id);
+        
+        if (empty($emploiDuTemps)) {
+            return $this->sendError('Emploi Du Temps not found');
+        }
+
+        return $this->sendResponse($emploiDuTemps->professionnelle,'professionnelle retrieved successfully');
+    }
 }

@@ -137,4 +137,34 @@ class CentreAPIController extends AppBaseController
 
         return $this->sendResponse($centre->professionnelles,'bo3');
     }
+
+    public function categories($id){
+        $centre = $this->centreRepository->findWithoutFail($id);
+
+        if (empty($centre)) {
+            return $this->sendError('Centre not found');
+        }
+
+        return $this->sendResponse($centre->categories,'bo3');
+    }
+
+    public function usagers($id){
+        $centre = $this->centreRepository->findWithoutFail($id);
+
+        if (empty($centre)) {
+            return $this->sendError('Centre not found');
+        }
+
+        return $this->sendResponse($centre->usagers,'bo3');
+    }
+
+    public function parametre($id){
+        $centre = $this->centreRepository->findWithoutFail($id);
+
+        if (empty($centre)) {
+            return $this->sendError('Centre not found');
+        }
+
+        return $this->sendResponse($centre->parametre,'bo3');
+    }
 }
