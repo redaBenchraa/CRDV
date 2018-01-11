@@ -48,6 +48,7 @@ import { AddTimetableComponent } from './professional/timetable/add-timetable/ad
 import { DeleteTimetableComponent } from './professional/timetable/delete-timetable/delete-timetable.component';
 import { EditTimetableComponent } from './professional/timetable/edit-timetable/edit-timetable.component';
 import { ShowTimetableComponent } from './professional/timetable/show-timetable/show-timetable.component';
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 
 @NgModule({
@@ -101,7 +102,8 @@ import { ShowTimetableComponent } from './professional/timetable/show-timetable/
     BrowserModule,
     FontAwesomeModule,
     ThemifyModule,
-    routing
+    routing,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
