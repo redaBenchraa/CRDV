@@ -126,4 +126,34 @@ class UsagerAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Usager deleted successfully');
     }
+
+    public function centre($id){
+        $usager = $this->usagerRepository->findWithoutFail($id);
+        
+        if (empty($usager)) {
+            return $this->sendError('Usager not found');
+        }
+
+        return $this->sendResponse($usager->centre,'centre retrieved successfully');
+    }
+
+    public function actes($id){
+        $usager = $this->usagerRepository->findWithoutFail($id);
+        
+        if (empty($usager)) {
+            return $this->sendError('Usager not found');
+        }
+
+        return $this->sendResponse($usager->actes,'actes retrieved successfully');
+    }
+
+    public function activites($id){
+        $usager = $this->usagerRepository->findWithoutFail($id);
+        
+        if (empty($usager)) {
+            return $this->sendError('Usager not found');
+        }
+
+        return $this->sendResponse($usager->activites,'activites retrieved successfully');
+    }
 }

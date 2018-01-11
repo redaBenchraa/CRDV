@@ -126,4 +126,44 @@ class ProfessionnelleAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Professionnelle deleted successfully');
     }
+
+    public function centre($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+        
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        return $this->sendResponse($professionnelle->centre,'centre retrieved successfully');
+    }
+
+    public function activites($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+        
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        return $this->sendResponse($professionnelle->activites,'activites retrieved successfully');
+    }
+
+    public function categories($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+        
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        return $this->sendResponse($professionnelle->categories,'categories retrieved successfully');
+    }
+
+    public function emploiDuTemps($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+        
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        return $this->sendResponse($professionnelle->emploiDuTemps,'emploiDuTemps retrieved successfully');
+    }
 }

@@ -126,4 +126,36 @@ class CategorieAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Categorie deleted successfully');
     }
+
+    public function centre($id){
+        $categorie = $this->categorieRepository->findWithoutFail($id);
+        
+        if (empty($categorie)) {
+            return $this->sendError('Categorie not found');
+        }
+
+        return $this->sendResponse($categorie->centre,'centre retrieved successfully');
+    }
+
+    public function professionnelles($id){
+        $categorie = $this->categorieRepository->findWithoutFail($id);
+        
+        if (empty($categorie)) {
+            return $this->sendError('Categorie not found');
+        }
+
+        return $this->sendResponse($categorie->professionnelles,'professionnelles retrieved successfully');
+    }
+
+    public function sousCategories($id){
+        $categorie = $this->categorieRepository->findWithoutFail($id);
+        
+        if (empty($categorie)) {
+            return $this->sendError('Categorie not found');
+        }
+
+        return $this->sendResponse($categorie->sousCategories,'sousCategories retrieved successfully');
+    }
+
+    
 }

@@ -126,4 +126,24 @@ class CategorieProfessionnelleAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Categorie Professionnelle deleted successfully');
     }
+
+    public function categorie($id){
+        $categorieProfessionnelle = $this->categorieProfessionnelleRepository->findWithoutFail($id);
+        
+        if (empty($categorieProfessionnelle)) {
+            return $this->sendError('Categorie Professionnelle not found');
+        }
+
+        return $this->sendResponse($categorieProfessionnelle->categorie,'categorie retrieved successfully');
+    }
+
+    public function professionnelle($id){
+        $categorieProfessionnelle = $this->categorieProfessionnelleRepository->findWithoutFail($id);
+        
+        if (empty($categorieProfessionnelle)) {
+            return $this->sendError('Categorie Professionnelle not found');
+        }
+
+        return $this->sendResponse($categorieProfessionnelle->professionnelle,'professionnelle retrieved successfully');
+    }
 }
