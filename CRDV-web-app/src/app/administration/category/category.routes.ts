@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
-import {ListCategoryComponent} from './list-Category/list-Category.component';
-import {AddCategoryComponent} from './add-Category/add-Category.component';
-import {EditCategoryComponent} from './edit-Category/edit-Category.component';
-import {DeleteCategoryComponent} from './delete-Category/delete-Category.component';
+import {AddCategoryComponent} from './add-category/add-category.component';
+import {EditCategoryComponent} from './edit-category/edit-category.component';
+import {DeleteCategoryComponent} from './delete-category/delete-category.component';
+import {ListCategoryComponent} from './list-category/list-category.component';
+
 
 export const CATEGORY_ROUTES: Routes = [
   {path: 'add', component: AddCategoryComponent},

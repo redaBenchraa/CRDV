@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
-import {ListUserComponent} from './list-User/list-User.component';
-import {AddUserComponent} from './add-User/add-User.component';
-import {EditUserComponent} from './edit-User/edit-User.component';
-import {DeleteUserComponent} from './delete-User/delete-User.component';
+import {AddUserComponent} from './add-user/add-user.component';
+import {EditUserComponent} from './edit-user/edit-user.component';
+import {DeleteUserComponent} from './delete-user/delete-user.component';
+import {ListUserComponent} from './list-user/list-user.component';
+
 
 export const USER_ROUTES: Routes = [
   {path: 'add', component: AddUserComponent},

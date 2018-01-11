@@ -1,70 +1,70 @@
 <?php
 
-use App\Models\SousCategorie;
-use App\Repositories\SousCategorieRepository;
+use App\Models\sousCategorie;
+use App\Repositories\sousCategorieRepository;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class SousCategorieRepositoryTest extends TestCase
+class sousCategorieRepositoryTest extends TestCase
 {
-    use MakeSousCategorieTrait, ApiTestTrait, DatabaseTransactions;
+    use MakesousCategorieTrait, ApiTestTrait, DatabaseTransactions;
 
     /**
-     * @var SousCategorieRepository
+     * @var sousCategorieRepository
      */
     protected $sousCategorieRepo;
 
     public function setUp()
     {
         parent::setUp();
-        $this->sousCategorieRepo = App::make(SousCategorieRepository::class);
+        $this->sousCategorieRepo = App::make(sousCategorieRepository::class);
     }
 
     /**
      * @test create
      */
-    public function testCreateSousCategorie()
+    public function testCreatesousCategorie()
     {
-        $sousCategorie = $this->fakeSousCategorieData();
-        $createdSousCategorie = $this->sousCategorieRepo->create($sousCategorie);
-        $createdSousCategorie = $createdSousCategorie->toArray();
-        $this->assertArrayHasKey('id', $createdSousCategorie);
-        $this->assertNotNull($createdSousCategorie['id'], 'Created SousCategorie must have id specified');
-        $this->assertNotNull(SousCategorie::find($createdSousCategorie['id']), 'SousCategorie with given id must be in DB');
-        $this->assertModelData($sousCategorie, $createdSousCategorie);
+        $sousCategorie = $this->fakesousCategorieData();
+        $createdsousCategorie = $this->sousCategorieRepo->create($sousCategorie);
+        $createdsousCategorie = $createdsousCategorie->toArray();
+        $this->assertArrayHasKey('id', $createdsousCategorie);
+        $this->assertNotNull($createdsousCategorie['id'], 'Created sousCategorie must have id specified');
+        $this->assertNotNull(sousCategorie::find($createdsousCategorie['id']), 'sousCategorie with given id must be in DB');
+        $this->assertModelData($sousCategorie, $createdsousCategorie);
     }
 
     /**
      * @test read
      */
-    public function testReadSousCategorie()
+    public function testReadsousCategorie()
     {
-        $sousCategorie = $this->makeSousCategorie();
-        $dbSousCategorie = $this->sousCategorieRepo->find($sousCategorie->id);
-        $dbSousCategorie = $dbSousCategorie->toArray();
-        $this->assertModelData($sousCategorie->toArray(), $dbSousCategorie);
+        $sousCategorie = $this->makesousCategorie();
+        $dbsousCategorie = $this->sousCategorieRepo->find($sousCategorie->id);
+        $dbsousCategorie = $dbsousCategorie->toArray();
+        $this->assertModelData($sousCategorie->toArray(), $dbsousCategorie);
     }
 
     /**
      * @test update
      */
-    public function testUpdateSousCategorie()
+    public function testUpdatesousCategorie()
     {
-        $sousCategorie = $this->makeSousCategorie();
-        $fakeSousCategorie = $this->fakeSousCategorieData();
-        $updatedSousCategorie = $this->sousCategorieRepo->update($fakeSousCategorie, $sousCategorie->id);
-        $this->assertModelData($fakeSousCategorie, $updatedSousCategorie->toArray());
-        $dbSousCategorie = $this->sousCategorieRepo->find($sousCategorie->id);
-        $this->assertModelData($fakeSousCategorie, $dbSousCategorie->toArray());
+        $sousCategorie = $this->makesousCategorie();
+        $fakesousCategorie = $this->fakesousCategorieData();
+        $updatedsousCategorie = $this->sousCategorieRepo->update($fakesousCategorie, $sousCategorie->id);
+        $this->assertModelData($fakesousCategorie, $updatedsousCategorie->toArray());
+        $dbsousCategorie = $this->sousCategorieRepo->find($sousCategorie->id);
+        $this->assertModelData($fakesousCategorie, $dbsousCategorie->toArray());
     }
 
     /**
      * @test delete
      */
-    public function testDeleteSousCategorie()
+    public function testDeletesousCategorie()
     {
-        $sousCategorie = $this->makeSousCategorie();
+        $sousCategorie = $this->makesousCategorie();
         $resp = $this->sousCategorieRepo->delete($sousCategorie->id);
         $this->assertTrue($resp);
-        $this->assertNull(SousCategorie::find($sousCategorie->id), 'SousCategorie should not exist in DB');
+        $this->assertNull(sousCategorie::find($sousCategorie->id), 'sousCategorie should not exist in DB');
     }
 }

@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
-import {ListAdaptationComponent} from './list-Adaptation/list-Adaptation.component';
-import {AddAdaptationComponent} from './add-Adaptation/add-Adaptation.component';
-import {EditAdaptationComponent} from './edit-Adaptation/edit-Adaptation.component';
-import {DeleteAdaptationComponent} from './delete-Adaptation/delete-Adaptation.component';
+import {AddAdaptationComponent} from './add-adaptation/add-adaptation.component';
+import {EditAdaptationComponent} from './edit-adaptation/edit-adaptation.component';
+import {DeleteAdaptationComponent} from './delete-adaptation/delete-adaptation.component';
+import {ListAdaptationComponent} from './list-adaptation/list-adaptation.component';
+
 
 export const ADAPTATION_ROUTES: Routes = [
   {path: 'add', component: AddAdaptationComponent},

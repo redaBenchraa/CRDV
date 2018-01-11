@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
-import {ShowTimetableComponent} from './show-Timetable/show-Timetable.component';
-import {AddTimetableComponent} from './add-Timetable/add-Timetable.component';
-import {EditTimetableComponent} from './edit-Timetable/edit-Timetable.component';
-import {DeleteTimetableComponent} from './delete-Timetable/delete-Timetable.component';
+import {AddTimetableComponent} from './add-timetable/add-timetable.component';
+import {EditTimetableComponent} from './edit-timetable/edit-timetable.component';
+import {DeleteTimetableComponent} from './delete-timetable/delete-timetable.component';
+import {ShowTimetableComponent} from './show-timetable/show-timetable.component';
+
 
 export const TIMETABLE_ROUTES: Routes = [
   {path: 'add', component: AddTimetableComponent},

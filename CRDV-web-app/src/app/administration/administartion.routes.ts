@@ -9,11 +9,12 @@ import {ProfessionalComponent} from './professional/professional.component';
 import {ACTIVITY_ROUTES} from './activity/activity.routes';
 import {CATEGORY_ROUTES} from './category/category.routes';
 import {PROFESSIONAL_ROUTES} from './professional/professional.routes';
+import {USER_ROUTES} from "./user/uset.routes";
 
 export const ADMINISTRATION_ROUTES: Routes = [
   {path: 'activity', component: ActivityComponent, children: ACTIVITY_ROUTES},
   {path: 'category', component: CategoryComponent, children: CATEGORY_ROUTES},
-  {path: 'user', component: UserComponent, children: ACTIVITY_ROUTES},
+  {path: 'user', component: UserComponent, children: USER_ROUTES},
   {path: 'professional', component: ProfessionalComponent, children: PROFESSIONAL_ROUTES},
   {path: 'dashboard', component: DashboardComponent},
   {path: 'statistics', component: StatisticsComponent},

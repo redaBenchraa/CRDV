@@ -1,8 +1,9 @@
 import {Routes} from '@angular/router';
-import {ListProfessionalComponent} from './list-Professional/list-Professional.component';
-import {AddProfessionalComponent} from './add-Professional/add-Professional.component';
-import {EditProfessionalComponent} from './edit-Professional/edit-Professional.component';
-import {DeleteProfessionalComponent} from './delete-Professional/delete-Professional.component';
+import {AddProfessionalComponent} from './add-professional/add-professional.component';
+import {EditProfessionalComponent} from './edit-professional/edit-professional.component';
+import {DeleteProfessionalComponent} from './delete-professional/delete-professional.component';
+import {ListProfessionalComponent} from './list-professional/list-professional.component';
+
 
 export const PROFESSIONAL_ROUTES: Routes = [
   {path: 'add', component: AddProfessionalComponent},
