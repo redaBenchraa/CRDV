@@ -17,64 +17,90 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/centres/{id}/professionnelles', 'CentreAPIController@professionnelle');
-Route::get('/centres/{id}/categories', 'CentreAPIController@categories');
-Route::get('/centres/{id}/usagers', 'CentreAPIController@usagers');
-Route::get('/centres/{id}/parametre', 'CentreAPIController@parametre');
+Route::resource('centres', 'CentreAPIController');
+Route::resource('activites', 'ActiviteAPIController');
+Route::resource('actes', 'ActeAPIController');
+Route::resource('adaptations', 'AdaptationAPIController');
+Route::resource('categorie_professionnelles', 'CategorieProfessionnelleAPIController');
+Route::resource('categories', 'CategorieAPIController');
+Route::resource('emploi_du_temps', 'EmploiDuTempsAPIController');
+Route::resource('parametres', 'ParametreAPIController');
+Route::resource('professionnelles', 'ProfessionnelleAPIController');
+Route::resource('usagers', 'UsagerAPIController');
+Route::resource('sous_categories', 'SousCategorieAPIController');
+Route::resource('actes', 'ActeAPIController');
 
-Route::get('/actes/{id}/usager', 'ActeAPIController@usager');
-Route::get('/actes/{id}/adaptations', 'ActeAPIController@adaptations');
-Route::get('/actes/{id}/activite', 'ActeAPIController@activite');
+Route::prefix('centres')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('professionnelles', 'CentreAPIController@professionnelle');
+        Route::get('usagers', 'CentreAPIController@usagers');
+        Route::get('parametre', 'CentreAPIController@parametre');
+        Route::get('categories', 'CentreAPIController@categories');
+    });
+});
 
-Route::get('/activites/{id}/sousCategorie', 'ActiviteAPIController@sousCategorie');
-Route::get('/activites/{id}/usager', 'ActiviteAPIController@usager');
-Route::get('/activites/{id}/professionnelle', 'ActiviteAPIController@professionnelle');
-Route::get('/activites/{id}/actes', 'ActiviteAPIController@actes');
-Route::get('/activites/{id}/emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
+Route::prefix('actes')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('usager', 'ActeAPIController@usager');
+        Route::get('adaptations', 'ActeAPIController@adaptations');
+        Route::get('activite', 'ActeAPIController@activite');
+    });
+});
 
-Route::get('/categories/{id}/centre', 'CategorieAPIController@centre');
-Route::get('/categories/{id}/professionnelles', 'CategorieAPIController@professionnelles');
-Route::get('/categories/{id}/sousCategories', 'CategorieAPIController@sousCategories');
+Route::prefix('activites')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('sousCategorie', 'ActiviteAPIController@sousCategorie');
+        Route::get('usager', 'ActiviteAPIController@usager');
+        Route::get('professionnelle', 'ActiviteAPIController@professionnelle');
+        Route::get('actes', 'ActiviteAPIController@actes');
+        Route::get('emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
+    });
+});
 
-Route::get('/categorie_professionnelles/{id}/categorie', 'CategorieProfessionnelleAPIController@categorie');
-Route::get('/categorie_professionnelles/{id}/professionnelle', 'CategorieProfessionnelleAPIController@professionnelle');
+Route::prefix('categories')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('centre', 'CategorieAPIController@centre');
+        Route::get('professionnelles', 'CategorieAPIController@professionnelles');
+        Route::get('sousCategories', 'CategorieAPIController@sousCategories');
+    });
+});
 
-Route::get('/emploi_du_temps/{id}/activite', 'EmploiDuTempsAPIController@activite');
-Route::get('/emploi_du_temps/{id}/professionnelle', 'EmploiDuTempsAPIController@professionnelle');
+Route::prefix('categorie_professionnelles')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('categorie', 'CategorieProfessionnelleAPIController@categorie');
+        Route::get('professionnelle', 'CategorieProfessionnelleAPIController@professionnelle');        
+    });
+});
+
+Route::prefix('emploi_du_temps')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('activite', 'EmploiDuTempsAPIController@activite');
+        Route::get('professionnelle', 'EmploiDuTempsAPIController@professionnelle');            
+    });
+});
 
 Route::get('/parametres/{id}/centres', 'ParametreAPIController@centres');
 
-Route::get('/professionnelles/{id}/centre', 'ProfessionnelleAPIController@centre');
-Route::get('/professionnelles/{id}/activites', 'ProfessionnelleAPIController@activites');
-Route::get('/professionnelles/{id}/categories', 'ProfessionnelleAPIController@categories');
-Route::get('/professionnelles/{id}/emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps');
+Route::prefix('professionnelles')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('centre', 'ProfessionnelleAPIController@centre');
+        Route::get('activites', 'ProfessionnelleAPIController@activites');
+        Route::get('categories', 'ProfessionnelleAPIController@categories');
+        Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps');                    
+    });
+});
 
-Route::get('/sous_categories/{id}/categorie', 'SousCategorieAPIController@categorie');
-Route::get('/sous_categories/{id}/activites', 'SousCategorieAPIController@activites');
+Route::prefix('sous_categories')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('categorie', 'SousCategorieAPIController@categorie');
+        Route::get('activites', 'SousCategorieAPIController@activites');                    
+    });
+});
 
-Route::get('/usagers/{id}/centre', 'UsagerAPIController@centre');
-Route::get('/usagers/{id}/actes', 'UsagerAPIController@actes');
-Route::get('/usagers/{id}/activites', 'UsagerAPIController@activites');
-
-Route::resource('actes', 'ActeAPIController');
-
-Route::resource('activites', 'ActiviteAPIController');
-
-Route::resource('adaptations', 'AdaptationAPIController');
-
-Route::resource('categorie_professionnelles', 'CategorieProfessionnelleAPIController');
-
-Route::resource('categories', 'CategorieAPIController');
-
-Route::resource('centres', 'CentreAPIController');
-
-Route::resource('emploi_du_temps', 'EmploiDuTempsAPIController');
-
-Route::resource('parametres', 'ParametreAPIController');
-
-Route::resource('professionnelles', 'ProfessionnelleAPIController');
-
-Route::resource('usagers', 'UsagerAPIController');
-
-Route::resource('sous_categories', 'SousCategorieAPIController');
-
+Route::prefix('usagers')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('centre', 'UsagerAPIController@centre');
+        Route::get('actes', 'UsagerAPIController@actes');
+        Route::get('activites', 'UsagerAPIController@activites');                    
+    });
+});
