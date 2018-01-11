@@ -22,9 +22,15 @@
         "styles.scss",
         "assets/styles/index.scss",
         "../node_modules/font-awesome/css/font-awesome.css",
-        "assets/styles/vendor/themify-icons.css"
+        "assets/styles/vendor/themify-icons.css",
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/jquery-sparkline/jquery.sparkline.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
+
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -58,6 +64,7 @@
   },
   "defaults": {
     "styleExt": "scss",
-    "component": {}
+    "component": {
+    }
   }
 }

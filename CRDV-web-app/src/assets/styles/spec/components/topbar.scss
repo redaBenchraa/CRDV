@@ -17,18 +17,46 @@
   padding: 0;
   position: fixed;
   transition: all 0.2s ease;
-  width: calc(100% - #{$offscreen-size});
+  width: 100%;
   z-index: 800;
-
+  .notification-hide{
+    display: none;
+  }
+  .notifications{
+    display: block;
+  }
   @include to($breakpoint-md) {
     width: 100%;
+    .notifications{
+      display: block;
+    }
+    .notification-hide{
+      display: none;
+    }
   }
 
   @include between($breakpoint-md, $breakpoint-xl) {
-    width: calc(100% - #{$collapsed-size});
+    width: 100%;
+    .notifications{
+      display: block;
+    }
+    .notification-hide{
+      display: none;
+    }
   }
 
+  @include to($breakpoint-xl){
+    .notifications{
+      display: none;
+    }
+    .notification-hide{
+      display: block;
+    }
+  }
+
+
   .header-container {
+    width: 100%;
     @include clearfix;
 
     .nav-left,
