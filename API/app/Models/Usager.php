@@ -35,9 +35,10 @@ class Usager extends Model
 
     public $fillable = [
         'centre_id',
+        'groupe_id',
         'nom',
         'prenom',
-        'age'
+        'date_de_naissance'
     ];
 
     /**
@@ -48,9 +49,10 @@ class Usager extends Model
     protected $casts = [
         'id' => 'integer',
         'centre_id' => 'integer',
+        'groupe_id' => 'integer',
         'nom' => 'string',
         'prenom' => 'string',
-        'age' => 'integer'
+        'date_de_naissance' => 'date'
     ];
 
     /**
@@ -68,6 +70,14 @@ class Usager extends Model
     public function centre()
     {
         return $this->belongsTo(\App\Models\Centre::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function groupe()
+    {
+        return $this->belongsTo(\App\Models\Groupe::class);
     }
 
     /**

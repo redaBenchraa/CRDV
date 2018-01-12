@@ -35,6 +35,7 @@ class EmploiDuTemps extends Model
 
     public $fillable = [
         'professionnelle_id',
+        'groupe_id',
         'acte_id',
         'jour',
         'heureDebut',
@@ -49,6 +50,7 @@ class EmploiDuTemps extends Model
     protected $casts = [
         'id' => 'integer',
         'professionnelle_id' => 'integer',
+        'groupe_id' => 'integer',
         'acte_id' => 'integer',
         'jour' => 'integer'
     ];
@@ -61,6 +63,14 @@ class EmploiDuTemps extends Model
     public static $rules = [
         
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function groupe()
+    {
+        return $this->belongsTo(\App\Models\Groupe::class);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

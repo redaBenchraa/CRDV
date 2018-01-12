@@ -104,3 +104,5 @@ Route::prefix('usagers')->group(function () {
         Route::get('activites', 'UsagerAPIController@activites');                    
     });
 });
+
+Route::resource('groupes', 'GroupeAPIController');
