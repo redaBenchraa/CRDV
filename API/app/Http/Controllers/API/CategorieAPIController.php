@@ -38,7 +38,7 @@ class CategorieAPIController extends AppBaseController
     {
         $this->categorieRepository->pushCriteria(new RequestCriteria($request));
         $this->categorieRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $categories = $this->categorieRepository->all();
+        $categories = $this->categorieRepository->paginate(10);
 
         return $this->sendResponse($categories->toArray(), 'Categories retrieved successfully');
     }

@@ -38,7 +38,7 @@ class UsagerAPIController extends AppBaseController
     {
         $this->usagerRepository->pushCriteria(new RequestCriteria($request));
         $this->usagerRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $usagers = $this->usagerRepository->all();
+        $usagers = $this->usagerRepository->paginate(10);
 
         return $this->sendResponse($usagers->toArray(), 'Usagers retrieved successfully');
     }
