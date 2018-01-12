@@ -77,6 +77,8 @@ $factory->define(\App\Models\Professionnelle::class, function (Faker $faker) {
         'nom' => $faker->firstName,
         'prenom' => $faker->lastName,
         'centre_id' =>  $faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id')),
+        'password' => 'password',
+        'type' => $faker->boolean
     ];
 });
 

@@ -22,7 +22,9 @@ class ProfessionnelleRepository extends BaseRepository
     protected $fieldSearchable = [
         'centre_id',
         'nom',
-        'prenom'
+        'prenom',
+        'password',
+        'type'
     ];
 
     /**
