@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-delete-professional',
-  templateUrl: './delete-professional.component.html',
-  styleUrls: ['./delete-professional.component.scss']
+  selector: 'app-password',
+  templateUrl: './password.component.html',
+  styleUrls: ['./password.component.scss']
 })
-export class DeleteProfessionalComponent implements OnInit {
+export class PasswordComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -15,4 +15,5 @@ export class DeleteProfessionalComponent implements OnInit {
   goBack() {
     this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
   }
+
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ActivatedRoute, Router} from '@angular/router';
 @Component({
   selector: 'app-add-professional',
   templateUrl: './add-professional.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProfessionalComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+  }
+  goBack() {
+    this.router.navigate(['../list'], {relativeTo: this.activatedRoute});
   }
 
 }

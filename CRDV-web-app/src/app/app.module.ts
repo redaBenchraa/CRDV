@@ -49,6 +49,7 @@ import { DeleteTimetableComponent } from './professional/timetable/delete-timeta
 import { EditTimetableComponent } from './professional/timetable/edit-timetable/edit-timetable.component';
 import { ShowTimetableComponent } from './professional/timetable/show-timetable/show-timetable.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import { PasswordComponent } from './administration/professional/password/password.component';
 
 
 @NgModule({
@@ -97,6 +98,7 @@ import {NgxDatatableModule} from "@swimlane/ngx-datatable";
     DeleteTimetableComponent,
     EditTimetableComponent,
     ShowTimetableComponent,
+    PasswordComponent,
   ],
   imports: [
     BrowserModule,

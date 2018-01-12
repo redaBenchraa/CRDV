@@ -1,3 +1,32 @@
-<p>
-  settings works!
-</p>
+<div class="masonry-item col-md-12">
+  <div class="bgc-white p-20 bd">
+    <h6 class="c-grey-900 font-weight-bold">Les paramètres du système</h6>
+    <div class="mT-30">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputunitedirect4">Unité d'une activité directe</label>
+            <input type="text" class="form-control" id="inputunitedirect4" placeholder="Unité en minute">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputactedirecte">Unité d'un acte directe</label>
+            <input type="text" class="form-control" id="inputactedirecte" placeholder="Unité en minute">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputuniteindirect4">Unité d'une activité indirecte</label>
+            <input type="text" class="form-control" id="inputuniteindirect4" placeholder="Unité en minute">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputacteindirecte">Unité d'un acte indirecte</label>
+            <input type="text" class="form-control" id="inputacteindirecte" placeholder="Unité en minute">
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-outline-success">Valider</button>
+        <button routerLink="../dashboard" class="btn btn-outline-secondary">Annuler</button>
+      </form>
+    </div>
+  </div>
+</div>
