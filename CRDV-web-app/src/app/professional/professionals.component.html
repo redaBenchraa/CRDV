@@ -1,8 +1,13 @@
 <div>
-  <app-sidebar></app-sidebar>
+  <app-sidebar-professional></app-sidebar-professional>
   <div class="page-container">
-    <app-header></app-header>
-    <router-outlet></router-outlet>
+    <div>
+      <app-header></app-header>
+      <div class="main-content bgc-grey-100" style="padding-top:10px; padding-left: 25px; padding-right: 25px;padding-bottom: 35px; ">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
     <app-footer></app-footer>
   </div>
 </div>
+

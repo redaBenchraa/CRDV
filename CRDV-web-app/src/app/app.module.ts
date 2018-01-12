@@ -5,7 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {FontAwesomeModule, ThemifyModule} from 'ngx-icons';
 import { HeaderComponent } from './layers/header/header.component';
-import { SidebarComponent } from './layers/sidebar/sidebar.component';
+import { SidebarComponent } from './administration/sidebar/sidebar.component';
+import { SidebarProfessionalComponent } from './professional/sidebar/sidebar.component';
 import { FooterComponent } from './layers/footer/footer.component';
 import { DashboardComponent } from './administration/dashboard/dashboard.component';
 import { ProfessionalComponent } from './administration/professional/professional.component';
@@ -48,7 +49,7 @@ import { AddTimetableComponent } from './professional/timetable/add-timetable/ad
 import { DeleteTimetableComponent } from './professional/timetable/delete-timetable/delete-timetable.component';
 import { EditTimetableComponent } from './professional/timetable/edit-timetable/edit-timetable.component';
 import { ShowTimetableComponent } from './professional/timetable/show-timetable/show-timetable.component';
-import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { PasswordComponent } from './administration/professional/password/password.component';
 import { ProfileComponent } from './profile/profile.component';
 
@@ -58,6 +59,7 @@ import { ProfileComponent } from './profile/profile.component';
     AppComponent,
     HeaderComponent,
     SidebarComponent,
+    SidebarProfessionalComponent,
     FooterComponent,
     DashboardComponent,
     ProfessionalComponent,
