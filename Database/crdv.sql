@@ -35,7 +35,6 @@ create table acte
 (
    id                             int                            not null AUTO_INCREMENT,
    usager_id                         int                            not null,
-   activite_id                         int,
    duree                          int,
    modeSaisie                     varchar(254),
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
@@ -52,6 +51,7 @@ create table activite
    usager_id                         int                            not null,
    categorie_id                         int                            not null,
    sous_categorie_id                         int                            not null,
+   acte_id			int,
    duree                          int,
    cloture                        bool,
    planifie                       bool,
@@ -180,14 +180,15 @@ create table sousCategorie
 )
 engine = innodb;
 
-alter table acte add constraint fk_association_5 foreign key (activite_id)
-      references activite (id) on delete restrict on update restrict;
 
 alter table acte add constraint fk_association_6 foreign key (usager_id)
       references usager (id) on delete restrict on update restrict;
 
 alter table activite add constraint fk_association_13 foreign key (sous_categorie_id)
       references sousCategorie (id) on delete restrict on update restrict;
+
+alter table activite add constraint fk_association_17 foreign key (acte_id)
+      references acte (id) on delete restrict on update restrict;
 
 alter table activite add constraint fk_association_14 foreign key (usager_id)
       references usager (id) on delete restrict on update restrict;

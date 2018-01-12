@@ -21,7 +21,6 @@ class ActeRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'usager_id',
-        'activite_id',
         'duree',
         'modeSaisie'
     ];

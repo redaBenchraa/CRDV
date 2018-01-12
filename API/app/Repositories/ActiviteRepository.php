@@ -23,7 +23,8 @@ class ActiviteRepository extends BaseRepository
         'professionnelle_id',
         'usager_id',
         'categorie_id',
-        'sousCategorie_id',
+        'sous_categorie_id',
+        'acte_id',
         'duree',
         'cloture',
         'planifie'

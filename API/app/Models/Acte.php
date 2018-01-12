@@ -35,7 +35,6 @@ class Acte extends Model
 
     public $fillable = [
         'usager_id',
-        'activite_id',
         'duree',
         'modeSaisie'
     ];
@@ -48,7 +47,6 @@ class Acte extends Model
     protected $casts = [
         'id' => 'integer',
         'usager_id' => 'integer',
-        'activite_id' => 'integer',
         'duree' => 'integer',
         'modeSaisie' => 'string'
     ];
@@ -65,9 +63,9 @@ class Acte extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function activite()
+    public function activites()
     {
-        return $this->belongsTo(\App\Models\Activite::class);
+        return $this->hasMany(\App\Models\Activite::class);
     }
 
     /**

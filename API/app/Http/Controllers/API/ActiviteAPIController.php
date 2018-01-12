@@ -157,14 +157,14 @@ class ActiviteAPIController extends AppBaseController
         return $this->sendResponse($activite->professionnelle,'professionnelle retrieved successfully');
     }
 
-    public function actes($id){
+    public function acte($id){
         $activite = $this->activiteRepository->findWithoutFail($id);
 
         if (empty($activite)) {
             return $this->sendError('Activite not found');
         }
 
-        return $this->sendResponse($activite->actes,'actes retrieved successfully');
+        return $this->sendResponse($activite->acte,'acte retrieved successfully');
     }
 
     public function emploiDuTemps($id){

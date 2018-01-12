@@ -147,13 +147,13 @@ class ActeAPIController extends AppBaseController
         return $this->sendResponse($acte->adaptations,'adaptations retrieved successfully');
     }
 
-    public function activite($id){
+    public function activites($id){
         $acte = $this->acteRepository->findWithoutFail($id);
 
         if (empty($acte)) {
             return $this->sendError('Acte not found');
         }
 
-        return $this->sendResponse($acte->activite,'activite retrieved successfully');
+        return $this->sendResponse($acte->activites,'activites retrieved successfully');
     }
 }

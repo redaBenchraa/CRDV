@@ -16,7 +16,6 @@ $factory->define(\App\Models\Acte::class, function (Faker $faker) {
     return [
         'duree' => $faker->numberBetween(5,45),
         'modeSaisie' => $faker->streetSuffix,
-        'activite_id' =>  $faker->numberBetween(\DB::table('activite')->min('id'), \DB::table('activite')->max('id')),
         'usager_id' =>  $faker->numberBetween(\DB::table('usager')->min('id'), \DB::table('usager')->max('id'))
     ];
 });
@@ -89,7 +88,8 @@ $factory->define(\App\Models\Activite::class, function (Faker $faker) {
         'professionnelle_id' =>  $faker->numberBetween(\DB::table('professionnelle')->min('id'), \DB::table('professionnelle')->max('id')),
         'categorie_id' =>  $faker->numberBetween(\DB::table('categorie')->min('id'), \DB::table('categorie')->max('id')),
         'usager_id' =>  $faker->numberBetween(\DB::table('usager')->min('id'), \DB::table('centre')->max('id')),
-        'sousCategorie_id' =>  $faker->numberBetween(\DB::table('sousCategorie')->min('id'), \DB::table('sousCategorie')->max('id'))
+        'sous_categorie_id' =>  $faker->numberBetween(\DB::table('sousCategorie')->min('id'), \DB::table('sousCategorie')->max('id')),
+        'acte_id' =>  $faker->numberBetween(\DB::table('acte')->min('id'), \DB::table('acte')->max('id'))
     ];
 });
 

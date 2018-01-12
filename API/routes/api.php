@@ -43,7 +43,7 @@ Route::prefix('actes')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('usager', 'ActeAPIController@usager');
         Route::get('adaptations', 'ActeAPIController@adaptations');
-        Route::get('activite', 'ActeAPIController@activite');
+        Route::get('activites', 'ActeAPIController@activites');
     });
 });
 
@@ -52,7 +52,7 @@ Route::prefix('activites')->group(function () {
         Route::get('sousCategorie', 'ActiviteAPIController@sousCategorie');
         Route::get('usager', 'ActiviteAPIController@usager');
         Route::get('professionnelle', 'ActiviteAPIController@professionnelle');
-        Route::get('actes', 'ActiviteAPIController@actes');
+        Route::get('acte', 'ActiviteAPIController@acte');
         Route::get('emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
     });
 });

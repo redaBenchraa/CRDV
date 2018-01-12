@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer professionnelle_id
  * @property integer usager_id
  * @property integer categorie_id
- * @property integer sousCategorie_id
+ * @property integer sous_categorie_id
  * @property integer duree
  * @property boolean cloture
  * @property boolean planifie
@@ -41,7 +41,8 @@ class Activite extends Model
         'professionnelle_id',
         'usager_id',
         'categorie_id',
-        'sousCategorie_id',
+        'sous_categorie_id',
+        'acte_id',
         'duree',
         'cloture',
         'planifie'
@@ -57,7 +58,8 @@ class Activite extends Model
         'professionnelle_id' => 'integer',
         'usager_id' => 'integer',
         'categorie_id' => 'integer',
-        'sousCategorie_id' => 'integer',
+        'sous_categorie_id' => 'integer',
+        'acte_id' => 'integer',
         'duree' => 'integer',
         'cloture' => 'boolean',
         'planifie' => 'boolean'
@@ -99,9 +101,9 @@ class Activite extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/
-    public function actes()
+    public function acte()
     {
-        return $this->hasMany(\App\Models\Acte::class);
+        return $this->belongsTo(\App\Models\Acte::class);
     }
 
     /**
