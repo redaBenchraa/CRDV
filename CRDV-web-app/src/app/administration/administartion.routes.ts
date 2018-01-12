@@ -9,7 +9,8 @@ import {ProfessionalComponent} from './professional/professional.component';
 import {ACTIVITY_ROUTES} from './activity/activity.routes';
 import {CATEGORY_ROUTES} from './category/category.routes';
 import {PROFESSIONAL_ROUTES} from './professional/professional.routes';
-import {USER_ROUTES} from "./user/uset.routes";
+import {USER_ROUTES} from './user/uset.routes';
+import {ProfileComponent} from '../profile/profile.component';
 
 export const ADMINISTRATION_ROUTES: Routes = [
   {path: 'activity', component: ActivityComponent, children: ACTIVITY_ROUTES},
@@ -19,6 +20,7 @@ export const ADMINISTRATION_ROUTES: Routes = [
   {path: 'dashboard', component: DashboardComponent},
   {path: 'statistics', component: StatisticsComponent},
   {path: 'settings', component: SettingsComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '', redirectTo: 'dashboard',    pathMatch: 'full'},
 ];
 

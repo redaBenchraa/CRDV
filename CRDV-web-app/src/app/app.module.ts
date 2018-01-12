@@ -50,6 +50,7 @@ import { EditTimetableComponent } from './professional/timetable/edit-timetable/
 import { ShowTimetableComponent } from './professional/timetable/show-timetable/show-timetable.component';
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import { PasswordComponent } from './administration/professional/password/password.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -99,6 +100,7 @@ import { PasswordComponent } from './administration/professional/password/passwo
     EditTimetableComponent,
     ShowTimetableComponent,
     PasswordComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
