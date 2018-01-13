@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('password/reset', 'ChangePassword@reset');
+
 Route::resource('centres', 'CentreAPIController');
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');

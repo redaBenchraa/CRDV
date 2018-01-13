@@ -54,6 +54,8 @@ class ProfessionnelleAPIController extends AppBaseController
     public function store(CreateProfessionnelleAPIRequest $request)
     {
         $input = $request->all();
+        $input['password'] = 'password';
+        
 
         $professionnelles = $this->professionnelleRepository->create($input);
 
