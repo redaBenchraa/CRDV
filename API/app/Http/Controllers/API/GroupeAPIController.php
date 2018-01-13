@@ -126,4 +126,24 @@ class GroupeAPIController extends AppBaseController
 
         return $this->sendResponse($id, 'Groupe deleted successfully');
     }
+
+    public function emploidutemps($id){
+        $groupe = $this->groupeRepository->findWithoutFail($id);
+        
+        if (empty($groupe)) {
+            return $this->sendError('Groupe not found');
+        }
+
+        return $this->sendResponse($groupe->emploidutemps,'emploidutemps retrieved successfully');
+    }
+
+    public function usagers($id){
+        $groupe = $this->groupeRepository->findWithoutFail($id);
+        
+        if (empty($groupe)) {
+            return $this->sendError('Groupe not found');
+        }
+
+        return $this->sendResponse($groupe->usagers,'usagers retrieved successfully');
+    }
 }

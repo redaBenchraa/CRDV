@@ -146,4 +146,14 @@ class EmploiDuTempsAPIController extends AppBaseController
 
         return $this->sendResponse($emploiDuTemps->professionnelle,'professionnelle retrieved successfully');
     }
+
+    public function groupe($id){
+        $emploiDuTemps = $this->emploiDuTempsRepository->findWithoutFail($id);
+        
+        if (empty($emploiDuTemps)) {
+            return $this->sendError('Emploi Du Temps not found');
+        }
+
+        return $this->sendResponse($emploiDuTemps->groupe,'groupe retrieved successfully');
+    }
 }
