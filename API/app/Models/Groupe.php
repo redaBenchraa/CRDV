@@ -56,7 +56,7 @@ class Groupe extends Model
      **/
     public function emploidutemps()
     {
-        return $this->hasMany(\App\Models\Emploidutemp::class);
+        return $this->hasMany(\App\Models\EmploiDuTemps::class);
     }
 
     /**
