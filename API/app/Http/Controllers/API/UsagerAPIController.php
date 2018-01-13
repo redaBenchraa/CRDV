@@ -38,7 +38,7 @@ class UsagerAPIController extends AppBaseController
     {
         $this->usagerRepository->pushCriteria(new RequestCriteria($request));
         $this->usagerRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $usagers = $this->usagerRepository->all();
+        $usagers = $this->usagerRepository->paginate(10);
 
         return $this->sendResponse($usagers->toArray(), 'Usagers retrieved successfully');
     }
@@ -135,6 +135,16 @@ class UsagerAPIController extends AppBaseController
         }
 
         return $this->sendResponse($usager->centre,'centre retrieved successfully');
+    }
+
+    public function groupe($id){
+        $usager = $this->usagerRepository->findWithoutFail($id);
+        
+        if (empty($usager)) {
+            return $this->sendError('Usager not found');
+        }
+
+        return $this->sendResponse($usager->groupe,'groupe retrieved successfully');
     }
 
     public function actes($id){

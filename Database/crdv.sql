@@ -26,6 +26,8 @@ drop table if exists professionnelle;
 
 drop table if exists usager;
 
+drop table if exists groupe;
+
 drop table if exists sousCategorie;
 
 /*==============================================================*/
@@ -118,6 +120,7 @@ create table emploiDuTemps
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id                         int                            not null,
    acte_id                         int                            not null,
+   groupe_id                       int,
    jour                           int,
    heureDebut                     time,
    heureFin                       time,
@@ -148,6 +151,8 @@ create table professionnelle
    centre_id                         int                            not null,
    nom                            varchar(254),
    prenom                         varchar(254),
+   password                         varchar(254),
+   type                           bool,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -159,11 +164,23 @@ create table usager
 (
    id                             int                            not null AUTO_INCREMENT,
    centre_id                         int                            not null,
+   groupe_id                         int                            not null,
    nom                            varchar(254),
    prenom                         varchar(254),
-   age                            int,
+   date_de_naissance              Date,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id),
    key ak_identifier_1 (id)
+)
+engine = innodb;
+
+/*==============================================================*/
+/* table : groupe                                               */
+/*==============================================================*/
+create table groupe
+(
+   id                             int                            not null AUTO_INCREMENT,
+   nom                            varchar(254),
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
 
@@ -217,11 +234,17 @@ alter table emploiDuTemps add constraint fk_association_16 foreign key (acte_id)
 alter table emploiDuTemps add constraint fk_association_2 foreign key (professionnelle_id)
       references professionnelle (id) on delete restrict on update restrict;
 
+alter table emploiDuTemps add constraint fk_association_18 foreign key (groupe_id)
+      references groupe (id) on delete restrict on update restrict;
+
 alter table professionnelle add constraint fk_association_1 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
 alter table usager add constraint fk_association_12 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
+
+alter table usager add constraint fk_association_19 foreign key (groupe_id)
+      references groupe (id) on delete restrict on update restrict;
 
 alter table sousCategorie add constraint fk_association_11 foreign key (categorie_id)
       references categorie (id) on delete restrict on update restrict;

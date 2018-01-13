@@ -38,7 +38,7 @@ class ProfessionnelleAPIController extends AppBaseController
     {
         $this->professionnelleRepository->pushCriteria(new RequestCriteria($request));
         $this->professionnelleRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $professionnelles = $this->professionnelleRepository->all();
+        $professionnelles = $this->professionnelleRepository->paginate(10);
 
         return $this->sendResponse($professionnelles->toArray(), 'Professionnelles retrieved successfully');
     }
@@ -54,6 +54,8 @@ class ProfessionnelleAPIController extends AppBaseController
     public function store(CreateProfessionnelleAPIRequest $request)
     {
         $input = $request->all();
+        $input['password'] = 'password';
+        
 
         $professionnelles = $this->professionnelleRepository->create($input);
 

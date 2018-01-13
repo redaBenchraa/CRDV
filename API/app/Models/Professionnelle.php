@@ -35,7 +35,9 @@ class Professionnelle extends Model
     public $fillable = [
         'centre_id',
         'nom',
-        'prenom'
+        'prenom',
+        'password',
+        'type'
     ];
 
     /**
@@ -47,7 +49,9 @@ class Professionnelle extends Model
         'id' => 'integer',
         'centre_id' => 'integer',
         'nom' => 'string',
-        'prenom' => 'string'
+        'prenom' => 'string',
+        'password' => 'string',
+        'type' => 'boolean'
     ];
 
     /**

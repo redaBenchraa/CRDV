@@ -38,7 +38,7 @@ class AdaptationAPIController extends AppBaseController
     {
         $this->adaptationRepository->pushCriteria(new RequestCriteria($request));
         $this->adaptationRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $adaptations = $this->adaptationRepository->all();
+        $adaptations = $this->adaptationRepository->paginate(10);
 
         return $this->sendResponse($adaptations->toArray(), 'Adaptations retrieved successfully');
     }

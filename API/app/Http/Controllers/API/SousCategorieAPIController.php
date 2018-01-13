@@ -38,7 +38,7 @@ class SousCategorieAPIController extends AppBaseController
     {
         $this->sousCategorieRepository->pushCriteria(new RequestCriteria($request));
         $this->sousCategorieRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $sousCategories = $this->sousCategorieRepository->all();
+        $sousCategories = $this->sousCategorieRepository->paginate(10);
 
         return $this->sendResponse($sousCategories->toArray(), 'Sous Categories retrieved successfully');
     }

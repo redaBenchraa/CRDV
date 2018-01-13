@@ -27,13 +27,19 @@ $factory->define(\App\Models\CategorieProfessionnelle::class, function (Faker $f
     ];
 });
 
+$factory->define(\App\Models\Groupe::class, function (Faker $faker) {
+    return [
+        'nom' => $faker->firstName(),
+    ];
+});
 
 $factory->define(\App\Models\Usager::class, function (Faker $faker) {
     return [
         'nom' => $faker->firstName(),
         'prenom' => $faker->lastName,
-        'age' => $faker->numberBetween(1,17),
+        'date_de_naissance' => $faker->date(),
         'centre_id' =>  $faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id')),
+        'groupe_id' =>  $faker->numberBetween(\DB::table('groupe')->min('id'), \DB::table('groupe')->max('id')),
     ];
 });
 
@@ -77,6 +83,8 @@ $factory->define(\App\Models\Professionnelle::class, function (Faker $faker) {
         'nom' => $faker->firstName,
         'prenom' => $faker->lastName,
         'centre_id' =>  $faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id')),
+        'password' => 'password',
+        'type' => $faker->boolean
     ];
 });
 

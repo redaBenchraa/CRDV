@@ -17,6 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('password/reset', 'ChangePassword@reset');
+
 Route::resource('centres', 'CentreAPIController');
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');
@@ -29,6 +31,7 @@ Route::resource('professionnelles', 'ProfessionnelleAPIController');
 Route::resource('usagers', 'UsagerAPIController');
 Route::resource('sous_categories', 'SousCategorieAPIController');
 Route::resource('actes', 'ActeAPIController');
+Route::resource('groupes', 'GroupeAPIController');
 
 Route::prefix('centres')->group(function () {
     Route::prefix('{id}')->group(function () {
@@ -75,7 +78,8 @@ Route::prefix('categorie_professionnelles')->group(function () {
 Route::prefix('emploi_du_temps')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('activite', 'EmploiDuTempsAPIController@activite');
-        Route::get('professionnelle', 'EmploiDuTempsAPIController@professionnelle');            
+        Route::get('professionnelle', 'EmploiDuTempsAPIController@professionnelle');   
+        Route::get('groupe', 'EmploiDuTempsAPIController@groupe');         
     });
 });
 
@@ -100,7 +104,15 @@ Route::prefix('sous_categories')->group(function () {
 Route::prefix('usagers')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('centre', 'UsagerAPIController@centre');
+        Route::get('groupe', 'UsagerAPIController@groupe');
         Route::get('actes', 'UsagerAPIController@actes');
         Route::get('activites', 'UsagerAPIController@activites');                    
+    });
+});
+
+Route::prefix('groupes')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('emploidutemps', 'GroupeAPIController@emploidutemps');
+        Route::get('usagers', 'GroupeAPIController@usagers');        
     });
 });

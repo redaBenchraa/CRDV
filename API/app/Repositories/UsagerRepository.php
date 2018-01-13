@@ -21,9 +21,10 @@ class UsagerRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'centre_id',
+        'groupe_id',
         'nom',
         'prenom',
-        'age'
+        'date_de_naissance'
     ];
 
     /**

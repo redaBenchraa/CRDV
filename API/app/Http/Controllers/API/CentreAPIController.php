@@ -38,7 +38,7 @@ class CentreAPIController extends AppBaseController
     {
         $this->centreRepository->pushCriteria(new RequestCriteria($request));
         $this->centreRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $centres = $this->centreRepository->all();
+        $centres = $this->centreRepository->paginate(10);
 
         return $this->sendResponse($centres->toArray(), 'Centres retrieved successfully');
     }

@@ -21,6 +21,7 @@ class ActiviteAPIController extends AppBaseController
 {
     /** @var  ActiviteRepository */
     private $activiteRepository;
+    
 
     public function __construct(ActiviteRepository $activiteRepo)
     {
@@ -38,7 +39,7 @@ class ActiviteAPIController extends AppBaseController
     {
         $this->activiteRepository->pushCriteria(new RequestCriteria($request));
         $this->activiteRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $activites = $this->activiteRepository->all();
+        $activites = $this->activiteRepository->paginate(10);
 
         return $this->sendResponse($activites->toArray(), 'Activites retrieved successfully');
     }

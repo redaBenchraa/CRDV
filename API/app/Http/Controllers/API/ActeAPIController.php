@@ -38,7 +38,7 @@ class ActeAPIController extends AppBaseController
     {
         $this->acteRepository->pushCriteria(new RequestCriteria($request));
         $this->acteRepository->pushCriteria(new LimitOffsetCriteria($request));
-        $actes = $this->acteRepository->all();
+        $actes = $this->acteRepository->paginate(10);
 
         return $this->sendResponse($actes->toArray(), 'Actes retrieved successfully');
     }
