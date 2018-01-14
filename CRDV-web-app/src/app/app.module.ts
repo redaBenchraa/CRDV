@@ -52,6 +52,9 @@ import { ShowTimetableComponent } from './professional/timetable/show-timetable/
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { PasswordComponent } from './administration/professional/password/password.component';
 import { ProfileComponent } from './profile/profile.component';
+import {ArchwizardModule} from "ng2-archwizard/dist";
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -105,11 +108,14 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     FontAwesomeModule,
     ThemifyModule,
     routing,
-    NgxDatatableModule
+    NgxDatatableModule,
+    CommonModule,
+    ArchwizardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
