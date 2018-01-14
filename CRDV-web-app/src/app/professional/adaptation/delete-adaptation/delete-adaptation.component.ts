@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-delete-adaptation',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteAdaptationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+  }
+  goBack() {
+    this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
   }
 
 }

@@ -55,6 +55,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {ArchwizardModule} from "ng2-archwizard/dist";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import { ViewAdaptationComponent } from './professional/adaptation/view-adaptation/view-adaptation.component';
 
 
 @NgModule({
@@ -106,6 +107,7 @@ import {FormsModule} from "@angular/forms";
     ShowTimetableComponent,
     PasswordComponent,
     ProfileComponent,
+    ViewAdaptationComponent,
   ],
   imports: [
     FormsModule,
