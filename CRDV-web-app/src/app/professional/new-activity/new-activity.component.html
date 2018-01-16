@@ -232,31 +232,23 @@
                 </div>
               </div>
               <div class="col-10">
-                <div class="centered-content font-weight-bold">
-                  Sélectionnez la durée
+                <div class="select-box" *ngIf="model.categorie == 2">
+                  <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
+                  <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
+                  <select [(ngModel)]="model.duration" class="select">
+                    <option  *ngFor="let option of durationDirecte" [value]="option.value" >{{option.lable}}</option>
+                  </select>
                 </div>
-                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
-                  <div class="inline-radio centered-content justify-content-center align-content-center" >
-                    <div><input type="radio" name="title" checked><label>Indirecte</label></div>
-                    <div><input type="radio" name="title"><label>Directe</label></div>
-                  </div>
-                </div>
-                <ngx-datatable
-                  class='material'
-                  [headerHeight]="50"
-                  [rowHeight]="50"
-                  [columnMode]="'force'"
-                  [rows]="rows"
-                  [selected]="selected"
-                  [selectionType]="'single'"
-                  (select)='onSelect($event)'>
-                  <ngx-datatable-column name="Categorie">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.Categorie}}
-                    </ng-template>
-                  </ngx-datatable-column>
-                </ngx-datatable>
 
+                <div class="select-box" *ngIf="model.categorie == 1">
+                  <label  class="label select-box1">
+                    <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
+                    <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
+                  </label>
+                  <select [(ngModel)]="model.duration"  class="select">
+                    <option  *ngFor="let option of durationIndirecte" [value]="option.value" >{{option.lable}}</option>
+                  </select>
+                </div>
               </div>
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
@@ -304,6 +296,10 @@
                     <tr>
                       <td>Usager</td>
                       <td>{{getUsagerType(model.usager)}}</td>
+                    </tr>
+                    <tr>
+                      <td>Durée</td>
+                      <td>{{getDuration()}}</td>
                     </tr>
                     </tbody>
                   </table>

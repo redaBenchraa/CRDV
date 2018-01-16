@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {forEach} from "@angular/router/src/utils/collection";
+import {duration} from "moment";
 
 @Component({
   selector: 'app-new-activity',
@@ -12,6 +14,27 @@ export class NewActivityComponent implements OnInit {
   selectedUsager= [];
   selectedProffessionelle= [];
   model= [];
+  durationDirecte = [
+    {value : '45', lable : '45min'},
+    {value : '90', lable : '1h 30min'},
+    {value : '135', lable : '2h 15min'},
+    {value : '180', lable : '3h'},
+  ];
+
+  durationIndirecte = [
+    {value : '5', lable : '5min'},
+    {value : '10', lable : '10min'},
+    {value : '15', lable : '15min'},
+    {value : '20', lable : '20min'},
+    {value : '25', lable : '25min'},
+    {value : '30', lable : '30min'},
+    {value : '35', lable : '35min'},
+    {value : '40', lable : '40min'},
+    {value : '45', lable : '45min'},
+    {value : '50', lable : '50min'},
+    {value : '55', lable : '55min'},
+    {value : '60', lable : '1h'},
+  ];
   duree = 45;
   rowsCategorie = [
     { Id : '1', Categorie: 'Austin' },
@@ -40,9 +63,35 @@ export class NewActivityComponent implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
+    $('select').on('click' , function() {
+
+      $(this).parent('.select-box').toggleClass('open');
+
+    });
+
+    $(document).mouseup(function (e) {
+      const container = $('.select-box');
+      if (container.has(e.target).length === 0) {
+        container.removeClass('open');
+      }
+    });
+
+
+    $('select').on('change' , function() {
+
+      const selection = $(this).find('option:selected').text(), labelFor = $(this).attr('id'),
+        label = $("[for='" + labelFor + "']");
+
+      label.find('.label-desc').html(selection);
+
+    });
+  }
+  getDuration(){
+    return $('#select-box1').find(':selected').text();
   }
   onSelect(index, { selected }) {
     console.log(this.model);
@@ -92,6 +141,21 @@ export class NewActivityComponent implements OnInit {
       return ' ';
     }else {
       return this.selectedActivite[0].nom;
+    }
+  }
+
+  getDuration(category) {
+    let durations = [];
+
+    if ( category === 1) {
+      durations = this.durationIndirecte;
+    } else {
+      durations = this.durationDirecte;
+    }
+    for (const data of this.durationIndirecte) {
+      if ( data.value === this.model['duration']) {
+        return data.lable;
+      }
     }
   }
 
