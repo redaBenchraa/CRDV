@@ -5,6 +5,10 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 /**
  * Class Professionnelle
  * @package App\Models
@@ -19,9 +23,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string nom
  * @property string prenom
  */
-class Professionnelle extends Model
+class Professionnelle extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes; 
+    use Notifiable;
+    use HasApiTokens;
 
     public $table = 'professionnelle';
     
@@ -38,6 +44,15 @@ class Professionnelle extends Model
         'prenom',
         'password',
         'type'
+    ];
+
+     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
     /**
