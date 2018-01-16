@@ -11,8 +11,11 @@ import {CATEGORY_ROUTES} from './category/category.routes';
 import {PROFESSIONAL_ROUTES} from './professional/professional.routes';
 import {USER_ROUTES} from './user/uset.routes';
 import {ProfileComponent} from '../profile/profile.component';
+import {Group_ROUTES} from './group/group.routes';
+import {GroupComponent} from './group/group.component';
 
 export const ADMINISTRATION_ROUTES: Routes = [
+  {path: 'group', component: GroupComponent, children: Group_ROUTES},
   {path: 'activity', component: ActivityComponent, children: ACTIVITY_ROUTES},
   {path: 'category', component: CategoryComponent, children: CATEGORY_ROUTES},
   {path: 'user', component: UserComponent, children: USER_ROUTES},

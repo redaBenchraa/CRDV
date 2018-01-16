@@ -56,6 +56,12 @@ import {ArchwizardModule} from "ng2-archwizard/dist";
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import { ViewAdaptationComponent } from './professional/adaptation/view-adaptation/view-adaptation.component';
+import { GroupComponent } from './administration/group/group.component';
+import { ListGroupComponent } from './administration/group/list-group/list-group.component';
+import { AddGroupComponent } from './administration/group/add-group/add-group.component';
+import { DeleteGroupComponent } from './administration/group/delete-group/delete-group.component';
+import { EditGroupComponent } from './administration/group/edit-group/edit-group.component';
+import { ShowGroupComponent } from './administration/group/show-group/show-group.component';
 
 
 @NgModule({
@@ -108,6 +114,12 @@ import { ViewAdaptationComponent } from './professional/adaptation/view-adaptati
     PasswordComponent,
     ProfileComponent,
     ViewAdaptationComponent,
+    GroupComponent,
+    ListGroupComponent,
+    AddGroupComponent,
+    DeleteGroupComponent,
+    EditGroupComponent,
+    ShowGroupComponent,
   ],
   imports: [
     FormsModule,
