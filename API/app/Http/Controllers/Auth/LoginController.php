@@ -36,4 +36,24 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function login(LoginRequest $request)
+    {
+        $email = $request->get('email');
+        $password = $request->get('password');
+
+        return $this->response($this->loginProxy->attemptLogin($email, $password));
+    }
+
+    public function refresh(Request $request)
+    {
+        return $this->response($this->loginProxy->attemptRefresh());
+    }
+
+    public function logout()
+    {
+        $this->loginProxy->logout();
+
+        return $this->response(null, 204);
+    }
 }
