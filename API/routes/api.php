@@ -41,6 +41,7 @@ Route::resource('usagers', 'UsagerAPIController');
 Route::resource('sous_categories', 'SousCategorieAPIController');
 Route::resource('actes', 'ActeAPIController');
 Route::resource('groupes', 'GroupeAPIController');
+Route::resource('serafins', 'SerafinAPIController');
 
 Route::prefix('centres')->group(function () {
     Route::prefix('{id}')->group(function () {
@@ -106,6 +107,7 @@ Route::prefix('professionnelles')->group(function () {
 Route::prefix('sous_categories')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('categorie', 'SousCategorieAPIController@categorie');
+        Route::get('serafin', 'SousCategorieAPIController@serafin');
         Route::get('activites', 'SousCategorieAPIController@activites');                    
     });
 });
@@ -125,3 +127,11 @@ Route::prefix('groupes')->group(function () {
         Route::get('usagers', 'GroupeAPIController@usagers');        
     });
 });
+
+Route::prefix('serafins')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('souscategories', 'SerafinAPIController@souscategories');
+        Route::get('serafin', 'SerafinAPIController@serafin');                    
+    });
+});
+

@@ -21,6 +21,7 @@ class SousCategorieRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'categorie_id',
+        'serafin_id',
         'intitule',
         'type'
     ];

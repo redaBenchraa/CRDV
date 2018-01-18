@@ -1,7 +1,8 @@
-/*==============================================================*/
+ï»¿/*==============================================================*/
 /* nom de sgbd :  mysql 4.0                                     */
-/* date de création :  08/01/2018 23:32:45                      */
+/* date de crï¿½ation :  08/01/2018 23:32:45                      */
 /*==============================================================*/
+
 drop database crdv;
 create database if not exists crdv;
 use crdv;
@@ -29,6 +30,8 @@ drop table if exists usager;
 drop table if exists groupe;
 
 drop table if exists sousCategorie;
+
+drop table if exists serafin;
 
 /*==============================================================*/
 /* table : acte                                                 */
@@ -190,9 +193,23 @@ engine = innodb;
 create table sousCategorie
 (
    categorie_id                         int                            not null,
+   serafin_id                         int                            not null,
    id                             int                            not null AUTO_INCREMENT,
    intitule                       varchar(254),
    type                           bool,
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
+)
+engine = innodb;
+
+/*==============================================================*/
+/* table : serafin                                        */
+/*==============================================================*/
+create table serafin
+(
+   id                             int                            not null AUTO_INCREMENT,
+   code                       varchar(254),
+   intitule                       varchar(254),
+   serafin_id                         int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -248,4 +265,10 @@ alter table usager add constraint fk_association_19 foreign key (groupe_id)
 
 alter table sousCategorie add constraint fk_association_11 foreign key (categorie_id)
       references categorie (id) on delete restrict on update restrict;
+
+alter table sousCategorie add constraint fk_association_20 foreign key (serafin_id)
+      references serafin (id) on delete restrict on update restrict;
+
+alter table serafin add constraint fk_association_21 foreign key (serafin_id)
+      references serafin (id) on delete restrict on update restrict;
 

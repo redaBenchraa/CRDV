@@ -74,6 +74,16 @@ $factory->define(\App\Models\SousCategorie::class, function (Faker $faker) {
         'type' => $faker->boolean,
         'intitule' => $faker->title,
         'categorie_id' =>  $faker->numberBetween(\DB::table('categorie')->min('id'), \DB::table('categorie')->max('id')),
+        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
+    ];
+});
+
+
+$factory->define(\App\Models\Serafin::class, function (Faker $faker) {
+    return [
+        'code' => $faker->name,
+        'intitule' => $faker->title,
+        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
     ];
 });
 

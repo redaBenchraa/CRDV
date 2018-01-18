@@ -35,7 +35,8 @@ class SousCategorie extends Model
     public $fillable = [
         'categorie_id',
         'intitule',
-        'type'
+        'type',
+        'serafin_id'
     ];
 
     /**
@@ -45,6 +46,7 @@ class SousCategorie extends Model
      */
     protected $casts = [
         'categorie_id' => 'integer',
+        'serafin_id' => 'integer',
         'id' => 'integer',
         'intitule' => 'string',
         'type' => 'boolean'
@@ -65,6 +67,14 @@ class SousCategorie extends Model
     public function categorie()
     {
         return $this->belongsTo(\App\Models\Categorie::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+    public function serafin()
+    {
+        return $this->belongsTo(\App\Models\Serafin::class);
     }
 
     /**
