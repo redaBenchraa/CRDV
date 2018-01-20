@@ -54,6 +54,9 @@ class ProfessionnelleAPIController extends AppBaseController
     public function store(CreateProfessionnelleAPIRequest $request)
     {
         $input = $request->all();
+        $prenom = preg_replace('/[[:space:]]+/', '_', $request->prenom);
+        $nom = preg_replace('/[[:space:]]+/', '_', $request->nom);
+        $input['username'] = $prenom . '.' . $nom;
         $input['password'] = 'password';
         
 

@@ -21,6 +21,7 @@ class ProfessionnelleRepository extends BaseRepository
      */
     protected $fieldSearchable = [
         'centre_id',
+        'username',
         'nom',
         'prenom',
         'password',

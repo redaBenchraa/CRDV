@@ -154,6 +154,7 @@ create table professionnelle
    centre_id                         int                            not null,
    nom                            varchar(254),
    prenom                         varchar(254),
+   username                         varchar(254),
    password                         varchar(254),
    type                           bool,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)

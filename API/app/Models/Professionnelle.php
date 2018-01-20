@@ -40,6 +40,7 @@ class Professionnelle extends Authenticatable
 
     public $fillable = [
         'centre_id',
+        'username',
         'nom',
         'prenom',
         'password',
@@ -63,6 +64,7 @@ class Professionnelle extends Authenticatable
     protected $casts = [
         'id' => 'integer',
         'centre_id' => 'integer',
+        'username' => 'string',
         'nom' => 'string',
         'prenom' => 'string',
         'password' => 'string',
