@@ -55,6 +55,7 @@ class ActiviteAPIController extends AppBaseController
     public function store(CreateActiviteAPIRequest $request)
     {
         $input = $request->all();
+        $input['cloture'] = false;
 
         $activites = $this->activiteRepository->create($input);
 
@@ -177,4 +178,29 @@ class ActiviteAPIController extends AppBaseController
 
         return $this->sendResponse($activite->emploiDuTemps,'emploiDuTemps retrieved successfully');
     }
+
+    public function valider($bool){
+
+        $param['cloture'] = 1;
+
+        $activite = $this->activiteRepository->findByField('planifie',$bool);
+
+        foreach($activite as $act)
+        $activite = $this->activiteRepository->update( $param, $act->id);
+        
+        return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
+
+        //Activite::query()->where('planifie',$bool)->update(['cloture' => true]);
+
+    }
+
+    public function planned($bool){
+        
+        $activite = $this->activiteRepository->findByField('planifie',$bool);
+        
+        return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
+        
+    }
+
+
 }

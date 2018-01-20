@@ -68,6 +68,8 @@ Route::prefix('activites')->group(function () {
         Route::get('acte', 'ActiviteAPIController@acte');
         Route::get('emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
     });
+    Route::put('validate/{bool}', 'ActiviteAPIController@valider');
+    Route::get('planned/{bool}', 'ActiviteAPIController@planned');
 });
 
 Route::prefix('categories')->group(function () {
