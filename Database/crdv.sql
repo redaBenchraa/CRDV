@@ -42,6 +42,8 @@ create table acte
    usager_id                         int                            not null,
    duree                          int,
    modeSaisie                     varchar(254),
+   complet                        bool,
+   cumuleDuree                          int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;

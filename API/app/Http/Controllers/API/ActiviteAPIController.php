@@ -6,6 +6,7 @@ use App\Http\Requests\API\CreateActiviteAPIRequest;
 use App\Http\Requests\API\UpdateActiviteAPIRequest;
 use App\Models\Activite;
 use App\Repositories\ActiviteRepository;
+use App\Repositories\ActeRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -21,11 +22,14 @@ class ActiviteAPIController extends AppBaseController
 {
     /** @var  ActiviteRepository */
     private $activiteRepository;
+    /** @var  ActeRepository */
+    private $acteRepository;
     
 
-    public function __construct(ActiviteRepository $activiteRepo)
+    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo)
     {
         $this->activiteRepository = $activiteRepo;
+        $this->acteRepository = $acteRepo;
     }
 
     /**
@@ -181,18 +185,70 @@ class ActiviteAPIController extends AppBaseController
 
     public function valider($bool){
 
-        $param['cloture'] = 1;
+        $param['planifie'] = $bool;
+        $param['cloture'] = 0;
+        $activite = $this->activiteRepository->findWhere($param);
 
-        $activite = $this->activiteRepository->findByField('planifie',$bool);
+    
+        foreach($activite as $act){
+            if( $act->sousCategorie->type == 1 ){//direct
 
-        foreach($activite as $act)
-        $activite = $this->activiteRepository->update( $param, $act->id);
+                $acteParam['duree'] = 45;//parametre
+                $acteParam['modeSaisie'] = 'individual';
+                $acteParam['usager_id'] = $act->usager_id;
+                $acteParam['complet'] = 1;
+                $acteParam['cumuleDuree'] = $act->duree;
+                $acte = $this->acteRepository->create($acteParam);
+                
+                $activiteParam['acte_id'] = $acte->id;
+                $activiteParam['cloture'] = 1;
+                $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+              
+            }
+            else{//Indirect
+
+                $actesParam['complet'] = 0;
+                $actesParam['usager_id'] = $act->usager_id;
+                $acte = $this->acteRepository->findWhere($actesParam);
+
+                if(!$acte->isEmpty()){
+
+                    $activiteParam['acte_id'] = $acte[0]->id;
+                    $activiteParam['cloture'] = 1;
+                    $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+    
+                    $acteParam['cumuleDuree'] = $acte[0]->cumuleDuree + $act->duree;
+                    $acte = $this->acteRepository->update($acteParam, $acte[0]->id);
+    
+                    if($acte->duree == $acte->cumuleDuree){
+    
+                        $acteParam['complet'] = 1;
+                        $acte = $this->acteRepository->update($acteParam, $acte->id);
+                    }
+                }
+                else{
+
+                    $acteParam['duree'] = 30; //parametre
+                    $acteParam['modeSaisie'] = 'individual';
+                    $acteParam['usager_id'] = $act->usager_id;
+                    $acteParam['complet'] = 0;
+                    $acteParam['cumuleDuree'] = $act->duree;
+                    $acte = $this->acteRepository->create($acteParam);
+
+                    $activiteParam['acte_id'] = $acte->id;
+                    $activiteParam['cloture'] = 1;
+                    $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+
+                }
+
+            }
         
-        return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
-
-        //Activite::query()->where('planifie',$bool)->update(['cloture' => true]);
-
     }
+
+    return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
+    
+    //Activite::query()->where('planifie',$bool)->update(['cloture' => true]);
+}
 
     public function planned($bool){
         

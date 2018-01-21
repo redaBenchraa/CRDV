@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Label="" LastModificationDate="1516311152" Name="UML Class Diagram_1" Objects="96" Symbols="30" Target="Analyse" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
+<?PowerDesigner AppLocale="UTF16" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Label="" LastModificationDate="1516494843" Name="UML Class Diagram_1" Objects="98" Symbols="30" Target="Analyse" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -3861,8 +3861,8 @@ MULA 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1512941991</a:ModificationDate>
 <a:SourceTextOffset>(1012, -1287)</a:SourceTextOffset>
 <a:DestinationTextOffset>(-937, 1287)</a:DestinationTextOffset>
-<a:Rect>((6851,-19557), (10749,-16455))</a:Rect>
-<a:ListOfPoints>((8725,-16483),(8725,-19529))</a:ListOfPoints>
+<a:Rect>((6851,-19557), (10749,-15481))</a:Rect>
+<a:ListOfPoints>((8725,-16483),(8725,-18555))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>8</a:ArrowStyle>
 <a:LineColor>16744448</a:LineColor>
@@ -3883,8 +3883,8 @@ MULA 0 Arial,8,N</a:FontList>
 <a:CreationDate>1512932277</a:CreationDate>
 <a:ModificationDate>1512941969</a:ModificationDate>
 <a:SourceTextOffset>(-975, -887)</a:SourceTextOffset>
-<a:Rect>((-3296,-23974), (3911,-21326))</a:Rect>
-<a:ListOfPoints>((3911,-22500),(-3296,-22500))</a:ListOfPoints>
+<a:Rect>((-3296,-23916), (3409,-21268))</a:Rect>
+<a:ListOfPoints>((3409,-22442),(-3296,-22442))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>3336</a:ArrowStyle>
 <a:LineColor>16744448</a:LineColor>
@@ -3970,8 +3970,8 @@ MULA 0 Arial,8,N</a:FontList>
 <o:GeneralizationSymbol Id="o31">
 <a:CreationDate>1512936551</a:CreationDate>
 <a:ModificationDate>1512941969</a:ModificationDate>
-<a:Rect>((13539,-23400), (17610,-22400))</a:Rect>
-<a:ListOfPoints>((17610,-22900),(13539,-22900))</a:ListOfPoints>
+<a:Rect>((14041,-23400), (17610,-22400))</a:Rect>
+<a:ListOfPoints>((17610,-22900),(14041,-22900))</a:ListOfPoints>
 <a:CornerStyle>1</a:CornerStyle>
 <a:ArrowStyle>7</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
@@ -4330,7 +4330,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:CreationDate>1512931579</a:CreationDate>
 <a:ModificationDate>1512941969</a:ModificationDate>
 <a:IconMode>-1</a:IconMode>
-<a:Rect>((3911,-26271), (13539,-19529))</a:Rect>
+<a:Rect>((3409,-27245), (14041,-18555))</a:Rect>
 <a:LineColor>16744448</a:LineColor>
 <a:FillColor>16770222</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -4964,8 +4964,8 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Code>Acte</a:Code>
 <a:CreationDate>1512931533</a:CreationDate>
 <a:Creator>medre</a:Creator>
-<a:ModificationDate>1512941960</a:ModificationDate>
-<a:Modifier>medre</a:Modifier>
+<a:ModificationDate>1516494843</a:ModificationDate>
+<a:Modifier>youssefNIDA</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
 <o:Attribute Id="o101">
@@ -5012,9 +5012,31 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>Date</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
+<o:Attribute Id="o105">
+<a:ObjectID>C2FF9F6F-3BBB-4B9B-AAF4-B51A568614FB</a:ObjectID>
+<a:Name>complet</a:Name>
+<a:Code>complet</a:Code>
+<a:CreationDate>1516494811</a:CreationDate>
+<a:Creator>youssefNIDA</a:Creator>
+<a:ModificationDate>1516494843</a:ModificationDate>
+<a:Modifier>youssefNIDA</a:Modifier>
+<a:DataType>boolean</a:DataType>
+<a:Attribute.Visibility>-</a:Attribute.Visibility>
+</o:Attribute>
+<o:Attribute Id="o106">
+<a:ObjectID>29782137-9F9A-4328-9E4E-C07D7E7C9CCC</a:ObjectID>
+<a:Name>cumuleDuree</a:Name>
+<a:Code>cumuleDuree</a:Code>
+<a:CreationDate>1516494811</a:CreationDate>
+<a:Creator>youssefNIDA</a:Creator>
+<a:ModificationDate>1516494843</a:ModificationDate>
+<a:Modifier>youssefNIDA</a:Modifier>
+<a:DataType>int</a:DataType>
+<a:Attribute.Visibility>-</a:Attribute.Visibility>
+</o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o105">
+<o:Identifier Id="o107">
 <a:ObjectID>E87C06CE-3F8B-4D7B-8AF5-BFED3C55FB3F</a:ObjectID>
 <a:Name>Identifier_1</a:Name>
 <a:Code>Identifier_1</a:Code>
@@ -5028,7 +5050,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Identifier>
 </c:Identifiers>
 <c:PrimaryIdentifier>
-<o:Identifier Ref="o105"/>
+<o:Identifier Ref="o107"/>
 </c:PrimaryIdentifier>
 </o:Class>
 <o:Class Id="o62">
@@ -5041,7 +5063,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Modifier>medre</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
-<o:Attribute Id="o106">
+<o:Attribute Id="o108">
 <a:ObjectID>30118319-612A-4D11-B01F-AA1DC43521AB</a:ObjectID>
 <a:Name>Id</a:Name>
 <a:Code>Id</a:Code>
@@ -5052,7 +5074,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o107">
+<o:Attribute Id="o109">
 <a:ObjectID>C225BD3F-ABC7-4594-B71C-9DB78E1E076E</a:ObjectID>
 <a:Name>Nom</a:Name>
 <a:Code>Nom</a:Code>
@@ -5065,7 +5087,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o108">
+<o:Identifier Id="o110">
 <a:ObjectID>1FF077DD-AD08-4FC6-B0DD-4A78026F2146</a:ObjectID>
 <a:Name>Identifier_1</a:Name>
 <a:Code>Identifier_1</a:Code>
@@ -5074,12 +5096,12 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1512933676</a:ModificationDate>
 <a:Modifier>medre</a:Modifier>
 <c:Identifier.Attributes>
-<o:Attribute Ref="o106"/>
+<o:Attribute Ref="o108"/>
 </c:Identifier.Attributes>
 </o:Identifier>
 </c:Identifiers>
 <c:PrimaryIdentifier>
-<o:Identifier Ref="o108"/>
+<o:Identifier Ref="o110"/>
 </c:PrimaryIdentifier>
 </o:Class>
 <o:Class Id="o63">
@@ -5092,7 +5114,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Modifier>medre</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
-<o:Attribute Id="o109">
+<o:Attribute Id="o111">
 <a:ObjectID>950A7BF8-910B-470D-9039-A19E315AFB4B</a:ObjectID>
 <a:Name>Id</a:Name>
 <a:Code>Id</a:Code>
@@ -5103,7 +5125,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o110">
+<o:Attribute Id="o112">
 <a:ObjectID>3DB1AB20-7242-4414-AA29-4D907613A1A6</a:ObjectID>
 <a:Name>Nom</a:Name>
 <a:Code>Nom</a:Code>
@@ -5114,7 +5136,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o111">
+<o:Attribute Id="o113">
 <a:ObjectID>AC138495-91C7-482C-AA88-9FF20E8F3899</a:ObjectID>
 <a:Name>Valeur</a:Name>
 <a:Code>Valeur</a:Code>
@@ -5125,7 +5147,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o112">
+<o:Attribute Id="o114">
 <a:ObjectID>14D498AF-EE90-41E8-B3C1-44B8AD8A47CA</a:ObjectID>
 <a:Name>Type</a:Name>
 <a:Code>Type</a:Code>
@@ -5138,7 +5160,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o113">
+<o:Identifier Id="o115">
 <a:ObjectID>642CE6D1-83EC-457C-9001-368BE9E99DB7</a:ObjectID>
 <a:Name>Identifier_1</a:Name>
 <a:Code>Identifier_1</a:Code>
@@ -5147,12 +5169,12 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1512936351</a:ModificationDate>
 <a:Modifier>medre</a:Modifier>
 <c:Identifier.Attributes>
-<o:Attribute Ref="o109"/>
+<o:Attribute Ref="o111"/>
 </c:Identifier.Attributes>
 </o:Identifier>
 </c:Identifiers>
 <c:PrimaryIdentifier>
-<o:Identifier Ref="o113"/>
+<o:Identifier Ref="o115"/>
 </c:PrimaryIdentifier>
 </o:Class>
 <o:Class Id="o64">
@@ -5165,7 +5187,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Modifier>youssefNIDA</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
-<o:Attribute Id="o114">
+<o:Attribute Id="o116">
 <a:ObjectID>84D2E380-4B56-4037-A544-AF719B928418</a:ObjectID>
 <a:Name>Id</a:Name>
 <a:Code>Id</a:Code>
@@ -5176,7 +5198,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o115">
+<o:Attribute Id="o117">
 <a:ObjectID>2284EDC9-5FDE-4B1A-BFCC-0FC4F11936B2</a:ObjectID>
 <a:Name>intitulé</a:Name>
 <a:Code>intitule</a:Code>
@@ -5187,7 +5209,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>String</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o116">
+<o:Attribute Id="o118">
 <a:ObjectID>83C72B61-9BAF-4067-8ED9-95352FF70A51</a:ObjectID>
 <a:Name>Type</a:Name>
 <a:Code>Type</a:Code>
@@ -5200,7 +5222,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o117">
+<o:Identifier Id="o119">
 <a:ObjectID>FED37EF6-600B-49A6-BEC1-A1DA8A9C70E2</a:ObjectID>
 <a:Name>Identifier_1</a:Name>
 <a:Code>Identifier_1</a:Code>
@@ -5209,12 +5231,12 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1512937275</a:ModificationDate>
 <a:Modifier>medre</a:Modifier>
 <c:Identifier.Attributes>
-<o:Attribute Ref="o114"/>
+<o:Attribute Ref="o116"/>
 </c:Identifier.Attributes>
 </o:Identifier>
 </c:Identifiers>
 <c:PrimaryIdentifier>
-<o:Identifier Ref="o117"/>
+<o:Identifier Ref="o119"/>
 </c:PrimaryIdentifier>
 </o:Class>
 <o:Class Id="o65">
@@ -5227,7 +5249,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Modifier>youssefNIDA</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
-<o:Attribute Id="o118">
+<o:Attribute Id="o120">
 <a:ObjectID>0A5B5B4E-CD91-48BF-8B1D-821EBC1AD5EE</a:ObjectID>
 <a:Name>Id</a:Name>
 <a:Code>Id</a:Code>
@@ -5238,7 +5260,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o119">
+<o:Attribute Id="o121">
 <a:ObjectID>AD3D119B-B068-435B-A95F-F2CFC5F33473</a:ObjectID>
 <a:Name>Nom</a:Name>
 <a:Code>Nom</a:Code>
@@ -5251,7 +5273,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o120">
+<o:Identifier Id="o122">
 <a:ObjectID>97738CBF-360E-4FCA-AC12-C8258AF04D94</a:ObjectID>
 <a:Name>Id</a:Name>
 <a:Code>Id</a:Code>
@@ -5260,7 +5282,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1515788520</a:ModificationDate>
 <a:Modifier>youssefNIDA</a:Modifier>
 <c:Identifier.Attributes>
-<o:Attribute Ref="o118"/>
+<o:Attribute Ref="o120"/>
 </c:Identifier.Attributes>
 </o:Identifier>
 </c:Identifiers>
@@ -5275,7 +5297,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Modifier>youssefNIDA</a:Modifier>
 <a:UseParentNamespace>0</a:UseParentNamespace>
 <c:Attributes>
-<o:Attribute Id="o121">
+<o:Attribute Id="o123">
 <a:ObjectID>2834E287-F22A-4390-94AE-FF9C331F8369</a:ObjectID>
 <a:Name>id</a:Name>
 <a:Code>id</a:Code>
@@ -5286,7 +5308,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>int</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o122">
+<o:Attribute Id="o124">
 <a:ObjectID>2BEC21E7-C230-48F2-8EE0-BF4EED32C852</a:ObjectID>
 <a:Name>code</a:Name>
 <a:Code>code</a:Code>
@@ -5297,7 +5319,7 @@ LABL 0 Arial,8,N</a:FontList>
 <a:DataType>String</a:DataType>
 <a:Attribute.Visibility>-</a:Attribute.Visibility>
 </o:Attribute>
-<o:Attribute Id="o123">
+<o:Attribute Id="o125">
 <a:ObjectID>ACF533FC-6690-4A86-9B16-78F27A4E37ED</a:ObjectID>
 <a:Name>intitule</a:Name>
 <a:Code>intitule</a:Code>
@@ -5310,7 +5332,7 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Attribute>
 </c:Attributes>
 <c:Identifiers>
-<o:Identifier Id="o124">
+<o:Identifier Id="o126">
 <a:ObjectID>ADD84061-64F9-4043-A4F4-15762359E579</a:ObjectID>
 <a:Name>id</a:Name>
 <a:Code>id</a:Code>
@@ -5319,12 +5341,12 @@ LABL 0 Arial,8,N</a:FontList>
 <a:ModificationDate>1516310664</a:ModificationDate>
 <a:Modifier>youssefNIDA</a:Modifier>
 <c:Identifier.Attributes>
-<o:Attribute Ref="o121"/>
+<o:Attribute Ref="o123"/>
 </c:Identifier.Attributes>
 </o:Identifier>
 </c:Identifiers>
 <c:PrimaryIdentifier>
-<o:Identifier Ref="o124"/>
+<o:Identifier Ref="o126"/>
 </c:PrimaryIdentifier>
 </o:Class>
 </c:Classes>
@@ -5648,13 +5670,13 @@ LABL 0 Arial,8,N</a:FontList>
 </o:Generalization>
 </c:Generalizations>
 <c:TargetModels>
-<o:TargetModel Id="o125">
+<o:TargetModel Id="o127">
 <a:ObjectID>E453556A-FC08-480A-B5C3-516CD6F1CBF1</a:ObjectID>
 <a:Name>Analyse</a:Name>
 <a:Code>Analysis</a:Code>
 <a:CreationDate>1512930939</a:CreationDate>
 <a:Creator>medre</a:Creator>
-<a:ModificationDate>1515708726</a:ModificationDate>
+<a:ModificationDate>1516452088</a:ModificationDate>
 <a:Modifier>youssefNIDA</a:Modifier>
 <a:TargetModelURL>file:///%_OBJLANG%/analysis.xol</a:TargetModelURL>
 <a:TargetModelID>87317290-AF03-469F-BC1E-99593F18A4AB</a:TargetModelID>
@@ -5663,10 +5685,11 @@ LABL 0 Arial,8,N</a:FontList>
 <o:Shortcut Ref="o5"/>
 </c:SessionShortcuts>
 </o:TargetModel>
-<o:TargetModel Id="o126">
+<o:TargetModel Id="o128">
 <a:ObjectID>0B33421F-12DA-4C5A-B7D3-9607BD70E68E</a:ObjectID>
 <a:Name>UML Class Diagram_1_CMD</a:Name>
 <a:Code>UML_CLASS_DIAGRAM_1_CMD</a:Code>
+<a:ExtractionID>7077989</a:ExtractionID>
 <a:CreationDate>1512932582</a:CreationDate>
 <a:Creator>medre</a:Creator>
 <a:ModificationDate>1512936563</a:ModificationDate>
@@ -5678,10 +5701,11 @@ LABL 0 Arial,8,N</a:FontList>
 <o:Shortcut Ref="o3"/>
 </c:SessionShortcuts>
 </o:TargetModel>
-<o:TargetModel Id="o127">
+<o:TargetModel Id="o129">
 <a:ObjectID>9F815E6D-B3AB-4B33-8E96-2CFA50ED42A2</a:ObjectID>
 <a:Name>UML Class Diagram_1</a:Name>
 <a:Code>UML_CLASS_DIAGRAM_1</a:Code>
+<a:ExtractionID>7471206</a:ExtractionID>
 <a:CreationDate>1512933397</a:CreationDate>
 <a:Creator>medre</a:Creator>
 <a:ModificationDate>1512936563</a:ModificationDate>

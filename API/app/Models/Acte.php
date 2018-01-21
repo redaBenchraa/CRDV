@@ -36,7 +36,9 @@ class Acte extends Model
     public $fillable = [
         'usager_id',
         'duree',
-        'modeSaisie'
+        'modeSaisie',
+        'complet',
+        'cumuleDuree'
     ];
 
     /**
@@ -48,7 +50,9 @@ class Acte extends Model
         'id' => 'integer',
         'usager_id' => 'integer',
         'duree' => 'integer',
-        'modeSaisie' => 'string'
+        'modeSaisie' => 'string',
+        'complet' => 'boolean',
+        'cumuleDuree' => 'integer'
     ];
 
     /**

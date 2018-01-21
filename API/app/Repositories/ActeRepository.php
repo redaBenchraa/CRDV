@@ -22,7 +22,9 @@ class ActeRepository extends BaseRepository
     protected $fieldSearchable = [
         'usager_id',
         'duree',
-        'modeSaisie'
+        'modeSaisie',
+        'complet',
+        'cumuleDuree'
     ];
 
     /**
