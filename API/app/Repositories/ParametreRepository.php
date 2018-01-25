@@ -22,7 +22,8 @@ class ParametreRepository extends BaseRepository
     protected $fieldSearchable = [
         'nom',
         'valeur',
-        'type'
+        'type',
+        'centre_id'
     ];
 
     /**

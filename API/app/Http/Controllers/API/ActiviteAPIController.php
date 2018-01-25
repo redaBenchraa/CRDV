@@ -7,6 +7,7 @@ use App\Http\Requests\API\UpdateActiviteAPIRequest;
 use App\Models\Activite;
 use App\Repositories\ActiviteRepository;
 use App\Repositories\ActeRepository;
+use App\Repositories\ParametreRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -24,12 +25,16 @@ class ActiviteAPIController extends AppBaseController
     private $activiteRepository;
     /** @var  ActeRepository */
     private $acteRepository;
+     /** @var  ParametreRepository */
+     private $parametreRepository;
+
     
 
-    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo)
+    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo,ParametreRepository $parametreRepo)
     {
         $this->activiteRepository = $activiteRepo;
         $this->acteRepository = $acteRepo;
+        $this->parametreRepository = $parametreRepo;
     }
 
     /**
@@ -183,17 +188,28 @@ class ActiviteAPIController extends AppBaseController
         return $this->sendResponse($activite->emploiDuTemps,'emploiDuTemps retrieved successfully');
     }
 
-    public function valider($bool){
+    public function valider($id,$bool){
 
+        $param['professionnelle_id'] = $id;
         $param['planifie'] = $bool;
         $param['cloture'] = 0;
         $activite = $this->activiteRepository->findWhere($param);
 
     
         foreach($activite as $act){
+
             if( $act->sousCategorie->type == 1 ){//direct
 
-                $acteParam['duree'] = 45;//parametre
+                $centreParamDirect['centre_id'] =  $act->professionnelle->centre_id;
+                $centreParamDirect['nom'] = 1;
+                $parametre = $this->parametreRepository->findWhere($centreParamDirect);
+
+                if(!$parametre->isEmpty()){
+                    $acteParam['duree'] = $parametre[0]->valeur;
+                }else{
+                    $acteParam['duree'] = 45;
+                }
+
                 $acteParam['modeSaisie'] = 'individual';
                 $acteParam['usager_id'] = $act->usager_id;
                 $acteParam['complet'] = 1;
@@ -228,7 +244,16 @@ class ActiviteAPIController extends AppBaseController
                 }
                 else{
 
-                    $acteParam['duree'] = 30; //parametre
+                    $centreParamIndirect['centre_id'] =  $act->professionnelle->centre_id;
+                    $centreParamIndirect['nom'] = 3;
+                    $parametre = $this->parametreRepository->findWhere($centreParamIndirect);
+
+                    if(!$parametre->isEmpty()){
+                        $acteParam['duree'] = $parametre[0]->valeur;
+                    }else{
+                        $acteParam['duree'] = 30;
+                    }
+
                     $acteParam['modeSaisie'] = 'individual';
                     $acteParam['usager_id'] = $act->usager_id;
                     $acteParam['complet'] = 0;

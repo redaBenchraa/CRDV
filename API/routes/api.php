@@ -47,7 +47,7 @@ Route::prefix('centres')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('professionnelles', 'CentreAPIController@professionnelle');
         Route::get('usagers', 'CentreAPIController@usagers');
-        Route::get('parametre', 'CentreAPIController@parametre');
+        Route::get('parametres', 'CentreAPIController@parametres');
         Route::get('categories', 'CentreAPIController@categories');
     });
 });
@@ -68,7 +68,6 @@ Route::prefix('activites')->group(function () {
         Route::get('acte', 'ActiviteAPIController@acte');
         Route::get('emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
     });
-    Route::put('validate/{bool}', 'ActiviteAPIController@valider');
     Route::get('planned/{bool}', 'ActiviteAPIController@planned');
 });
 
@@ -95,14 +94,17 @@ Route::prefix('emploi_du_temps')->group(function () {
     });
 });
 
-Route::get('/parametres/{id}/centres', 'ParametreAPIController@centres');
+Route::get('/parametres/{id}/centre', 'ParametreAPIController@centre');
 
 Route::prefix('professionnelles')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('centre', 'ProfessionnelleAPIController@centre');
-        Route::get('activites', 'ProfessionnelleAPIController@activites');
         Route::get('categories', 'ProfessionnelleAPIController@categories');
-        Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps');                    
+        Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps'); 
+        Route::prefix('activites')->group(function () {
+            Route::get('', 'ProfessionnelleAPIController@activites'); 
+            Route::put('validate/{bool}', 'ActiviteAPIController@valider');
+        });        
     });
 });
 

@@ -158,13 +158,13 @@ class CentreAPIController extends AppBaseController
         return $this->sendResponse($centre->usagers,'bo3');
     }
 
-    public function parametre($id){
+    public function parametres($id){
         $centre = $this->centreRepository->findWithoutFail($id);
 
         if (empty($centre)) {
             return $this->sendError('Centre not found');
         }
 
-        return $this->sendResponse($centre->parametre,'bo3');
+        return $this->sendResponse($centre->parametres,'bo3');
     }
 }

@@ -108,7 +108,6 @@ engine = innodb;
 create table centre
 (
    id                             int                            not null AUTO_INCREMENT,
-   parametre_id                         int                      ,
    nom                            varchar(254),
    adresse                        varchar(254),
    telephone                      varchar(254),
@@ -143,6 +142,7 @@ create table parametre
    nom                            int,
    valeur                         int,
    type                           int,
+   centre_id                       int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -245,9 +245,6 @@ alter table categorieProfessionnelle add constraint fk_association_4 foreign key
 alter table categorie add constraint fk_association_15 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
-alter table centre add constraint fk_association_10 foreign key (parametre_id)
-      references parametre (id) on delete restrict on update restrict;
-
 alter table emploiDuTemps add constraint fk_association_16 foreign key (acte_id)
       references activite (id) on delete restrict on update restrict;
 
@@ -258,6 +255,9 @@ alter table emploiDuTemps add constraint fk_association_18 foreign key (groupe_i
       references groupe (id) on delete restrict on update restrict;
 
 alter table professionnelle add constraint fk_association_1 foreign key (centre_id)
+      references centre (id) on delete restrict on update restrict;
+
+alter table parametre add constraint fk_association_22 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
 alter table usager add constraint fk_association_12 foreign key (centre_id)

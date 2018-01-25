@@ -127,13 +127,13 @@ class ParametreAPIController extends AppBaseController
         return $this->sendResponse($id, 'Parametre deleted successfully');
     }
 
-    public function centres($id){
+    public function centre($id){
         $parametre = $this->parametreRepository->findWithoutFail($id);
         
         if (empty($parametre)) {
             return $this->sendError('Parametre not found');
         }
 
-        return $this->sendResponse($parametre->centres,'centres retrieved successfully');
+        return $this->sendResponse($parametre->centre,'centres retrieved successfully');
     }
 }

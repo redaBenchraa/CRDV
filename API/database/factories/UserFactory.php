@@ -58,6 +58,7 @@ $factory->define(\App\Models\Centre::class, function (Faker $faker) {
         'nom' => $faker->name,
         'adresse' => $faker->address,
         'telephone' => $faker->phoneNumber
+        
     ];
 });
 
