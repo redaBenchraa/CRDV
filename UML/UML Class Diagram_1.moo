@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Label="" LastModificationDate="1516494843" Name="UML Class Diagram_1" Objects="98" Symbols="30" Target="Analyse" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
+<?PowerDesigner AppLocale="UTF16" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Label="" LastModificationDate="1516923872" Name="UML Class Diagram_1" Objects="98" Symbols="30" Target="Analyse" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -5480,11 +5480,11 @@ LABL 0 Arial,8,N</a:FontList>
 <a:Code>Association_10</a:Code>
 <a:CreationDate>1512936506</a:CreationDate>
 <a:Creator>medre</a:Creator>
-<a:ModificationDate>1512936517</a:ModificationDate>
-<a:Modifier>medre</a:Modifier>
+<a:ModificationDate>1516923872</a:ModificationDate>
+<a:Modifier>youssefNIDA</a:Modifier>
 <a:RoleAIndicator>A</a:RoleAIndicator>
 <a:RoleAMultiplicity>1..1</a:RoleAMultiplicity>
-<a:RoleBMultiplicity>1..1</a:RoleBMultiplicity>
+<a:RoleBMultiplicity>1..*</a:RoleBMultiplicity>
 <c:Object1>
 <o:Class Ref="o63"/>
 </c:Object1>
