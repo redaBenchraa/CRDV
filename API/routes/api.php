@@ -47,8 +47,11 @@ Route::prefix('centres')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('professionnelles', 'CentreAPIController@professionnelle');
         Route::get('usagers', 'CentreAPIController@usagers');
-        Route::get('parametres', 'CentreAPIController@parametres');
         Route::get('categories', 'CentreAPIController@categories');
+        Route::prefix('parametres')->group(function () {
+            Route::get('', 'CentreAPIController@parametres');
+            Route::get('{nom}', 'ParametreAPIController@parametreValue');
+        });
     });
 });
 
