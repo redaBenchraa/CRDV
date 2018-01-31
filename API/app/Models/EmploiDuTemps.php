@@ -36,7 +36,7 @@ class EmploiDuTemps extends Model
     public $fillable = [
         'professionnelle_id',
         'groupe_id',
-        'acte_id',
+        'activite_id',
         'jour',
         'heureDebut',
         'heureFin'
@@ -51,7 +51,7 @@ class EmploiDuTemps extends Model
         'id' => 'integer',
         'professionnelle_id' => 'integer',
         'groupe_id' => 'integer',
-        'acte_id' => 'integer',
+        'activite_id' => 'integer',
         'jour' => 'integer'
     ];
 

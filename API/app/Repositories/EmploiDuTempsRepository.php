@@ -22,7 +22,7 @@ class EmploiDuTempsRepository extends BaseRepository
     protected $fieldSearchable = [
         'professionnelle_id',
         'groupe_id',
-        'acte_id',
+        'activite_id',
         'jour',
         'heureDebut',
         'heureFin'

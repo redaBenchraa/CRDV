@@ -123,7 +123,7 @@ create table emploiDuTemps
 (
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id                         int                            not null,
-   acte_id                         int                            not null,
+   activite_id                         int                            not null,
    groupe_id                       int,
    jour                           int,
    heureDebut                     time,
@@ -245,7 +245,7 @@ alter table categorieProfessionnelle add constraint fk_association_4 foreign key
 alter table categorie add constraint fk_association_15 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
-alter table emploiDuTemps add constraint fk_association_16 foreign key (acte_id)
+alter table emploiDuTemps add constraint fk_association_16 foreign key (activite_id)
       references activite (id) on delete restrict on update restrict;
 
 alter table emploiDuTemps add constraint fk_association_2 foreign key (professionnelle_id)

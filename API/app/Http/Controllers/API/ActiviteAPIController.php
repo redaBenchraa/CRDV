@@ -78,7 +78,7 @@ class ActiviteAPIController extends AppBaseController
             $emploiDeTemps['heureDebut'] = $request->heureDebut;
             $emploiDeTemps['heureFin'] = $request->heureFin;
             $emploiDeTemps['professionnelle_id'] = $request->professionnelle_id;
-            $emploiDeTemps['acte_id'] =  $activites->id;
+            $emploiDeTemps['activite_id'] =  $activites->id;
 
             $emploiDeTempsAdded = $this->emploiDuTempsRepository->create($emploiDeTemps);
         }

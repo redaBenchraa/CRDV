@@ -49,7 +49,7 @@ $factory->define(\App\Models\EmploiDuTemps::class, function (Faker $faker) {
         'heureDebut' => $faker->time('H:i:s'),
         'heureFin' => $faker->time('H:i:s'),
         'professionnelle_id' =>  $faker->numberBetween(\DB::table('professionnelle')->min('id'), \DB::table('professionnelle')->max('id')),
-        'acte_id' =>  $faker->numberBetween(\DB::table('acte')->min('id'), \DB::table('acte')->max('id')),
+        'activite_id' =>  $faker->numberBetween(\DB::table('activite')->min('id'), \DB::table('activite')->max('id')),
     ];
 });
 
