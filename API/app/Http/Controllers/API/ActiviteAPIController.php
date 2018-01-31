@@ -8,6 +8,7 @@ use App\Models\Activite;
 use App\Repositories\ActiviteRepository;
 use App\Repositories\ActeRepository;
 use App\Repositories\ParametreRepository;
+use App\Repositories\EmploiDuTempsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -27,14 +28,17 @@ class ActiviteAPIController extends AppBaseController
     private $acteRepository;
      /** @var  ParametreRepository */
      private $parametreRepository;
+     /** @var  EmploiDuTempsRepository */
+    private $emploiDuTempsRepository;
 
     
 
-    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo,ParametreRepository $parametreRepo)
+    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo,ParametreRepository $parametreRepo,EmploiDuTempsRepository $emploiDuTempsRepo)
     {
         $this->activiteRepository = $activiteRepo;
         $this->acteRepository = $acteRepo;
         $this->parametreRepository = $parametreRepo;
+        $this->emploiDuTempsRepository = $emploiDuTempsRepo;
     }
 
     /**
@@ -67,6 +71,17 @@ class ActiviteAPIController extends AppBaseController
         $input['cloture'] = false;
 
         $activites = $this->activiteRepository->create($input);
+
+        if($request->planifie){
+
+            $emploiDeTemps['jour'] = $request->jour;
+            $emploiDeTemps['heureDebut'] = $request->heureDebut;
+            $emploiDeTemps['heureFin'] = $request->heureFin;
+            $emploiDeTemps['professionnelle_id'] = $request->professionnelle_id;
+            $emploiDeTemps['acte_id'] =  $activites->id;
+
+            $emploiDeTempsAdded = $this->emploiDuTempsRepository->create($emploiDeTemps);
+        }
 
         return $this->sendResponse($activites->toArray(), 'Activite saved successfully');
     }

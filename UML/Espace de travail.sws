@@ -4,7 +4,9 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Name="UML Class Diagram_1" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML Class Diagram_1.moo"/>
+		<Model Expanded="Yes" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Loaded="No" Name="UML Class Diagram_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML Class Diagram_1.moo"/>
+		<Model Expanded="Yes" ID="{43E13C3B-A5EA-48DF-A46B-59A709FA1450}" Name="Diagramme de classes UML_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../../../S2/Architecture/TP/SMA/Diagramme de classes UML_1.moo"/>
+		<Model Expanded="Yes" ID="{786EC270-3D0B-45F1-8EDA-F80C7B9955DE}" Name="Diagramme de séquence UML_1" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../../../S2/Architecture/TP/SMA/Diagramme de séquence.moo"/>
 	</Local>
 	<BrowserModule Name="Référentiel"/>
 </Workspace>

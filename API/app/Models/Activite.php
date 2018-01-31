@@ -111,6 +111,6 @@ class Activite extends Model
      **/
     public function emploiDuTemps()
     {
-        return $this->hasMany(\App\Models\EmploiDuTemp::class);
+        return $this->hasMany(\App\Models\EmploiDuTemps::class);
     }
 }
