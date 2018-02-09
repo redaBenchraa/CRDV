@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::post('password/reset', 'ChangePassword@reset');
 
+
 Route::resource('centres', 'CentreAPIController');
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');

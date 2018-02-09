@@ -57,7 +57,7 @@ class ProfessionnelleAPIController extends AppBaseController
         $prenom = preg_replace('/[[:space:]]+/', '_', $request->prenom);
         $nom = preg_replace('/[[:space:]]+/', '_', $request->nom);
         $input['username'] = $prenom . '.' . $nom;
-        $input['password'] = 'password';
+        $input['password'] = bcrypt('password');
         
 
         $professionnelles = $this->professionnelleRepository->create($input);

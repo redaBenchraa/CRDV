@@ -54,10 +54,17 @@ class PassportController extends Controller
         }
 
         $input = $request->all();
+
         $input['password'] = bcrypt($input['password']);
+
+        $prenom = preg_replace('/[[:space:]]+/', '_', $request->prenom);
+        $nom = preg_replace('/[[:space:]]+/', '_', $request->nom);
+        $input['username'] = $prenom . '.' . $nom;
+
         $user = Professionnelle::create($input);
+
         $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['nom'] =  $user->nom;
+        $success['username'] =  $user->username;
 
         return response()->json(['success'=>$success], $this->successStatus);
     }
