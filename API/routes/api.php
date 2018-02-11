@@ -17,19 +17,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', 'LoginController@login');
+Route::post('/login/refresh', 'LoginController@refresh');
+Route::post('/logout', 'LoginController@logout');
 
+/*
 Route::post('/login', 'PassportController@login');
 Route::post('/register', 'PassportController@register');
 Route::post('/login/refresh', 'PassportController@refresh');
 Route::group(['middleware' => 'auth:api'], function(){
 	Route::post('get-details', 'PassportController@getDetails');
 });
+*/
+
 
 
 Route::post('password/reset', 'ChangePassword@reset');
 
-
+Route::group(['middleware' => 'auth:api'], function(){
 Route::resource('centres', 'CentreAPIController');
+});
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');
 Route::resource('adaptations', 'AdaptationAPIController');

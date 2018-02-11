@@ -77,8 +77,15 @@ class Professionnelle extends Authenticatable
      * @var array
      */
     public static $rules = [
+        'username' => 'required',
+       'password' => 'required'
         
     ];
+
+
+    public function findForPassport($username) {
+        return $this->where('username', $username)->first();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

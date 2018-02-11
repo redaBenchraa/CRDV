@@ -2,47 +2,42 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Controllers\Auth\LoginProxy;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+  //  use AuthenticatesUsers;
 
-    use AuthenticatesUsers;
-
+    private $loginProxy;
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+//    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(LoginProxy $loginProxy)
     {
-        $this->middleware('guest')->except('logout');
+        $this->loginProxy = $loginProxy;
     }
 
     public function login(LoginRequest $request)
     {
-        $email = $request->get('email');
+        $username = $request->get('username');
         $password = $request->get('password');
 
-        return $this->response($this->loginProxy->attemptLogin($email, $password));
+        //return $this->response($this->loginProxy->attemptLogin($username, $password));
+        return response()->json($this->loginProxy->attemptLogin($username, $password));
+        
     }
 
     public function refresh(Request $request)
