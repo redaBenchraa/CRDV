@@ -35,20 +35,23 @@ class LoginController extends Controller
         $username = $request->get('username');
         $password = $request->get('password');
 
-        //return $this->response($this->loginProxy->attemptLogin($username, $password));
+       
         return response()->json($this->loginProxy->attemptLogin($username, $password));
         
     }
 
     public function refresh(Request $request)
     {
-        return $this->response($this->loginProxy->attemptRefresh());
+        $refreshToken = $request->get('refreshToken');
+       
+        return response()->json($this->loginProxy->attemptRefresh($refreshToken));
     }
 
     public function logout()
     {
         $this->loginProxy->logout();
 
-        return $this->response(null, 204);
+        return response()->json(null, 204);
+       
     }
 }
