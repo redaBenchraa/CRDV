@@ -65,7 +65,6 @@ class LoginProxy
      */
     public function attemptRefresh($refreshToken)
     {
-        
         return $this->proxy('refresh_token', [
             'refresh_token' => $refreshToken
         ]);
