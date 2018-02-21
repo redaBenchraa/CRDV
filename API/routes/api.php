@@ -18,8 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', 'LoginController@login');
-Route::post('/login/refresh', 'LoginController@refresh');
-Route::post('/logout', 'LoginController@logout');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('/login/refresh', 'LoginController@refresh');
+    Route::post('/logout', 'LoginController@logout');
+});
 
 /*
 Route::post('/login', 'PassportController@login');

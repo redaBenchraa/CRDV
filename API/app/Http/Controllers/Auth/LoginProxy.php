@@ -63,10 +63,9 @@ class LoginProxy
      * Attempt to refresh the access token used a refresh token that
      * has been saved in a cookie
      */
-    public function attemptRefresh()
+    public function attemptRefresh($refreshToken)
     {
-        $refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
-
+        
         return $this->proxy('refresh_token', [
             'refresh_token' => $refreshToken
         ]);
@@ -95,20 +94,10 @@ class LoginProxy
         $data = json_decode($response->getContent());
 
 
-        // Create a refresh token cookie
-        $this->cookie->queue(
-            self::REFRESH_TOKEN,
-            $data->refresh_token,
-            864000, // 10 days
-            null,
-            null,
-            false,
-            true // HttpOnly
-        );
-
         return [
             'access_token' => $data->access_token,
-            'expires_in' => $data->expires_in
+            'expires_in' => $data->expires_in,
+            'refresh_token' => $data->refresh_token
         ];
     }
 
@@ -118,7 +107,8 @@ class LoginProxy
      */
     public function logout()
     {
-        $accessToken = $this->auth->user()->token();
+
+        $accessToken = Auth::user()->token();
 
         $refreshToken = $this->db
             ->table('oauth_refresh_tokens')
@@ -129,6 +119,5 @@ class LoginProxy
 
         $accessToken->revoke();
 
-        $this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
     }
 }
