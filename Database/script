@@ -11,4 +11,6 @@ php artisan infyom:api Usager --fromTable --tableName=usager
 php artisan infyom:api SousCategorie --fromTable --tableName=sousCategorie
 php artisan infyom:api Groupe --fromTable --tableName=groupe
 
+php artisan infyom:api Serafin --fromTable --tableName=serafin
+
 

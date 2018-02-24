@@ -20,7 +20,6 @@ class CentreRepository extends BaseRepository
      * @var array
      */
     protected $fieldSearchable = [
-        'parametre_id',
         'nom',
         'adresse',
         'telephone'

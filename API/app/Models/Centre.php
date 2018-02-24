@@ -36,7 +36,6 @@ class Centre extends Model
 
 
     public $fillable = [
-        'parametre_id',
         'nom',
         'adresse',
         'telephone'
@@ -49,7 +48,6 @@ class Centre extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'parametre_id' => 'integer',
         'nom' => 'string',
         'adresse' => 'string',
         'telephone' => 'string'
@@ -65,11 +63,11 @@ class Centre extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\hasMany
      **/
-    public function parametre()
+    public function parametres()
     {
-        return $this->belongsTo(\App\Models\Parametre::class);
+        return $this->hasMany(\App\Models\Parametre::class);
     }
 
     /**

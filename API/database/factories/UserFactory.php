@@ -49,7 +49,7 @@ $factory->define(\App\Models\EmploiDuTemps::class, function (Faker $faker) {
         'heureDebut' => $faker->time('H:i:s'),
         'heureFin' => $faker->time('H:i:s'),
         'professionnelle_id' =>  $faker->numberBetween(\DB::table('professionnelle')->min('id'), \DB::table('professionnelle')->max('id')),
-        'acte_id' =>  $faker->numberBetween(\DB::table('acte')->min('id'), \DB::table('acte')->max('id')),
+        'activite_id' =>  $faker->numberBetween(\DB::table('activite')->min('id'), \DB::table('activite')->max('id')),
     ];
 });
 
@@ -58,6 +58,7 @@ $factory->define(\App\Models\Centre::class, function (Faker $faker) {
         'nom' => $faker->name,
         'adresse' => $faker->address,
         'telephone' => $faker->phoneNumber
+        
     ];
 });
 
@@ -74,6 +75,16 @@ $factory->define(\App\Models\SousCategorie::class, function (Faker $faker) {
         'type' => $faker->boolean,
         'intitule' => $faker->title,
         'categorie_id' =>  $faker->numberBetween(\DB::table('categorie')->min('id'), \DB::table('categorie')->max('id')),
+        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
+    ];
+});
+
+
+$factory->define(\App\Models\Serafin::class, function (Faker $faker) {
+    return [
+        'code' => $faker->name,
+        'intitule' => $faker->title,
+        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
     ];
 });
 

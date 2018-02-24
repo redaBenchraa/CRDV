@@ -5,6 +5,10 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 /**
  * Class Professionnelle
  * @package App\Models
@@ -19,9 +23,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string nom
  * @property string prenom
  */
-class Professionnelle extends Model
+class Professionnelle extends Authenticatable
 {
-    use SoftDeletes;
+    use SoftDeletes; 
+    use Notifiable;
+    use HasApiTokens;
 
     public $table = 'professionnelle';
     
@@ -34,10 +40,20 @@ class Professionnelle extends Model
 
     public $fillable = [
         'centre_id',
+        'username',
         'nom',
         'prenom',
         'password',
         'type'
+    ];
+
+     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
     ];
 
     /**
@@ -48,6 +64,7 @@ class Professionnelle extends Model
     protected $casts = [
         'id' => 'integer',
         'centre_id' => 'integer',
+        'username' => 'string',
         'nom' => 'string',
         'prenom' => 'string',
         'password' => 'string',
@@ -60,8 +77,15 @@ class Professionnelle extends Model
      * @var array
      */
     public static $rules = [
+        'username' => 'required',
+       'password' => 'required'
         
     ];
+
+
+    public function findForPassport($username) {
+        return $this->where('username', $username)->first();
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

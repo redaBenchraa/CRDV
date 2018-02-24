@@ -6,6 +6,9 @@ use App\Http\Requests\API\CreateActiviteAPIRequest;
 use App\Http\Requests\API\UpdateActiviteAPIRequest;
 use App\Models\Activite;
 use App\Repositories\ActiviteRepository;
+use App\Repositories\ActeRepository;
+use App\Repositories\ParametreRepository;
+use App\Repositories\EmploiDuTempsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
@@ -21,11 +24,21 @@ class ActiviteAPIController extends AppBaseController
 {
     /** @var  ActiviteRepository */
     private $activiteRepository;
+    /** @var  ActeRepository */
+    private $acteRepository;
+     /** @var  ParametreRepository */
+     private $parametreRepository;
+     /** @var  EmploiDuTempsRepository */
+    private $emploiDuTempsRepository;
+
     
 
-    public function __construct(ActiviteRepository $activiteRepo)
+    public function __construct(ActiviteRepository $activiteRepo,ActeRepository $acteRepo,ParametreRepository $parametreRepo,EmploiDuTempsRepository $emploiDuTempsRepo)
     {
         $this->activiteRepository = $activiteRepo;
+        $this->acteRepository = $acteRepo;
+        $this->parametreRepository = $parametreRepo;
+        $this->emploiDuTempsRepository = $emploiDuTempsRepo;
     }
 
     /**
@@ -55,8 +68,20 @@ class ActiviteAPIController extends AppBaseController
     public function store(CreateActiviteAPIRequest $request)
     {
         $input = $request->all();
+        $input['cloture'] = false;
 
         $activites = $this->activiteRepository->create($input);
+
+        if($request->planifie){
+
+            $emploiDeTemps['jour'] = $request->jour;
+            $emploiDeTemps['heureDebut'] = $request->heureDebut;
+            $emploiDeTemps['heureFin'] = $request->heureFin;
+            $emploiDeTemps['professionnelle_id'] = $request->professionnelle_id;
+            $emploiDeTemps['activite_id'] =  $activites->id;
+
+            $emploiDeTempsAdded = $this->emploiDuTempsRepository->create($emploiDeTemps);
+        }
 
         return $this->sendResponse($activites->toArray(), 'Activite saved successfully');
     }
@@ -177,4 +202,101 @@ class ActiviteAPIController extends AppBaseController
 
         return $this->sendResponse($activite->emploiDuTemps,'emploiDuTemps retrieved successfully');
     }
+
+    public function valider($id,$bool){
+
+        $param['professionnelle_id'] = $id;
+        $param['planifie'] = $bool;
+        $param['cloture'] = 0;
+        $activite = $this->activiteRepository->findWhere($param);
+
+    
+        foreach($activite as $act){
+
+            if( $act->sousCategorie->type == 1 ){//direct
+
+                $centreParamDirect['centre_id'] =  $act->professionnelle->centre_id;
+                $centreParamDirect['nom'] = 1;
+                $parametre = $this->parametreRepository->findWhere($centreParamDirect);
+
+                if(!$parametre->isEmpty()){
+                    $acteParam['duree'] = $parametre[0]->valeur;
+                }else{
+                    $acteParam['duree'] = 45;
+                }
+
+                $acteParam['modeSaisie'] = 'individual';
+                $acteParam['usager_id'] = $act->usager_id;
+                $acteParam['complet'] = 1;
+                $acteParam['cumuleDuree'] = $act->duree;
+                $acte = $this->acteRepository->create($acteParam);
+                
+                $activiteParam['acte_id'] = $acte->id;
+                $activiteParam['cloture'] = 1;
+                $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+              
+            }
+            else{//Indirect
+
+                $actesParam['complet'] = 0;
+                $actesParam['usager_id'] = $act->usager_id;
+                $acte = $this->acteRepository->findWhere($actesParam);
+
+                if(!$acte->isEmpty()){
+
+                    $activiteParam['acte_id'] = $acte[0]->id;
+                    $activiteParam['cloture'] = 1;
+                    $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+    
+                    $acteParam['cumuleDuree'] = $acte[0]->cumuleDuree + $act->duree;
+                    $acte = $this->acteRepository->update($acteParam, $acte[0]->id);
+    
+                    if($acte->duree == $acte->cumuleDuree){
+    
+                        $acteParam['complet'] = 1;
+                        $acte = $this->acteRepository->update($acteParam, $acte->id);
+                    }
+                }
+                else{
+
+                    $centreParamIndirect['centre_id'] =  $act->professionnelle->centre_id;
+                    $centreParamIndirect['nom'] = 3;
+                    $parametre = $this->parametreRepository->findWhere($centreParamIndirect);
+
+                    if(!$parametre->isEmpty()){
+                        $acteParam['duree'] = $parametre[0]->valeur;
+                    }else{
+                        $acteParam['duree'] = 30;
+                    }
+
+                    $acteParam['modeSaisie'] = 'individual';
+                    $acteParam['usager_id'] = $act->usager_id;
+                    $acteParam['complet'] = 0;
+                    $acteParam['cumuleDuree'] = $act->duree;
+                    $acte = $this->acteRepository->create($acteParam);
+
+                    $activiteParam['acte_id'] = $acte->id;
+                    $activiteParam['cloture'] = 1;
+                    $updatedActivite = $this->activiteRepository->update( $activiteParam, $act->id);
+
+                }
+
+            }
+        
+    }
+
+    return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
+    
+    //Activite::query()->where('planifie',$bool)->update(['cloture' => true]);
+}
+
+    public function planned($bool){
+        
+        $activite = $this->activiteRepository->findByField('planifie',$bool);
+        
+        return $this->sendResponse($activite->toArray(), 'Activite updated successfully');
+        
+    }
+
+
 }

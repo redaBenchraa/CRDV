@@ -1,7 +1,8 @@
-/*==============================================================*/
+ï»¿/*==============================================================*/
 /* nom de sgbd :  mysql 4.0                                     */
-/* date de création :  08/01/2018 23:32:45                      */
+/* date de crï¿½ation :  08/01/2018 23:32:45                      */
 /*==============================================================*/
+
 drop database crdv;
 create database if not exists crdv;
 use crdv;
@@ -30,6 +31,8 @@ drop table if exists groupe;
 
 drop table if exists sousCategorie;
 
+drop table if exists serafin;
+
 /*==============================================================*/
 /* table : acte                                                 */
 /*==============================================================*/
@@ -39,6 +42,8 @@ create table acte
    usager_id                         int                            not null,
    duree                          int,
    modeSaisie                     varchar(254),
+   complet                        bool,
+   cumuleDuree                          int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -103,7 +108,6 @@ engine = innodb;
 create table centre
 (
    id                             int                            not null AUTO_INCREMENT,
-   parametre_id                         int                      ,
    nom                            varchar(254),
    adresse                        varchar(254),
    telephone                      varchar(254),
@@ -119,7 +123,7 @@ create table emploiDuTemps
 (
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id                         int                            not null,
-   acte_id                         int                            not null,
+   activite_id                         int                            not null,
    groupe_id                       int,
    jour                           int,
    heureDebut                     time,
@@ -138,6 +142,7 @@ create table parametre
    nom                            int,
    valeur                         int,
    type                           int,
+   centre_id                       int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -151,6 +156,7 @@ create table professionnelle
    centre_id                         int                            not null,
    nom                            varchar(254),
    prenom                         varchar(254),
+   username                         varchar(254),
    password                         varchar(254),
    type                           bool,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
@@ -190,9 +196,23 @@ engine = innodb;
 create table sousCategorie
 (
    categorie_id                         int                            not null,
+   serafin_id                         int                            not null,
    id                             int                            not null AUTO_INCREMENT,
    intitule                       varchar(254),
    type                           bool,
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
+)
+engine = innodb;
+
+/*==============================================================*/
+/* table : serafin                                        */
+/*==============================================================*/
+create table serafin
+(
+   id                             int                            not null AUTO_INCREMENT,
+   code                       varchar(254),
+   intitule                       varchar(254),
+   serafin_id                         int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -225,10 +245,7 @@ alter table categorieProfessionnelle add constraint fk_association_4 foreign key
 alter table categorie add constraint fk_association_15 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
-alter table centre add constraint fk_association_10 foreign key (parametre_id)
-      references parametre (id) on delete restrict on update restrict;
-
-alter table emploiDuTemps add constraint fk_association_16 foreign key (acte_id)
+alter table emploiDuTemps add constraint fk_association_16 foreign key (activite_id)
       references activite (id) on delete restrict on update restrict;
 
 alter table emploiDuTemps add constraint fk_association_2 foreign key (professionnelle_id)
@@ -240,6 +257,9 @@ alter table emploiDuTemps add constraint fk_association_18 foreign key (groupe_i
 alter table professionnelle add constraint fk_association_1 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
+alter table parametre add constraint fk_association_22 foreign key (centre_id)
+      references centre (id) on delete restrict on update restrict;
+
 alter table usager add constraint fk_association_12 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
@@ -248,4 +268,10 @@ alter table usager add constraint fk_association_19 foreign key (groupe_id)
 
 alter table sousCategorie add constraint fk_association_11 foreign key (categorie_id)
       references categorie (id) on delete restrict on update restrict;
+
+alter table sousCategorie add constraint fk_association_20 foreign key (serafin_id)
+      references serafin (id) on delete restrict on update restrict;
+
+alter table serafin add constraint fk_association_21 foreign key (serafin_id)
+      references serafin (id) on delete restrict on update restrict;
 

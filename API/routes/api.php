@@ -17,9 +17,29 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/login', 'LoginController@login');
+
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('/login/refresh', 'LoginController@refresh');
+    Route::post('/logout', 'LoginController@logout');
+});
+
+/*
+Route::post('/login', 'PassportController@login');
+Route::post('/register', 'PassportController@register');
+Route::post('/login/refresh', 'PassportController@refresh');
+Route::group(['middleware' => 'auth:api'], function(){
+	Route::post('get-details', 'PassportController@getDetails');
+});
+*/
+
+
+
 Route::post('password/reset', 'ChangePassword@reset');
 
+Route::group(['middleware' => 'auth:api'], function(){
 Route::resource('centres', 'CentreAPIController');
+});
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');
 Route::resource('adaptations', 'AdaptationAPIController');
@@ -32,13 +52,17 @@ Route::resource('usagers', 'UsagerAPIController');
 Route::resource('sous_categories', 'SousCategorieAPIController');
 Route::resource('actes', 'ActeAPIController');
 Route::resource('groupes', 'GroupeAPIController');
+Route::resource('serafins', 'SerafinAPIController');
 
 Route::prefix('centres')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('professionnelles', 'CentreAPIController@professionnelle');
         Route::get('usagers', 'CentreAPIController@usagers');
-        Route::get('parametre', 'CentreAPIController@parametre');
         Route::get('categories', 'CentreAPIController@categories');
+        Route::prefix('parametres')->group(function () {
+            Route::get('', 'CentreAPIController@parametres');
+            Route::get('{nom}', 'ParametreAPIController@parametreValue');
+        });
     });
 });
 
@@ -58,6 +82,7 @@ Route::prefix('activites')->group(function () {
         Route::get('acte', 'ActiviteAPIController@acte');
         Route::get('emploiDuTemps', 'ActiviteAPIController@emploiDuTemps');
     });
+    Route::get('planned/{bool}', 'ActiviteAPIController@planned');
 });
 
 Route::prefix('categories')->group(function () {
@@ -83,20 +108,24 @@ Route::prefix('emploi_du_temps')->group(function () {
     });
 });
 
-Route::get('/parametres/{id}/centres', 'ParametreAPIController@centres');
+Route::get('/parametres/{id}/centre', 'ParametreAPIController@centre');
 
 Route::prefix('professionnelles')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('centre', 'ProfessionnelleAPIController@centre');
-        Route::get('activites', 'ProfessionnelleAPIController@activites');
         Route::get('categories', 'ProfessionnelleAPIController@categories');
-        Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps');                    
+        Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps'); 
+        Route::prefix('activites')->group(function () {
+            Route::get('', 'ProfessionnelleAPIController@activites'); 
+            Route::put('validate/{bool}', 'ActiviteAPIController@valider');
+        });        
     });
 });
 
 Route::prefix('sous_categories')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('categorie', 'SousCategorieAPIController@categorie');
+        Route::get('serafin', 'SousCategorieAPIController@serafin');
         Route::get('activites', 'SousCategorieAPIController@activites');                    
     });
 });
@@ -116,3 +145,11 @@ Route::prefix('groupes')->group(function () {
         Route::get('usagers', 'GroupeAPIController@usagers');        
     });
 });
+
+Route::prefix('serafins')->group(function () {
+    Route::prefix('{id}')->group(function () {
+        Route::get('souscategories', 'SerafinAPIController@souscategories');
+        Route::get('serafin', 'SerafinAPIController@serafin');                    
+    });
+});
+
