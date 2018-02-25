@@ -54,7 +54,7 @@ import { PasswordComponent } from './administration/professional/password/passwo
 import { ProfileComponent } from './profile/profile.component';
 import {ArchwizardModule} from "ng2-archwizard/dist";
 import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ViewAdaptationComponent } from './professional/adaptation/view-adaptation/view-adaptation.component';
 import { GroupComponent } from './administration/group/group.component';
 import { ListGroupComponent } from './administration/group/list-group/list-group.component';
@@ -123,6 +123,7 @@ import { ShowGroupComponent } from './administration/group/show-group/show-group
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     FontAwesomeModule,
     ThemifyModule,

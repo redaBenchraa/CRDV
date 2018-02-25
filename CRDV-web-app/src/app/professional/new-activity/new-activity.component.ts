@@ -90,9 +90,7 @@ export class NewActivityComponent implements OnInit {
 
     });
   }
-  getDuration(){
-    return $('#select-box1').find(':selected').text();
-  }
+
   onSelect(index, { selected }) {
     console.log(this.model);
     switch (index) {
