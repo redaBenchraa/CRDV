@@ -29,7 +29,8 @@ class Groupe extends Model
 
 
     public $fillable = [
-        'nom'
+        'nom',
+        'centre_id'
     ];
 
     /**
@@ -39,7 +40,8 @@ class Groupe extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nom' => 'string'
+        'nom' => 'string',
+        'centre_id' => 'integer'
     ];
 
     /**

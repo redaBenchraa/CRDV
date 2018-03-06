@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -38,8 +39,11 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::post('password/reset', 'ChangePassword@reset');
 
 Route::group(['middleware' => 'auth:api'], function(){
-Route::resource('centres', 'CentreAPIController');
+    Route::get('me', 'ProfessionnelleAPIController@getMe');
+    //Route::resource('centres', 'CentreAPIController');
 });
+Route::resource('centres', 'CentreAPIController');
+
 Route::resource('activites', 'ActiviteAPIController');
 Route::resource('actes', 'ActeAPIController');
 Route::resource('adaptations', 'AdaptationAPIController');
@@ -59,6 +63,7 @@ Route::prefix('centres')->group(function () {
         Route::get('professionnelles', 'CentreAPIController@professionnelle');
         Route::get('usagers', 'CentreAPIController@usagers');
         Route::get('categories', 'CentreAPIController@categories');
+        Route::get('groupes', 'CentreAPIController@categories');
         Route::prefix('parametres')->group(function () {
             Route::get('', 'CentreAPIController@parametres');
             Route::get('{nom}', 'ParametreAPIController@parametreValue');
