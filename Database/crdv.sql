@@ -158,7 +158,7 @@ create table professionnelle
    prenom                         varchar(254),
    username                         varchar(254),
    password                         varchar(254),
-   type                           bool,
+   type                           tinyint(2),
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
