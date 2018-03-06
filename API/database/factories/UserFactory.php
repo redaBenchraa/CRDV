@@ -97,8 +97,8 @@ $factory->define(\App\Models\Professionnelle::class, function (Faker $faker) {
     return [
         'nom' => $name,
         'prenom' => $lname,
-        'username' => $centre_id,
-        'centre_id' =>  $name.'.'.$lname.'.'.$centre_id,
+        'username' => $name.'.'.$lname.'.'.$centre_id,
+        'centre_id' =>  $centre_id,
         'password' => app('hash')->make('password'),
         'type' => $faker->boolean
     ];
