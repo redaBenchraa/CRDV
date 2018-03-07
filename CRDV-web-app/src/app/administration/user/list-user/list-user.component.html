@@ -14,7 +14,7 @@
 
       <form  novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
         <div role="search" class="sbx-custom__wrapper">
-          <input type="search" name="search" placeholder="Search your website" autocomplete="off" required="required" class="sbx-custom__input">
+          <input  (keyup)="onSearchChange(search)" type="search" name="search"   [(ngModel)]="search"  placeholder="Recherche par nom" autocomplete="off" required="required" class="sbx-custom__input">
           <button type="submit" title="Submit your search query." class="sbx-custom__submit">
             <span class="fa fa-search"></span>
           </button>
@@ -39,18 +39,13 @@
   <ngx-datatable
     #table
     class='material'
-    [columns]="columns"
     [columnMode]="'force'"
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="'auto'"
     [rows]="rows"
-
-    [externalPaging]="true"
     [count]="page.totalElements"
-    [offset]="page.pageNumber"
-    [limit]="page.size"
-    (page)='setPage($event)'
+    [limit]="10"
   >
     <ngx-datatable-column name="Nom" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -65,7 +60,13 @@
 
     <ngx-datatable-column name="Date de naissance" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.dateDeNaissance}}
+        {{row.date_de_naissance.split(' ')[0]}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Groupe" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <a routerLink="../../group/show/{{row.id}}">{{row.groupe_id}}</a>
       </ng-template>
     </ngx-datatable-column>
     <ngx-datatable-column name="Action" [flexGrow]="1">

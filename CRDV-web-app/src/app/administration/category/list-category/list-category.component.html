@@ -14,7 +14,7 @@
 
       <form novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
         <div role="search" class="sbx-custom__wrapper">
-          <input type="search" name="search" placeholder="Search your website" autocomplete="off" required="required" class="sbx-custom__input">
+          <input  (keyup)="onSearchChange(search)" type="search" name="search"   [(ngModel)]="search"  placeholder="Recherche par nom" autocomplete="off" required="required" class="sbx-custom__input">
           <button type="submit" title="Submit your search query." class="sbx-custom__submit">
             <span class="fa fa-search"></span>
           </button>
@@ -45,12 +45,8 @@
     [footerHeight]="50"
     [rowHeight]="'auto'"
     [rows]="rows"
-
-    [externalPaging]="true"
     [count]="page.totalElements"
-    [offset]="page.pageNumber"
-    [limit]="page.size"
-    (page)='setPage($event)'
+    [limit]="10"
   >
     <ngx-datatable-column name="Intitulé" [flexGrow]="1">
       <ng-template let-row="row" ngx-datatable-cell-template>
@@ -62,6 +58,7 @@
         <div class="peers mR-15">
           <div class="peer"><a routerLink="../edit/{{row.id}}" class="td-n c-deep-purple-500 cH-blue-500 fsz-md p-1"><i class="ti-pencil"></i></a></div>
           <div class="peer"><a routerLink="../delete/{{row.id}}"class="td-n c-red-500 cH-blue-500 fsz-md p-1"><i class="ti-trash"></i></a></div>
+          <div class="peer"><a (click)="view(row.id)" class="td-n c-red-500 cH-blue-500 fsz-md p-1"><i class="ti-eye"></i></a></div>
         </div>
       </ng-template>
     </ngx-datatable-column>

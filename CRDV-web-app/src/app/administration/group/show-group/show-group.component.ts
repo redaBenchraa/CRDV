@@ -1,40 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {Page} from "../../../model/page";
+import {ActivatedRoute, Router} from '@angular/router';
+import {Page} from '../../../model/page';
+import {HttpService} from '../../../../Service/HttpService';
 
 @Component({
   selector: 'app-show-group',
   templateUrl: './show-group.component.html',
-  styleUrls: ['./show-group.component.scss']
+  styleUrls: ['./show-group.component.scss'],
 })
 export class ShowGroupComponent implements OnInit {
-
+  group: any;
   page = new Page();
-
-  rows = [
-    { id : 1, nom: 'Austin', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 2, nom: 'Dany', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 3, nom: 'Molly', prenom : 'zzz', dateDeNaissance : '12/02/1465'},
-  ];
-
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.page.totalPages = 7;
-    this.page.totalElements = 21;
-    this.page.size = 3;
-    this.page.pageNumber = 0;
+  rowsOriginal = [];
+  rows = [];
+  search = '';
+  groupe: any;
+  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute,
+              private router: Router, private route: ActivatedRoute) {
+    this.group = JSON.parse(localStorage.getItem('user'));
+    if (this.group === null) {
+      this.router.navigate(['start']);
+    }
+  }
+  onSearchChange() {
+    console.log(this.search);
+    this.rows = this.rowsOriginal;
+    if (this.search !== '') {
+      this.search = this.search.toLowerCase();
+      this.rows = this.rows.filter(
+        x => x.nom.toLowerCase().indexOf(this.search) > -1
+        ||  x.prenom.indexOf(this.search) > -1
+        ||  x.date_de_naissance.indexOf(this.search) > -1
+      );
+    }
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+        this.getUsers(params.get('id'));
+      this.httpService.getGroup(params.get('id')).subscribe(
+        data => {
+          console.log(data);
+          this.group = data['data'];
+        }, error2 => {
+          console.error(error2);
+        }
+      );
+    });
   }
 
-  setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    alert(this.page.pageNumber);
-    console.log(pageInfo);
+  add() {
+    this.router.navigate(['../add'], {relativeTo: this.activatedRoute});
   }
 
-  goBack() {
-    this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
+  getUsers(id) {
+    this.httpService.getGroupUsers(id).subscribe(
+      data =>  {
+        console.log(data);
+        this.updateTable(data);
+      }, error => {
+        console.error(error);
+      }
+    );
+  }
+  updateTable(data) {
+    this.page.totalElements = data['data'].length;
+    this.rows = data['data'];
+    this.rowsOriginal = data['data'];
   }
 
 }

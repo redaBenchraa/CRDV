@@ -20,19 +20,35 @@
           <span class="focus-input100"></span>
         </div>
 
-        <div class="flex-sb-m w-full" style="padding-top: 25px;padding-bottom: 25px">
-          <div class="contact100-form-checkbox">
-            <input formControlName="admin" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-            <label class="label-checkbox100" for="ckb1">
-              S'identifier en tant qu'administrateur
-            </label>
-          </div>
+        <div lass="flex-sb-m w-full" style="width: 100%; padding-bottom: 10px">
+          <span class="label-input100">Centre</span>
+          <ul class="centres">
+            <li *ngFor="let c of centres">
+              <div class="contact100-form-checkbox">
+                <input class="input-checkbox100" type="radio" id="{{'radio'+c.id}}" formControlName="centre" value="{{c.id}}" name="centre">
+                <label class="label-checkbox100" for="{{'radio'+c.id}}">
+                  {{c.nom}}
+                </label>
+              </div>
+            </li>
+          </ul>
+          <span class="focus-input100"></span>
         </div>
+
+
 
         <div class="container-login100-form-btn">
           <button (click)="login()"  class="login100-form-btn">
             Se Connecter
           </button>
+          <div class="flex-sb-m w-full" style="padding-top: 25px;padding-bottom: 25px">
+            <div class="contact100-form-checkbox">
+              <input formControlName="admin" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+              <label class="label-checkbox100" for="ckb1">
+                S'identifier en tant qu'administrateur
+              </label>
+            </div>
+          </div>
         </div>
       </form>
     </div>

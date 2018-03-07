@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Page} from '../../../model/page';
 import {ActivatedRoute, Router} from '@angular/router';
+import {HttpService} from '../../../../Service/HttpService';
 
 @Component({
   selector: 'app-list-professional',
@@ -8,32 +9,50 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./list-professional.component.scss']
 })
 export class ListProfessionalComponent implements OnInit {
-
+  professional: any;
   page = new Page();
-
-  rows = [
-    { id : 1, nom: 'Austin', prenom : 'zzz' },
-    { id : 2, nom: 'Dany', prenom : 'zzz' },
-    { id : 3, nom: 'Molly', prenom : 'zzz'},
-  ];
-
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.page.totalPages = 7;
-    this.page.totalElements = 21;
-    this.page.size = 3;
-    this.page.pageNumber = 0;
+  rows = [];
+  rowsOriginal = [];
+  search = '';
+  constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute, private router: Router) {
+    this.professional = JSON.parse(localStorage.getItem('user'));
+    if (this.professional === null) {
+      this.router.navigate(['start']);
+    }
+    this.getProfessionals(1);
   }
 
   ngOnInit() {
   }
 
-  setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    alert(this.page.pageNumber);
-    console.log(pageInfo);
+  onSearchChange() {
+    console.log(this.search);
+    this.rows = this.rowsOriginal;
+    if (this.search !== '') {
+      this.search = this.search.toLowerCase();
+      this.rows = this.rows.filter(
+        x => x.nom.toLowerCase().indexOf(this.search) > -1 || x.prenom.toLowerCase().indexOf(this.search) > -1 );
+    }
   }
   add() {
     this.router.navigate(['../add'], {relativeTo: this.activatedRoute});
+  }
+
+  getProfessionals(page) {
+    console.log(this.professional);
+    this.httpService.getPros(this.professional['centre_id'], page).subscribe(
+      data =>  {
+        console.log(data);
+        this.updateTable(data);
+      }, error => {
+        console.error(error);
+      }
+    );
+  }
+  updateTable(data) {
+    this.page.totalElements = data['data'].length;
+    this.rows = data['data'];
+    this.rowsOriginal = data['data'];
   }
 
 }

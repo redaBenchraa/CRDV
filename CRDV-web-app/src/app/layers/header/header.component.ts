@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  user: any;
+  constructor(private router: Router) {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user == null) {
+      this.router.navigate(['/start']);
+    }
+  }
 
   ngOnInit() {
     $('.search-toggle').on('click', e => {
