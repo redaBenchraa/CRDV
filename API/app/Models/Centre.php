@@ -78,6 +78,11 @@ class Centre extends Model
         return $this->hasMany(\App\Models\Categorie::class);
     }
 
+    public function groupes()
+    {
+        return $this->hasMany(\App\Models\Groupe::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

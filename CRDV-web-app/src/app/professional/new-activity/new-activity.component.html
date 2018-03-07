@@ -1,3 +1,368 @@
-<p>
-  new-activity works!
-</p>
+<div class="masonry-item col-md-12">
+  <div class="bgc-white p-20 bd">
+    <h6 class="c-grey-900 font-weight-bold">Ajouter une activité</h6>
+    <wizard #wizard navBarLayout="large-empty-symbols"  navBarLocation="top">
+      <wizard-step stepTitle="Categorie" navigationSymbol="1">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left" style="color: grey"></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez la catégorie
+                </div>
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input ng-control="categorie"  [value]="1"  [(ngModel)]="model.categorie" type="radio" name="category" checked><label>Indirecte</label></div>
+                    <div><input ng-control="categorie"  [value]="2"  [(ngModel)]="model.categorie" type="radio" name="category"><label>Directe</label></div>
+                  </div>
+                </div>
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [columnMode]="'force'"
+                  [rows]="rowsCategorie"
+                  [selected]="selectedCategorie"
+                  [selectionType]="'single'"
+                  (select)='onSelect(1,$event)'>
+                  <ngx-datatable-column name="Categorie">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.Categorie}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+
+              </div>
+              <div class="col-1" class="centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Activité" navigationSymbol="2">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez l'activité
+                </div>
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [columnMode]="'force'"
+                  [rows]="rowsActivite"
+                  [selected]="selectedActivite"
+                  [selectionType]="'single'"
+                  (select)='onSelect(2,$event)'>
+                  <ngx-datatable-column name="Activité">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Usagers" navigationSymbol="3">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez les usagers
+                </div>
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input type="radio" ng-control="usagers"  [value]="1"  [(ngModel)]="model.usager" name="usagers" checked><label>Individuel</label></div>
+                    <div><input type="radio" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Groupe</label></div>
+                  </div>
+                </div>
+                <ngx-datatable *ngIf="model.usager == 1"
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [columnMode]="'force'"
+                  [rows]="rowsUsager"
+                  [selected]="selectedUsager"
+                  [selectionType]="'multiClick'"
+                  (select)='onSelect(3,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true">
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Nom">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Prenom">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.prenom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+                <br/>
+                <ngx-datatable  *ngIf="model.usager == 2"
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [columnMode]="'force'"
+                  [rows]="rowsGroupe"
+                  [selected]="selectedGroupe"
+                  [selectionType]="'multiClick'"
+                  (select)='onSelect(4,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true">
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Groupe">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Professionnelle" navigationSymbol="4">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez les Professionnelles
+                </div>
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [columnMode]="'force'"
+                  [rows]="rowsProffessionelle"
+                  [selected]="selectedProffessionelle"
+                  [selectionType]="'multiClick'"
+
+                  (select)='onSelect(5,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true">
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Nom">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Prenom">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.prenom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Durée" navigationSymbol="5">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="select-box" *ngIf="model.categorie == 2">
+                  <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
+                  <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
+                  <select [(ngModel)]="model.duration" class="select">
+                    <option  *ngFor="let option of durationDirecte" [value]="option.value" >{{option.lable}}</option>
+                  </select>
+                </div>
+
+                <div class="select-box" *ngIf="model.categorie == 1">
+                  <label  class="label select-box1">
+                    <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
+                    <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
+                  </label>
+                  <select [(ngModel)]="model.duration"  class="select">
+                    <option  *ngFor="let option of durationIndirecte" [value]="option.value" >{{option.lable}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Résumé" navigationSymbol="&#xf00c;" navigationSymbolFontFamily="FontAwesome">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left" style="cursor:pointer" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content">
+                  <h4 class="c-grey-900 mB-20">Informations sur l'activité</h4>
+                  <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Activité</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>Type</td>
+                      <td>{{getCategorieType(model.categorie) }}</td>
+                    </tr>
+                    <tr>
+                      <td>Categorie</td>
+                      <td>{{getSelectedCategorie()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Activité</td>
+                      <td>{{getSelectedActivite()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Usager</td>
+                      <td>{{getUsagerType(model.usager)}}</td>
+                    </tr>
+                    <tr>
+                      <td>Durée</td>
+                      <td>{{getDuration()}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <h4 class="c-grey-900 mB-20">Usagers</h4>
+                  <table class="table" *ngIf="model.usager == 1">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let usager of selectedUsager">
+                      <td>{{usager.prenom}}</td>
+                      <td>{{usager.nom}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <table class="table" *ngIf="model.usager == 2">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Nom du groupe</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let usager of selectedGroupe">
+                      <td>{{usager.nom}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <h4 class="c-grey-900 mB-20">Proffessionnelle</h4>
+                  <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let usager of selectedProffessionelle">
+                      <td>{{usager.nom}}</td>
+                      <td>{{usager.prenom}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="peer">
+                    <button type="button" class="btn cur-p btn-outline-dark">
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right" style="color: grey;"></span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+    </wizard>
+  </div>
+</div>
+<!--(activate)="onActivate($event)"-->

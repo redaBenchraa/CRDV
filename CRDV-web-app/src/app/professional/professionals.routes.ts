@@ -9,7 +9,7 @@ import {ProfileComponent} from '../profile/profile.component';
 
 
 export const PROFESSIONAL_ROUTES: Routes = [
-  {path: 'activity', component: NewActivityComponent},
+  {path: 'serafan', component: NewActivityComponent},
   {path: 'adaptation', component: AdaptationComponent, children: ADAPTATION_ROUTES},
   {path: 'daily', component: DailyComponent},
   {path: 'timetable', component: TimetableComponent, children: TIMETABLE_ROUTES},

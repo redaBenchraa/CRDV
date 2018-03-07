@@ -11,7 +11,7 @@ import { FooterComponent } from './layers/footer/footer.component';
 import { DashboardComponent } from './administration/dashboard/dashboard.component';
 import { ProfessionalComponent } from './administration/professional/professional.component';
 import { UserComponent } from './administration/user/user.component';
-import { ActivityComponent } from './administration/activity/activity.component';
+import { SerafanComponent } from './administration/serafan/serafan.component';
 import { SettingsComponent } from './administration/settings/settings.component';
 import { CategoryComponent } from './administration/category/category.component';
 import { StatisticsComponent } from './administration/statistics/statistics.component';
@@ -25,10 +25,10 @@ import { AdministrationComponent } from './administration/administration.compone
 import {routing} from './app.routing';
 import {ProfessionalsComponent} from './professional/professionals.component';
 import { NewActivityComponent } from './professional/new-activity/new-activity.component';
-import { ListActivityComponent } from './administration/activity/list-activity/list-activity.component';
-import { AddActivityComponent } from './administration/activity/add-activity/add-activity.component';
-import { DeleteActivityComponent } from './administration/activity/delete-activity/delete-activity.component';
-import { EditActivityComponent } from './administration/activity/edit-activity/edit-activity.component';
+import { ListSerafanComponent } from './administration/serafan/list-serafan/list-serafan.component';
+import { AddSerafanComponent } from './administration/serafan/add-serafan/add-serafan.component';
+import { DeleteSerafanComponent } from './administration/serafan/delete-serafan/delete-serafan.component';
+import { EditSerafanComponent } from './administration/serafan/edit-serafan/edit-serafan.component';
 import { ListCategoryComponent } from './administration/category/list-category/list-category.component';
 import { AddCategoryComponent } from './administration/category/add-category/add-category.component';
 import { DeleteCategoryComponent } from './administration/category/delete-category/delete-category.component';
@@ -52,9 +52,39 @@ import { ShowTimetableComponent } from './professional/timetable/show-timetable/
 import {NgxDatatableModule} from '@swimlane/ngx-datatable';
 import { PasswordComponent } from './administration/professional/password/password.component';
 import { ProfileComponent } from './profile/profile.component';
+import {ArchwizardModule} from 'ng2-archwizard/dist';
+import {CommonModule} from '@angular/common';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { ViewAdaptationComponent } from './professional/adaptation/view-adaptation/view-adaptation.component';
+import { GroupComponent } from './administration/group/group.component';
+import { ListGroupComponent } from './administration/group/list-group/list-group.component';
+import { AddGroupComponent } from './administration/group/add-group/add-group.component';
+import { DeleteGroupComponent } from './administration/group/delete-group/delete-group.component';
+import { EditGroupComponent } from './administration/group/edit-group/edit-group.component';
+import { ShowGroupComponent } from './administration/group/show-group/show-group.component';
+import {HttpService} from '../Service/HttpService';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpServiceInterceptor} from '../Service/interceptor';
+import { ActivityComponent } from './administration/category/activity/activity.component';
+import { AddActivityComponent } from './administration/category/activity/add-activity/add-activity.component';
+import { DeleteActivityComponent } from './administration/category/activity/delete-activity/delete-activity.component';
+import { EditActivityComponent } from './administration/category/activity/edit-activity/edit-activity.component';
+import { ListActivityComponent } from './administration/category/activity/list-activity/list-activity.component';
 
 
 @NgModule({
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule,
+    FontAwesomeModule,
+    ThemifyModule,
+    routing,
+    NgxDatatableModule,
+    CommonModule,
+    ArchwizardModule,
+    HttpClientModule
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -65,7 +95,7 @@ import { ProfileComponent } from './profile/profile.component';
     ProfessionalComponent,
     ProfessionalsComponent,
     UserComponent,
-    ActivityComponent,
+    SerafanComponent,
     SettingsComponent,
     CategoryComponent,
     StatisticsComponent,
@@ -77,10 +107,10 @@ import { ProfileComponent } from './profile/profile.component';
     NotFoundComponent,
     AdministrationComponent,
     NewActivityComponent,
-    ListActivityComponent,
-    AddActivityComponent,
-    DeleteActivityComponent,
-    EditActivityComponent,
+    ListSerafanComponent,
+    AddSerafanComponent,
+    DeleteSerafanComponent,
+    EditSerafanComponent,
     ListCategoryComponent,
     AddCategoryComponent,
     DeleteCategoryComponent,
@@ -103,15 +133,27 @@ import { ProfileComponent } from './profile/profile.component';
     ShowTimetableComponent,
     PasswordComponent,
     ProfileComponent,
+    ViewAdaptationComponent,
+    GroupComponent,
+    ListGroupComponent,
+    AddGroupComponent,
+    DeleteGroupComponent,
+    EditGroupComponent,
+    ShowGroupComponent,
+    ActivityComponent,
+    AddActivityComponent,
+    DeleteActivityComponent,
+    EditActivityComponent,
+    ListActivityComponent,
   ],
-  imports: [
-    BrowserModule,
-    FontAwesomeModule,
-    ThemifyModule,
-    routing,
-    NgxDatatableModule
+  providers: [
+    HttpService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpServiceInterceptor,
+      multi: true,
+    },
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

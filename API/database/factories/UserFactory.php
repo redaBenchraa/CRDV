@@ -30,6 +30,7 @@ $factory->define(\App\Models\CategorieProfessionnelle::class, function (Faker $f
 $factory->define(\App\Models\Groupe::class, function (Faker $faker) {
     return [
         'nom' => $faker->firstName(),
+        'centre_id' =>  $faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id')),
     ];
 });
 
@@ -84,17 +85,21 @@ $factory->define(\App\Models\Serafin::class, function (Faker $faker) {
     return [
         'code' => $faker->name,
         'intitule' => $faker->title,
-        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
+        //'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
     ];
 });
 
 
 $factory->define(\App\Models\Professionnelle::class, function (Faker $faker) {
+    $name = str_replace(" ", "_", $faker->firstName);
+    $lname = str_replace(" ", "_", $faker->lastName);
+    $centre_id =$faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id'));
     return [
-        'nom' => $faker->firstName,
-        'prenom' => $faker->lastName,
-        'centre_id' =>  $faker->numberBetween(\DB::table('centre')->min('id'), \DB::table('centre')->max('id')),
-        'password' => 'password',
+        'nom' => $name,
+        'prenom' => $lname,
+        'username' => $name.'.'.$lname.'.'.$centre_id,
+        'centre_id' =>  $centre_id,
+        'password' => app('hash')->make('password'),
         'type' => $faker->boolean
     ];
 });

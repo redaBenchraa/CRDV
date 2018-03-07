@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-edit-activity',
-  templateUrl: './edit-activity.component.html',
-  styleUrls: ['./edit-activity.component.scss']
+  selector: 'app-delete-group',
+  templateUrl: './delete-group.component.html',
+  styleUrls: ['./delete-group.component.scss']
 })
-export class EditActivityComponent implements OnInit {
+export class DeleteGroupComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -15,5 +15,4 @@ export class EditActivityComponent implements OnInit {
   goBack() {
     this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
   }
-
 }

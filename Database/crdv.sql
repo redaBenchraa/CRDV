@@ -158,7 +158,7 @@ create table professionnelle
    prenom                         varchar(254),
    username                         varchar(254),
    password                         varchar(254),
-   type                           bool,
+   type                           tinyint(2),
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -186,6 +186,7 @@ create table groupe
 (
    id                             int                            not null AUTO_INCREMENT,
    nom                            varchar(254),
+   centre_id                         int                            not null,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
 )
 engine = innodb;
@@ -261,6 +262,9 @@ alter table parametre add constraint fk_association_22 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
 alter table usager add constraint fk_association_12 foreign key (centre_id)
+      references centre (id) on delete restrict on update restrict;
+      
+alter table groupe add constraint fk_association_122 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
 alter table usager add constraint fk_association_19 foreign key (groupe_id)

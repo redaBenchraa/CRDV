@@ -1,5 +1,56 @@
-<p>
-  start works!
-</p>
+<div class="limiter">
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <div class="login100-form-title" style="background-image: url(../../assets/static/images/bg-01.jpg);">
+					<span class="login100-form-title-1">
+						Se Connecter
+					</span>
+      </div>
 
-<router-outlet></router-outlet>
+      <form [formGroup]="form" class="login100-form validate-form">
+        <div class="wrap-input100 validate-input m-b-26" data-validate="Nom d'utilisateur requis">
+          <span class="label-input100">Nom d'utilisateur</span>
+          <input formControlName="username" class="input100" type="text" name="username" placeholder="Entrer le nom d'utilisateur ">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="wrap-input100 validate-input m-b-18" data-validate = "Mot de passe requis">
+          <span class="label-input100">Mot de passe</span>
+          <input formControlName="password" class="input100" type="password" name="pass" placeholder="Entrer le mot de passe">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div lass="flex-sb-m w-full" style="width: 100%; padding-bottom: 10px">
+          <span class="label-input100">Centre</span>
+          <ul class="centres">
+            <li *ngFor="let c of centres">
+              <div class="contact100-form-checkbox">
+                <input class="input-checkbox100" type="radio" id="{{'radio'+c.id}}" formControlName="centre" value="{{c.id}}" name="centre">
+                <label class="label-checkbox100" for="{{'radio'+c.id}}">
+                  {{c.nom}}
+                </label>
+              </div>
+            </li>
+          </ul>
+          <span class="focus-input100"></span>
+        </div>
+
+
+
+        <div class="container-login100-form-btn">
+          <button (click)="login()"  class="login100-form-btn">
+            Se Connecter
+          </button>
+          <div class="flex-sb-m w-full" style="padding-top: 25px;padding-bottom: 25px">
+            <div class="contact100-form-checkbox">
+              <input formControlName="admin" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+              <label class="label-checkbox100" for="ckb1">
+                S'identifier en tant qu'administrateur
+              </label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

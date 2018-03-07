@@ -3,18 +3,19 @@ import {Page} from '../../../model/page';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-list-activity',
-  templateUrl: './list-activity.component.html',
-  styleUrls: ['./list-activity.component.scss']
+  selector: 'app-edit-group',
+  templateUrl: './edit-group.component.html',
+  styleUrls: ['./edit-group.component.scss']
 })
-export class ListActivityComponent implements OnInit {
+export class EditGroupComponent implements OnInit {
 
   page = new Page();
+  selectedUsager = [];
 
   rows = [
-    { id : 1, intitule: 'Austin', category: 'Male', type: 'Swimlane' },
-    { id : 2, intitule: 'Dany', category: 'Male', type: 'KFC' },
-    { id : 3, intitule: 'Molly', category: 'Female', type: 'Burger King' },
+    { id : 1, nom: 'Austin', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
+    { id : 2, nom: 'Dany', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
+    { id : 3, nom: 'Molly', prenom : 'zzz', dateDeNaissance : '12/02/1465'},
   ];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router) {
@@ -32,8 +33,10 @@ export class ListActivityComponent implements OnInit {
     alert(this.page.pageNumber);
     console.log(pageInfo);
   }
-  add() {
-    this.router.navigate(['../add'], {relativeTo: this.activatedRoute});
+
+  goBack() {
+    this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
   }
+
 
 }

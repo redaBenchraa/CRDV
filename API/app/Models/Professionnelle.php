@@ -68,7 +68,7 @@ class Professionnelle extends Authenticatable
         'nom' => 'string',
         'prenom' => 'string',
         'password' => 'string',
-        'type' => 'boolean'
+        'type' => 'integer'
     ];
 
     /**

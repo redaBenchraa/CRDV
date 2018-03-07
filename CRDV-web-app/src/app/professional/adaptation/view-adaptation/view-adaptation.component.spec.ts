@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditActivityComponent } from './edit-activity.component';
+import { ViewAdaptationComponent } from './view-adaptation.component';
 
-describe('EditActivityComponent', () => {
-  let component: EditActivityComponent;
-  let fixture: ComponentFixture<EditActivityComponent>;
+describe('ViewAdaptationComponent', () => {
+  let component: ViewAdaptationComponent;
+  let fixture: ComponentFixture<ViewAdaptationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditActivityComponent ]
+      declarations: [ ViewAdaptationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditActivityComponent);
+    fixture = TestBed.createComponent(ViewAdaptationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

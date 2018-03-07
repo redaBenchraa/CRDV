@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteActivityComponent } from './delete-activity.component';
+import { DeleteGroupComponent } from './delete-group.component';
 
-describe('DeleteActivityComponent', () => {
-  let component: DeleteActivityComponent;
-  let fixture: ComponentFixture<DeleteActivityComponent>;
+describe('DeleteGroupComponent', () => {
+  let component: DeleteGroupComponent;
+  let fixture: ComponentFixture<DeleteGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteActivityComponent ]
+      declarations: [ DeleteGroupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteActivityComponent);
+    fixture = TestBed.createComponent(DeleteGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

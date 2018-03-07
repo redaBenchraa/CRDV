@@ -8,6 +8,7 @@ use App\Models\Professionnelle;
 use App\Repositories\ProfessionnelleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Auth;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -170,5 +171,9 @@ class ProfessionnelleAPIController extends AppBaseController
         }
 
         return $this->sendResponse($professionnelle->emploiDuTemps,'emploiDuTemps retrieved successfully');
+    }
+
+    public function getMe(){
+        return Auth::user();
     }
 }

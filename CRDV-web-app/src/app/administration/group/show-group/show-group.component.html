@@ -1,0 +1,72 @@
+<div class="masonry-item col-md-12">
+  <div class="bgc-white p-20 bd">
+    <h6 class="c-grey-900 font-weight-bold">La list des usagers</h6>
+    <div class="mT-30">
+      <form>
+        <div class="form-group">
+          <label>Nom du groupe : </label>
+          <label>{{group['nom']}}</label>
+        </div>
+          <div class="row" style="margin-bottom: 10px;">
+            <div class="col-12 ">
+              <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+                <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-20" viewBox="0 0 40 40">
+                  <path d="M22.97 24.036c-1.37 1.133-3.13 1.813-5.045 1.813-4.377 0-7.925-3.55-7.925-7.925C10 13.548 13.548 10 17.925 10c4.376 0 7.924 3.548 7.924 7.925 0 1.916-.68 3.674-1.814 5.044l5.097 5.096c.294.294.295.77 0 1.066-.296.294-.774.294-1.067 0l-5.097-5.096zM20 40c11.046 0 20-8.954 20-20S31.046 0 20 0 0 8.954 0 20s8.954 20 20 20zm0-2c9.94 0 18-8.06 18-18S29.94 2 20 2 2 10.06 2 20s8.06 18 18 18zm-2.075-13.66c3.542 0 6.415-2.873 6.415-6.415 0-3.543-2.873-6.416-6.415-6.416-3.543 0-6.416 2.872-6.416 6.415 0 3.542 2.872 6.415 6.415 6.415z"
+                        fill-rule="evenodd" />
+                </symbol>
+                <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-5" viewBox="0 0 20 20">
+                  <path d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm1.35-10.123l3.567 3.568-1.225 1.226-3.57-3.568-3.567 3.57-1.226-1.227 3.568-3.568-3.57-3.57 1.227-1.224 3.568 3.568 3.57-3.567 1.224 1.225-3.568 3.57zM10 18.272c4.568 0 8.272-3.704 8.272-8.272S14.568 1.728 10 1.728 1.728 5.432 1.728 10 5.432 18.272 10 18.272z"
+                        fill-rule="evenodd" />
+                </symbol>
+              </svg>
+              <form  novalidate="novalidate" onsubmit="return false;" class="searchbox sbx-custom">
+                <div role="search" class="sbx-custom__wrapper">
+                  <input  (keyup)="onSearchChange(search)" type="search" name="search"   [(ngModel)]="search"  placeholder="Recherche par nom" autocomplete="off" required="required" class="sbx-custom__input">
+                  <button type="submit" title="Submit your search query." class="sbx-custom__submit">
+                    <span class="fa fa-search"></span>
+                  </button>
+                  <button type="reset" title="Clear the search query." class="sbx-custom__reset">
+                    <svg role="img" aria-label="Reset">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-clear-5"></use>
+                    </svg>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <ngx-datatable
+            #table
+            class='material'
+            [columnMode]="'force'"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [rowHeight]="'auto'"
+            [rows]="rows"
+            [count]="page.totalElements"
+            [limit]="10"
+          >
+            <ngx-datatable-column name="Nom" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.nom}}
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Prenom" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.prenom}}
+              </ng-template>
+            </ngx-datatable-column>
+
+            <ngx-datatable-column name="Date de naissance" [flexGrow]="1">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                {{row.date_de_naissance.split(' ')[0]}}
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+          <br/>
+        <button (click)="goBack()" class="btn btn-outline-info">Returner</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
