@@ -147,4 +147,6 @@ class SerafinAPIController extends AppBaseController
 
         return $this->sendResponse($serafin->serafin,'serafin retrieved successfully');
     }
+
+
 }

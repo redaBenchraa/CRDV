@@ -15,7 +15,8 @@
         "laravel/framework": "5.5.*",
         "laravel/passport": "^4.0",
         "laravel/tinker": "~1.0",
-        "optimus/api-consumer": "0.2.*"
+        "optimus/api-consumer": "0.2.*",
+        "maatwebsite/excel": "~2.1.0"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
