@@ -85,7 +85,7 @@ $factory->define(\App\Models\Serafin::class, function (Faker $faker) {
     return [
         'code' => $faker->name,
         'intitule' => $faker->title,
-        'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
+        //'serafin_id' =>  $faker->numberBetween(\DB::table('serafin')->min('id'), \DB::table('serafin')->max('id')),
     ];
 });
 

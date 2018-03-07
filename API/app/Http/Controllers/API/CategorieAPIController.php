@@ -153,8 +153,12 @@ class CategorieAPIController extends AppBaseController
         if (empty($categorie)) {
             return $this->sendError('Categorie not found');
         }
-
-        return $this->sendResponse($categorie->sousCategories,'sousCategories retrieved successfully');
+        $data = [];
+        foreach ($categorie->sousCategories as $cat){
+            $cat->serafin;
+            $data[] = $cat;
+        }
+        return $this->sendResponse($data,'sousCategories retrieved successfully');
     }
 
     
