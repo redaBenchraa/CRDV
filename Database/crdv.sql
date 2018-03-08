@@ -139,8 +139,8 @@ engine = innodb;
 create table parametre
 (
    id                             int                            not null AUTO_INCREMENT,
-   nom                            int,
-   valeur                         int,
+   nom                            varchar(25),
+   valeur                         varchar(25),
    type                           int,
    centre_id                       int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
