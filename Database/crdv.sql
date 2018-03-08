@@ -144,7 +144,7 @@ create table emploiDuTemps
 (
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id             int                            not null,
-   sousCategorie                  int                            not null,
+   sous_categorie_id              int                            not null,
    groupe_id                      int,
    jour                           int,
    heureDebut                     time,
