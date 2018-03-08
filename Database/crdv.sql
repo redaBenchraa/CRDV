@@ -91,6 +91,27 @@ create table categorieProfessionnelle
 engine = innodb;
 
 /*==============================================================*/
+/* table : emploiGroupe;				*/
+/*==============================================================*/
+create table emploiGroupe
+(
+   emploiDuTemps_id                  int                            not null,
+   groupe_id                         int                            not null,
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id_id, groupe_id)
+)
+engine = innodb;
+/*==============================================================*/
+/* table : emploiUsager;				*/
+/*==============================================================*/
+create table emploiUsager
+(
+   emploiDuTemps_id                  int                            not null,
+   usager_id                         int                            not null,
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id_id, usager_id)
+)
+engine = innodb;
+
+/*==============================================================*/
 /* table : categorie                                            */
 /*==============================================================*/
 create table categorie
