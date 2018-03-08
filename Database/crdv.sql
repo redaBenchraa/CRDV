@@ -97,7 +97,7 @@ create table emploiGroupe
 (
    emploiDuTemps_id                  int                            not null,
    groupe_id                         int                            not null,
-   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id_id, groupe_id)
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id, groupe_id)
 )
 engine = innodb;
 /*==============================================================*/
@@ -107,7 +107,7 @@ create table emploiUsager
 (
    emploiDuTemps_id                  int                            not null,
    usager_id                         int                            not null,
-   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id_id, usager_id)
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id, usager_id)
 )
 engine = innodb;
 
