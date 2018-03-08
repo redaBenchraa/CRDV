@@ -95,9 +95,9 @@ engine = innodb;
 /*==============================================================*/
 create table emploiGroupe
 (
-   emploiDuTemps_id                  int                            not null,
+   emploi_du_temps_id                  int                            not null,
    groupe_id                         int                            not null,
-   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id, groupe_id)
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploi_du_temps_id, groupe_id)
 )
 engine = innodb;
 /*==============================================================*/
@@ -105,9 +105,9 @@ engine = innodb;
 /*==============================================================*/
 create table emploiUsager
 (
-   emploiDuTemps_id                  int                            not null,
+   emploi_du_temps_id                  int                            not null,
    usager_id                         int                            not null,
-   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploiDuTemps_id, usager_id)
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploi_du_temps_id, usager_id)
 )
 engine = innodb;
 
@@ -266,13 +266,13 @@ alter table categorieProfessionnelle add constraint fk_association_4 foreign key
 alter table emploiGroupe add constraint fk_association_41 foreign key (groupe_id)
 references groupe (id) on delete restrict on update restrict;
 
-alter table emploiGroupe add constraint fk_association_42 foreign key (emploiDuTemps_id)
+alter table emploiGroupe add constraint fk_association_42 foreign key (emploi_du_temps_id)
 references emploiDuTemps (id) on delete restrict on update restrict;
 
 alter table emploiUsager add constraint fk_association_43 foreign key (usager_id)
 references usager (id) on delete restrict on update restrict;
 
-alter table emploiUsager add constraint fk_association_44 foreign key (emploiDuTemps_id)
+alter table emploiUsager add constraint fk_association_44 foreign key (emploi_du_temps_id)
 references emploiDuTemps (id) on delete restrict on update restrict;
 
 alter table categorieProfessionnelle add constraint fk_association_4 foreign key (professionnelle_id)
