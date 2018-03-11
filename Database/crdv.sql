@@ -56,12 +56,14 @@ create table activite
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id                         int                            not null,
    usager_id                         int                            not null,
+   groupe_id                         int                            not null,
    categorie_id                         int                            not null,
    sous_categorie_id                         int                            not null,
    acte_id			int,
    duree                          int,
    cloture                        bool,
    planifie                       bool,
+   date                           date,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id),
    key ak_identifier_1 (id)
 )
@@ -87,6 +89,17 @@ create table categorieProfessionnelle
    professionnelle_id                             int                            not null,
    categorie_id                         int                            not null,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (professionnelle_id, categorie_id)
+)
+engine = innodb;
+
+/*==============================================================*/
+/* table : emploiUsager;				*/
+/*==============================================================*/
+create table emploiUsager
+(
+   emploi_du_temps_id                  int                            not null,
+   usager_id                         int                            not null,
+   created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (emploi_du_temps_id, usager_id)
 )
 engine = innodb;
 
@@ -122,9 +135,8 @@ engine = innodb;
 create table emploiDuTemps
 (
    id                             int                            not null AUTO_INCREMENT,
-   professionnelle_id                         int                            not null,
-   activite_id                         int                            not null,
-   groupe_id                       int,
+   professionnelle_id             int                            not null,
+   sous_categorie_id              int                            not null,
    jour                           int,
    heureDebut                     time,
    heureFin                       time,
@@ -139,8 +151,8 @@ engine = innodb;
 create table parametre
 (
    id                             int                            not null AUTO_INCREMENT,
-   nom                            int,
-   valeur                         int,
+   nom                            varchar(25),
+   valeur                         varchar(25),
    type                           int,
    centre_id                       int,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id)
@@ -225,6 +237,9 @@ alter table acte add constraint fk_association_6 foreign key (usager_id)
 alter table activite add constraint fk_association_13 foreign key (sous_categorie_id)
       references sousCategorie (id) on delete restrict on update restrict;
 
+alter table activite add constraint fk_association_133 foreign key (groupe_id)
+      references groupe (id) on delete restrict on update restrict;
+
 alter table activite add constraint fk_association_17 foreign key (acte_id)
       references acte (id) on delete restrict on update restrict;
 
@@ -242,18 +257,25 @@ alter table categorieProfessionnelle add constraint fk_association_3 foreign key
 
 alter table categorieProfessionnelle add constraint fk_association_4 foreign key (professionnelle_id)
       references professionnelle (id) on delete restrict on update restrict;
+      
+
+alter table emploiUsager add constraint fk_association_43 foreign key (usager_id)
+references usager (id) on delete restrict on update restrict;
+
+alter table emploiUsager add constraint fk_association_44 foreign key (emploi_du_temps_id)
+references emploiDuTemps (id) on delete restrict on update restrict;
+
+alter table categorieProfessionnelle add constraint fk_association_4 foreign key (professionnelle_id)
+references professionnelle (id) on delete restrict on update restrict;
 
 alter table categorie add constraint fk_association_15 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
-alter table emploiDuTemps add constraint fk_association_16 foreign key (activite_id)
-      references activite (id) on delete restrict on update restrict;
+alter table emploiDuTemps add constraint fk_association_16 foreign key (sous_categorie_id)
+      references sousCategorie (id) on delete restrict on update restrict;
 
 alter table emploiDuTemps add constraint fk_association_2 foreign key (professionnelle_id)
       references professionnelle (id) on delete restrict on update restrict;
-
-alter table emploiDuTemps add constraint fk_association_18 foreign key (groupe_id)
-      references groupe (id) on delete restrict on update restrict;
 
 alter table professionnelle add constraint fk_association_1 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
