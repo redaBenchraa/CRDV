@@ -1,3 +1,382 @@
-<p>
-  add-timetable works!
-</p>
+<div class="masonry-item col-md-12">
+  <div class="bgc-white p-20 bd">
+    <h6 class="c-grey-900 font-weight-bold">Ajouter une activité</h6>
+    <wizard #wizard navBarLayout="large-empty-symbols"  navBarLocation="top">
+      <wizard-step stepTitle="Categorie" navigationSymbol="1">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left" style="color: grey"></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez la catégorie
+                </div>
+                <input class="search" (keyup)="searchCategory(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [rows]="rowsCategorie"
+                  [selected]="selectedCategorie"
+                  [selectionType]="'single'"
+                  (select)='onSelect(1,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true"></ngx-datatable-column>
+                  <ngx-datatable-column name="Categorie">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.intitule}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+
+              </div>
+              <div class="col-1" class="centered-content">
+                <div class="btn-group">
+                  <span *ngIf="selectedCategorie.length > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="selectedCategorie.length ==  0" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Activité" navigationSymbol="2">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez l'activité
+                </div>
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input ng-control="categorie"  (click)="search=''" [(ngModel)]="model.activity" [value]="true" (click)="activityTypeClick(true)" type="radio" name="category" checked><label>Directe</label></div>
+                    <div><input ng-control="categorie"  (click)="search=''" [(ngModel)]="model.activity" [value]="false" (click)="activityTypeClick(false)" type="radio" name="category"><label>Indirecte</label></div>
+                  </div>
+                </div>
+                <input class="search" (keyup)="searchActivity(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+                  [rows]="rowsActivite"
+                  [selected]="selectedActivite"
+                  [selectionType]="'single'"
+                  (select)='onSelect(2,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true"></ngx-datatable-column>
+                  <ngx-datatable-column name="Activité" [flexGrow]="2">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.intitule}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Serafin" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.serafin.code}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Type" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{(row.type === true) ? 'Directe' : 'Indirecte'}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span *ngIf="selectedActivite.length > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="selectedActivite.length ==  0" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Groupe" navigationSymbol="3">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez les usagers
+                </div>
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input type="radio" (click)="search=''; selectedUsager=[]; getUsers()" ng-control="usagers"  [value]="1"  [(ngModel)]="model.usager" name="usagers" checked><label>Individuel</label></div>
+                    <div><input type="radio" (click)="search=''; selectedUsager=[]" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Groupe</label></div>
+                  </div>
+                </div>
+                <input *ngIf="model.usager == 2" class="search" (keyup)="searchUsers(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
+                <ngx-datatable *ngIf="model.usager == 2"
+                               class='material'
+                               [headerHeight]="50"
+                               [rowHeight]="50"
+                               [rows]="rowsGroupe"
+                               [selected]="selectedGroupe"
+                               [selectionType]="'single'"
+                               (select)='onSelect(4,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true"></ngx-datatable-column>
+                  <ngx-datatable-column name="Groupe">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span *ngIf="model.usager == 1 || (model.usager == 2 && selectedGroupe.length > 0)" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="!(model.usager == 1 || (model.usager == 2 && selectedGroupe.length > 0))" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Usagers" navigationSymbol="4">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content font-weight-bold">
+                  Sélectionnez les usagers
+                </div>
+                <input class="search" (keyup)="searchUsers(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" >
+                <ngx-datatable
+                  class='material'
+                  [headerHeight]="50"
+                  [rowHeight]="50"
+
+                  [rows]="rowsUsager"
+                  [selected]="selectedUsager"
+                  [selectionType]="'multiClick'"
+                  (select)='onSelect(3,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true">
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Nom" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.nom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Prenom" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.prenom}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                </ngx-datatable>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span *ngIf="(model.usager && selectedUsager.length > 0) || (!model.usager && selectedGroupe.length > 0)" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="(model.usager && selectedUsager.length == 0) || (!model.usager && selectedGroupe.length == 0)" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Temps" navigationSymbol="4">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10" style="text-align: center;">
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input ng-control="semaine" [(ngModel)]="model.semaine" [value]="1" type="radio" name="semaine" checked><label>1A</label></div>
+                    <div><input ng-control="semaine" [(ngModel)]="model.semaine" [value]="2" type="radio" name="semaine"><label>2B</label></div>
+                    <div><input ng-control="semaine" [(ngModel)]="model.semaine" [value]="3" type="radio" name="semaine"><label>1C</label></div>
+                    <div><input ng-control="semaine" [(ngModel)]="model.semaine" [value]="4" type="radio" name="semaine"><label>2D</label></div>
+                  </div>
+                </div>
+
+                <div style="width:100%; margin: 15px">
+                  <div class="inline-radioJ centered-content justify-content-center align-content-center" >
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="1" type="radio" name="jour" checked><label>Lundi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="2" type="radio" name="jour"><label>Mardi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="3" type="radio" name="jour"><label>Mercredi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="4" type="radio" name="jour"><label>Jeudi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="5" type="radio" name="jour"><label>Vendredi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="6" type="radio" name="jour"><label>Samedi</label></div>
+                    <div><input ng-control="jour" [(ngModel)]="model.jour" [value]="7" type="radio" name="jour"><label>Dimanche</label></div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4 float-right">Durée : </div>
+                  <div class="col-4 centered-content">
+                    <input class="search" type="number" min="0" step="1" name="search" [(ngModel)]="model.duration" placeholder="Durée" autocomplete="off" >
+                  </div>
+                  <div class="col-4" style="text-align: left">
+                    minutes
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-4 float-right">Début : </div>
+                  <div class="col-4 centered-content">
+                    <input class="search" type="time" name="search" [(ngModel)]="model.date" placeholder="Entre 00:00 et 24:00" autocomplete="off" >
+                  </div>
+                  <div class="col-4 float-right"></div>
+                </div>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span *ngIf="model.duration > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="model.duration <= 0 || model.duration === ''" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+      <wizard-step stepTitle="Résumé" navigationSymbol="&#xf00c;" navigationSymbolFontFamily="FontAwesome">
+        <div class="masonry-item col-md-12">
+          <div class="bgc-white p-20 bd">
+            <div class="row">
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x  fa-chevron-left" style="cursor:pointer" previousStep></span>
+                </div>
+              </div>
+              <div class="col-10">
+                <div class="centered-content">
+                  <h4 class="c-grey-900 mB-20">Informations sur l'activité</h4>
+                  <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Activité</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>Categorie</td>
+                      <td>{{getSelectedCategorie()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Activité</td>
+                      <td>{{getSelectedActivite()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Code Serafin</td>
+                      <td>{{getSelectedSerafanCode()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Intitulé Serafin</td>
+                      <td>{{getSelectedSerafanIntitule()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Type</td>
+                      <td>{{getActivityType()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Semaine</td>
+                      <td>{{semaine[model.semaine-1]}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Jour</td>
+                      <td>{{days[model.jour-1]}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Début</td>
+                      <td>{{model.date}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Durée</td>
+                      <td>{{getLabel(model.duration)}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <h4 class="c-grey-900 mB-20">Usagers</h4>
+                  <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let usager of selectedUsager">
+                      <td>{{usager.prenom}}</td>
+                      <td>{{usager.nom}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <div class="peer">
+                    <button type="button" class="btn cur-p btn-outline-dark">
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-1" class="justify-content-center centered-content">
+                <div class="btn-group">
+                  <span class="fa fa-2x fa-chevron-right" style="color: grey;"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </wizard-step>
+    </wizard>
+  </div>
+</div>

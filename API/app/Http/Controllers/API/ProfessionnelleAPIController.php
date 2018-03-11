@@ -9,6 +9,7 @@ use App\Repositories\ProfessionnelleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -57,9 +58,9 @@ class ProfessionnelleAPIController extends AppBaseController
         $input = $request->all();
         $prenom = preg_replace('/[[:space:]]+/', '_', $request->prenom);
         $nom = preg_replace('/[[:space:]]+/', '_', $request->nom);
-        $input['username'] = $prenom . '.' . $nom;
-        $input['password'] = bcrypt('password');
-        
+        $input['username'] = $prenom . '.' . $nom.'.'.$request->centre_id;
+        $input['password'] = Hash::make($request->password);
+
 
         $professionnelles = $this->professionnelleRepository->create($input);
 
@@ -95,18 +96,21 @@ class ProfessionnelleAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function update($id, UpdateProfessionnelleAPIRequest $request)
+
+
+    public function update($id, Request $request)
     {
         $input = $request->all();
-
-        /** @var Professionnelle $professionnelle */
         $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
 
         if (empty($professionnelle)) {
             return $this->sendError('Professionnelle not found');
         }
-
-        $professionnelle = $this->professionnelleRepository->update($input, $id);
+        $professionnelle->nom = $request->input('nom');
+        $professionnelle->prenom = $request->input('prenom');
+        $professionnelle->type = $request->input('type');
+        $professionnelle->username = $request->input('nom').'.'.$request->input('prenom').'.'.$professionnelle->centre_id;
+        $professionnelle = $this->professionnelleRepository->update($professionnelle->toArray(), $id);
 
         return $this->sendResponse($professionnelle->toArray(), 'Professionnelle updated successfully');
     }
@@ -170,7 +174,29 @@ class ProfessionnelleAPIController extends AppBaseController
             return $this->sendError('Professionnelle not found');
         }
 
-        return $this->sendResponse($professionnelle->emploiDuTemps,'emploiDuTemps retrieved successfully');
+        foreach ($professionnelle->emploiDuTemps as $edt){
+            $edt->sousCategorie;
+            $edt->groupes;
+            $edt->usagers;
+            $data[] = $edt;
+        }
+        return $this->sendResponse($data,'emploiDuTemps retrieved successfully');
+    }
+
+    public function validated($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        foreach ($professionnelle->emploiDuTemps as $edt){
+            $edt->sousCategorie;
+            $edt->groupes;
+            $edt->usagers;
+            $data[] = $edt;
+        }
+        return $this->sendResponse($data,'emploiDuTemps retrieved successfully');
     }
 
     public function getMe(){

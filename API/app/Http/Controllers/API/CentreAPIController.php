@@ -8,6 +8,7 @@ use App\Models\Centre;
 use App\Repositories\CentreRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\DB;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -173,6 +174,29 @@ class CentreAPIController extends AppBaseController
 
         if (empty($centre)) {
             return $this->sendError('Centre not found');
+        }
+
+        return $this->sendResponse($centre->parametres,'bo3');
+    }
+    public function updateParametres($id, Request $request){
+        $centre = $this->centreRepository->findWithoutFail($id);
+
+        if (empty($centre)) {
+            return $this->sendError('Centre not found');
+        }
+        $directe = DB::table('parametre')->where('nom', 'directe')->where('centre_id', $id)->first();
+        $indirecte = DB::table('parametre')->where('nom', 'indirecte')->where('centre_id', $id)->first();
+        if(empty($directe)){
+            DB::table('parametre')->insert(['nom' => 'directe', 'valeur' => $request->get('directe'), 'centre_id' => $id]);
+        }else{
+            DB::table('parametre')->where('nom', 'directe')->where('centre_id', $id)->update(['valeur' => $request->get('directe')]);
+        }
+
+        if(empty($indirecte)){
+            DB::table('parametre')->insert(['nom' => 'indirecte', 'valeur' =>$request->get('indirecte'), 'centre_id' => $id]);
+        }else{
+            DB::table('parametre')->where('nom', 'indirecte')->where('centre_id', $id)->update(['valeur' => $request->get('indirecte')]);
+
         }
 
         return $this->sendResponse($centre->parametres,'bo3');

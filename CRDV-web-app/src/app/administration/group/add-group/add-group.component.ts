@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Page} from '../../../model/page';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpService} from '../../../../Service/HttpService';
 
 @Component({
   selector: 'app-add-group',
@@ -8,35 +9,49 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./add-group.component.scss']
 })
 export class AddGroupComponent implements OnInit {
-
-  page = new Page();
-
-  rows = [
-    { id : 1, nom: 'Austin', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 2, nom: 'Dany', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 3, nom: 'Molly', prenom : 'zzz', dateDeNaissance : '12/02/1465'},
-  ];
-  selectedUsager = [this.rows[0]];
-
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.page.totalPages = 7;
-    this.page.totalElements = 21;
-    this.page.size = 3;
-    this.page.pageNumber = 0;
+  form: FormGroup;
+  user: any;
+  users: any = [];
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private httpService: HttpService) {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user === null) {
+      this.router.navigate(['/login']);
+    }
+    this.getUsers();
+    this.form = new FormGroup({
+        nom : new FormControl('', Validators.required),
+      }
+    );
   }
 
   ngOnInit() {
   }
-
-  setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    alert(this.page.pageNumber);
-    console.log(pageInfo);
-  }
   goBack() {
     this.router.navigate(['../list'], {relativeTo: this.activatedRoute});
   }
-  onSelect(selected) {
-    console.log(selected);
+  getUsers() {
+    this.httpService.getUsers(this.users.centre_id, 0).subscribe(
+      data => {
+        console.log(data);
+        this.users = data['data'];
+      }, error => {
+        console.error(error);
+      }
+    );
   }
+  insert() {
+    const u = {
+      nom : this.form.controls['nom'].value,
+      centre_id : this.user.centre_id,
+    };
+    this.httpService.addGroup(u).subscribe(
+      data => {
+        console.log(data);
+        this.goBack();
+      }, error => {
+        console.error(error);
+      }
+    );
+  }
+
 }

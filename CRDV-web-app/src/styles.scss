@@ -3,7 +3,7 @@
 @import '~@swimlane/ngx-datatable/release/themes/material.css';
 @import '~@swimlane/ngx-datatable/release/themes/bootstrap.css';
 @import '~@swimlane/ngx-datatable/release/assets/icons.css';
-
+@import '~ng-pick-datetime/assets/style/picker.min.css';
 .navigateWizard{
   cursor: pointer;
   color : #1e1e1e;
@@ -30,7 +30,48 @@
 
   input {
     width: 100%;
-    height: 40px;
+    height: 30px;
+    opacity: 0;
+  }
+
+  label {
+    position: absolute;
+    top: 0; left: 0;
+    color: #b6b6b6;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border-right: 1px solid #b6b6b6;
+  }
+
+  div:last-child label {
+    border-right: 0;
+  }
+
+  input:checked + label {
+    background: #14A1FF;
+    font-weight: 500;
+    color: #fff;
+  }
+}
+.inline-radioJ {
+  display: flex;
+  border: 1px solid #b6b6b6;
+  border-radius: 2px;
+  width: 560px;
+  overflow: hidden;
+  div {
+    position: relative;
+    flex: 1;
+  }
+
+  input {
+    width: 100%;
+    height: 30px;
     opacity: 0;
   }
 

@@ -63,10 +63,12 @@ Route::prefix('centres')->group(function () {
         Route::get('professionnelles', 'CentreAPIController@professionnelle');
         Route::get('usagers', 'CentreAPIController@usagers');
         Route::get('categories', 'CentreAPIController@categories');
-        Route::get('groupes', 'CentreAPIController@categories');
+        Route::get('groupes', 'CentreAPIController@groupes');
         Route::prefix('parametres')->group(function () {
             Route::get('', 'CentreAPIController@parametres');
             Route::get('{nom}', 'ParametreAPIController@parametreValue');
+            Route::put('', 'CentreAPIController@updateParametres');
+
         });
     });
 });
@@ -118,6 +120,7 @@ Route::get('/parametres/{id}/centre', 'ParametreAPIController@centre');
 Route::prefix('professionnelles')->group(function () {
     Route::prefix('{id}')->group(function () {
         Route::get('centre', 'ProfessionnelleAPIController@centre');
+        Route::get('validated', 'ProfessionnelleAPIController@validated');
         Route::get('categories', 'ProfessionnelleAPIController@categories');
         Route::get('emploiDuTemps', 'ProfessionnelleAPIController@emploiDuTemps'); 
         Route::prefix('activites')->group(function () {

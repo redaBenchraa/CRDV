@@ -67,6 +67,7 @@ export class StartComponent implements OnInit {
         if (type === 1) {
           if (dat['type'] === type) {
             localStorage.setItem('user', JSON.stringify(dat));
+            localStorage.setItem('type', JSON.stringify('1'));
             this.router.navigate(['administration']);
           }else {
             console.error('you are not admin');
@@ -74,6 +75,7 @@ export class StartComponent implements OnInit {
           }
         }else {
           localStorage.setItem('user', JSON.stringify(dat));
+          localStorage.setItem('type', JSON.stringify('2'));
           this.router.navigate(['professional']);
         }
       }, error => {

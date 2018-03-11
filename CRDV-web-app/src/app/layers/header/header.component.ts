@@ -14,7 +14,11 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/start']);
     }
   }
-
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['login']);
+  }
   ngOnInit() {
     $('.search-toggle').on('click', e => {
       $('.search-box, .search-input').toggleClass('active');

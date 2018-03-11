@@ -137,6 +137,7 @@ class ParametreAPIController extends AppBaseController
         return $this->sendResponse($parametre->centre,'centres retrieved successfully');
     }
 
+
     public function parametreValue($id,$nom){
 
         $param['centre_id'] = $id;
