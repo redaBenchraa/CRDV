@@ -56,12 +56,14 @@ create table activite
    id                             int                            not null AUTO_INCREMENT,
    professionnelle_id                         int                            not null,
    usager_id                         int                            not null,
+   groupe_id                         int                            not null,
    categorie_id                         int                            not null,
    sous_categorie_id                         int                            not null,
    acte_id			int,
    duree                          int,
    cloture                        bool,
    planifie                       bool,
+   date                           date,
    created_at timestamp default current_timestamp, updated_at timestamp null on update current_timestamp, deleted_at timestamp null,primary key (id),
    key ak_identifier_1 (id)
 )
@@ -244,6 +246,9 @@ alter table acte add constraint fk_association_6 foreign key (usager_id)
 
 alter table activite add constraint fk_association_13 foreign key (sous_categorie_id)
       references sousCategorie (id) on delete restrict on update restrict;
+
+alter table activite add constraint fk_association_133 foreign key (groupe_id)
+      references groupe (id) on delete restrict on update restrict;
 
 alter table activite add constraint fk_association_17 foreign key (acte_id)
       references acte (id) on delete restrict on update restrict;
