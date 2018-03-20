@@ -40,6 +40,7 @@ create table acte
 (
    id                             int                            not null AUTO_INCREMENT,
    usager_id                         int                            not null,
+   groupe_id                         int                            not null,
    professionnelle_id                         int                            not null,
    duree                          int,
    modeSaisie                     varchar(254),
