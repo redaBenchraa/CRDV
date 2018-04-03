@@ -2,9 +2,9 @@
   <div class="bgc-white p-20 bd">
     <h6 class="c-grey-900 font-weight-bold">Modifier une category</h6>
     <div class="mT-30">
-      <form>
-        <div class="form-group"><label for="inputIntitulé4">Intitulé</label><input type="text" class="form-control" id="inputIntitulé4" placeholder="Intitulé"></div>
-        <button type="submit" class="btn btn-outline-dark">Modifier</button>
+      <form [formGroup]="form">
+        <div class="form-group"><label for="inputIntitulé4">Intitulé</label><input type="text" formControlName="intitule" class="form-control" id="inputIntitulé4" placeholder="Intitulé"></div>
+        <button (click)="insert()" type="submit" class="btn btn-outline-dark">Modifier</button>
         <button (click)="goBack()" class="btn btn-outline-secondary">Annuler</button>
       </form>
     </div>

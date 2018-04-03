@@ -1,29 +1,124 @@
 <div class="bdrs-3 ov-h bgc-white bd">
   <div class="bgc-deep-purple-500 ta-c p-30">
-    <h1 class="fw-300 mB-5 lh-1 c-white">01<span class="fsz-def">st</span></h1>
-    <h3 class="c-white">Monday</h3>
+    <h1 class="fw-300 mB-5 lh-1 c-white">{{getDayNumber()}}<span class="fsz-def"> {{getMonth()}}</span></h1>
+    <h3 class="c-white">{{getDay()}}</h3>
   </div>
   <div class="pos-r">
-    <ul class="m-0 p-0 mT-20">
-      <li class="bdB peers ai-c jc-sb fxw-nw">
+    <ul class="m-0 p-0 mT-20" *ngIf=" getTasks().length > 0">
+      <li (click)="finish(c)"  *ngFor="let c of getTasks(), let i=index" class="bdB peers ai-c jc-sb fxw-nw">
         <div class="td-n p-20 peers fxw-nw mR-20 peer-greed c-grey-900" data-target="#calendar-edit">
           <div class="peer mR-15"><i class="fa fa-fw fa-clock-o "></i></div>
-          <div class="peer"><span class="fw-600">08:15 - 10:15</span>
+          <div class="peer">
+            <span class="fw-600">
+              {{c.heureDebut.slice(0,-3)}} - {{c.heureFin.slice(0,-3)}}
+            </span>
             <div class="c-grey-600 row">
               <div class="col-12">
-                <span class="c-grey-700">Groupe lecture</span>
+                <span class="c-grey-700">{{c.sous_categorie['intitule']}}</span>
               </div>
-              <div class="col-12">
-                <i>Avec <a href="">Reda Benchraa</a></i>
+              <div *ngIf="c.usagers.length > 0" class="col-10">
+                <div style=" word-wrap: break-word; text-wrap: normal">
+                  Avec {{getUsagerNames(c.usagers)}}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="peers mR-15 float-right">
-          <div class="peer"><a href="" class="td-n c-red-500 cH-blue-500 fsz-md" style="margin-right: 10px"><i class="ti-close"></i></a></div>
-          <div class="peer"><a href="" class="td-n c-green-500 cH-blue-500 fsz-md"><i class="ti-check-box"></i></a></div>
-        </div>
       </li>
     </ul>
+    <blockquote style="padding: 20px; font-weight: 300; font-family: Helvetica" *ngIf=" getTasks().length === 0">
+      Aucune tache aujourd'hui
+    </blockquote>
+  </div>
+</div>
+<div *ngIf="selected !== null" style="position: fixed;top: 0;left: 0;width: 100%;height: 100%; z-index:89000;text-align: center;">
+  <div (click)="selected = null" style="z-index:89001; position: fixed; top:0;left: 0;background: black;opacity: 0.8; width: 100%; height: 100%"></div>
+  <div style="overflow-y: scroll;border-radius: 5px;top: 50%;transform: translateY(-50%);display: block;z-index:89002; position: fixed; width: 80%; height: 80%; background: white;left: 10%;">
+    <div class="masonry-item col-md-12">
+      <div class="bgc-white p-20 bd">
+        <div class="row">
+          <div class="col-1" class="justify-content-center centered-content">
+          </div>
+          <div class="col-10">
+            <div>
+              <h4 class="c-grey-900 mB-20">Informations sur l'activité</h4>
+              <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                  <th>Activité</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <tr>
+                  <td>Nom</td>
+                  <td>{{selected.sous_categorie['intitule']}}</td>
+                </tr>
+
+                <tr>
+                  <td>Début</td>
+                  <td>{{selected.heureDebut}}</td>
+                </tr>
+
+                <tr>
+                  <td>Fin</td>
+                  <td>{{selected.heureFin}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                  <th>Usagers</th>
+                  <th></th>
+                </tr>
+                </thead>
+              </table>
+              <ngx-datatable style="margin: 20px"
+                class='material'
+                [headerHeight]="50"
+                [rowHeight]="50"
+                [columnMode]="'force'"
+                [rows]="selected.usagers"
+                [selected]="selectedUsager"
+                [selectionType]="'multiClick'"
+                >
+                <ngx-datatable-column
+                  [width]="30"
+                  [sortable]="false"
+                  [canAutoResize]="false"
+                  [draggable]="false"
+                  [resizeable]="false"
+                  [headerCheckboxable]="true"
+                  [checkboxable]="true">
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Nom" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.nom}}
+                  </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Prenom" [flexGrow]="1">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{row.prenom}}
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+              <div class="peer">
+                <button (click)="ajouter()" type="button" class="btn cur-p btn-outline-dark">
+                  Valider
+                </button>
+                <button (click)="selected = null" type="button" class="btn-danger btn cur-p btn-outline-dark">
+                  Annuler
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-1" class="justify-content-center centered-content">
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

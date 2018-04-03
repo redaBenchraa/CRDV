@@ -15,24 +15,26 @@
                 <div class="centered-content font-weight-bold">
                   Sélectionnez la catégorie
                 </div>
-                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
-                  <div class="inline-radio centered-content justify-content-center align-content-center" >
-                    <div><input ng-control="categorie"  [value]="1"  [(ngModel)]="model.categorie" type="radio" name="category" checked><label>Indirecte</label></div>
-                    <div><input ng-control="categorie"  [value]="2"  [(ngModel)]="model.categorie" type="radio" name="category"><label>Directe</label></div>
-                  </div>
-                </div>
+                <input class="search" (keyup)="searchCategory(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
                 <ngx-datatable
                   class='material'
                   [headerHeight]="50"
                   [rowHeight]="50"
-                  [columnMode]="'force'"
                   [rows]="rowsCategorie"
                   [selected]="selectedCategorie"
                   [selectionType]="'single'"
                   (select)='onSelect(1,$event)'>
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true"></ngx-datatable-column>
                   <ngx-datatable-column name="Categorie">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.Categorie}}
+                      {{row.intitule}}
                     </ng-template>
                   </ngx-datatable-column>
                 </ngx-datatable>
@@ -40,7 +42,8 @@
               </div>
               <div class="col-1" class="centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                  <span *ngIf="selectedCategorie.length > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="selectedCategorie.length ==  0" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
                 </div>
               </div>
             </div>
@@ -53,25 +56,49 @@
             <div class="row">
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
                 </div>
               </div>
               <div class="col-10">
                 <div class="centered-content font-weight-bold">
                   Sélectionnez l'activité
                 </div>
+                <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
+                  <div class="inline-radio centered-content justify-content-center align-content-center" >
+                    <div><input ng-control="categorie"  (click)="search=''" [(ngModel)]="model.activity" [value]="true" (click)="activityTypeClick(true)" type="radio" name="category" checked><label>Directe</label></div>
+                    <div><input ng-control="categorie"  (click)="search=''" [(ngModel)]="model.activity" [value]="false" (click)="activityTypeClick(false)" type="radio" name="category"><label>Indirecte</label></div>
+                  </div>
+                </div>
+                <input class="search" (keyup)="searchActivity(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
                 <ngx-datatable
                   class='material'
                   [headerHeight]="50"
                   [rowHeight]="50"
-                  [columnMode]="'force'"
                   [rows]="rowsActivite"
                   [selected]="selectedActivite"
                   [selectionType]="'single'"
                   (select)='onSelect(2,$event)'>
-                  <ngx-datatable-column name="Activité">
+                  <ngx-datatable-column
+                    [width]="30"
+                    [sortable]="false"
+                    [canAutoResize]="false"
+                    [draggable]="false"
+                    [resizeable]="false"
+                    [headerCheckboxable]="true"
+                    [checkboxable]="true"></ngx-datatable-column>
+                  <ngx-datatable-column name="Activité" [flexGrow]="2">
                     <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.nom}}
+                      {{row.intitule}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Serafin" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{row.serafin.code}}
+                    </ng-template>
+                  </ngx-datatable-column>
+                  <ngx-datatable-column name="Type" [flexGrow]="1">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                      {{(row.type === true) ? 'Directe' : 'Indirecte'}}
                     </ng-template>
                   </ngx-datatable-column>
                 </ngx-datatable>
@@ -79,20 +106,21 @@
               </div>
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                  <span *ngIf="selectedActivite.length > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="selectedActivite.length ==  0" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </wizard-step>
-      <wizard-step stepTitle="Usagers" navigationSymbol="3">
+      <wizard-step stepTitle="Groupe" navigationSymbol="3">
         <div class="masonry-item col-md-12">
           <div class="bgc-white p-20 bd">
             <div class="row">
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
                 </div>
               </div>
               <div class="col-10">
@@ -101,48 +129,18 @@
                 </div>
                 <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
                   <div class="inline-radio centered-content justify-content-center align-content-center" >
-                    <div><input type="radio" ng-control="usagers"  [value]="1"  [(ngModel)]="model.usager" name="usagers" checked><label>Individuel</label></div>
-                    <div><input type="radio" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Groupe</label></div>
+                    <div><input type="radio" (click)="search=''; selectedUsager=[]; getUsers()" ng-control="usagers"  [value]="1"  [(ngModel)]="model.usager" name="usagers" checked><label>Individuel</label></div>
+                    <div><input type="radio" (click)="search=''; selectedUsager=[]" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Groupe</label></div>
                   </div>
                 </div>
-                <ngx-datatable *ngIf="model.usager == 1"
+                <input *ngIf="model.usager == 2" class="search" (keyup)="searchUsers(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >
+                <ngx-datatable *ngIf="model.usager == 2"
                   class='material'
                   [headerHeight]="50"
                   [rowHeight]="50"
-                  [columnMode]="'force'"
-                  [rows]="rowsUsager"
-                  [selected]="selectedUsager"
-                  [selectionType]="'multiClick'"
-                  (select)='onSelect(3,$event)'>
-                  <ngx-datatable-column
-                    [width]="30"
-                    [sortable]="false"
-                    [canAutoResize]="false"
-                    [draggable]="false"
-                    [resizeable]="false"
-                    [headerCheckboxable]="true"
-                    [checkboxable]="true">
-                  </ngx-datatable-column>
-                  <ngx-datatable-column name="Nom">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.nom}}
-                    </ng-template>
-                  </ngx-datatable-column>
-                  <ngx-datatable-column name="Prenom">
-                    <ng-template let-row="row" ngx-datatable-cell-template>
-                      {{row.prenom}}
-                    </ng-template>
-                  </ngx-datatable-column>
-                </ngx-datatable>
-                <br/>
-                <ngx-datatable  *ngIf="model.usager == 2"
-                  class='material'
-                  [headerHeight]="50"
-                  [rowHeight]="50"
-                  [columnMode]="'force'"
                   [rows]="rowsGroupe"
                   [selected]="selectedGroupe"
-                  [selectionType]="'multiClick'"
+                  [selectionType]="'single'"
                   (select)='onSelect(4,$event)'>
                   <ngx-datatable-column
                     [width]="30"
@@ -151,8 +149,7 @@
                     [draggable]="false"
                     [resizeable]="false"
                     [headerCheckboxable]="true"
-                    [checkboxable]="true">
-                  </ngx-datatable-column>
+                    [checkboxable]="true"></ngx-datatable-column>
                   <ngx-datatable-column name="Groupe">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{row.nom}}
@@ -162,36 +159,37 @@
               </div>
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                  <span *ngIf="model.usager == 1 || (model.usager == 2 && selectedGroupe.length > 0)" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="!(model.usager == 1 || (model.usager == 2 && selectedGroupe.length > 0))" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </wizard-step>
-      <wizard-step stepTitle="Professionnelle" navigationSymbol="4">
+      <wizard-step stepTitle="Usagers" navigationSymbol="4">
         <div class="masonry-item col-md-12">
           <div class="bgc-white p-20 bd">
             <div class="row">
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
                 </div>
               </div>
               <div class="col-10">
                 <div class="centered-content font-weight-bold">
-                  Sélectionnez les Professionnelles
+                  Sélectionnez les usagers
                 </div>
+                <input class="search" (keyup)="searchUsers(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" >
                 <ngx-datatable
-                  class='material'
-                  [headerHeight]="50"
-                  [rowHeight]="50"
-                  [columnMode]="'force'"
-                  [rows]="rowsProffessionelle"
-                  [selected]="selectedProffessionelle"
-                  [selectionType]="'multiClick'"
+                               class='material'
+                               [headerHeight]="50"
+                               [rowHeight]="50"
 
-                  (select)='onSelect(5,$event)'>
+                               [rows]="rowsUsager"
+                               [selected]="selectedUsager"
+                               [selectionType]="'multiClick'"
+                               (select)='onSelect(3,$event)'>
                   <ngx-datatable-column
                     [width]="30"
                     [sortable]="false"
@@ -201,12 +199,12 @@
                     [headerCheckboxable]="true"
                     [checkboxable]="true">
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Nom">
+                  <ngx-datatable-column name="Nom" [flexGrow]="1">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{row.nom}}
                     </ng-template>
                   </ngx-datatable-column>
-                  <ngx-datatable-column name="Prenom">
+                  <ngx-datatable-column name="Prenom" [flexGrow]="1">
                     <ng-template let-row="row" ngx-datatable-cell-template>
                       {{row.prenom}}
                     </ng-template>
@@ -215,44 +213,45 @@
               </div>
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                  <span *ngIf="(model.usager && selectedUsager.length > 0) || (!model.usager && selectedGroupe.length > 0)" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="(model.usager && selectedUsager.length == 0) || (!model.usager && selectedGroupe.length == 0)" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </wizard-step>
-      <wizard-step stepTitle="Durée" navigationSymbol="5">
+      <wizard-step stepTitle="Durée" navigationSymbol="4">
         <div class="masonry-item col-md-12">
           <div class="bgc-white p-20 bd">
             <div class="row">
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x  fa-chevron-left navigateWizard" previousStep></span>
+                  <span class="fa fa-2x  fa-chevron-left navigateWizard" (click)="search='';" previousStep></span>
                 </div>
               </div>
-              <div class="col-10">
-                <div class="select-box" *ngIf="model.categorie == 2">
-                  <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
-                  <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
-                  <select [(ngModel)]="model.duration" class="select">
-                    <option  *ngFor="let option of durationDirecte" [value]="option.value" >{{option.lable}}</option>
-                  </select>
+              <div class="col-10" style="text-align: center;">
+                <div class="row">
+                  <div class="col-4 float-right">Durée : </div>
+                  <div class="col-4 centered-content">
+                    <input class="search" type="number" min="0" step="1" name="search" [(ngModel)]="model.duration" placeholder="Durée" autocomplete="off" >
+                  </div>
+                  <div class="col-4" style="text-align: left">
+                    minutes
+                  </div>
                 </div>
 
-                <div class="select-box" *ngIf="model.categorie == 1">
-                  <label  class="label select-box1">
-                    <span *ngIf="!model.duration" class="label-desc">Selectioner la durée</span>
-                    <span *ngIf="model.duration" class="label-desc">{{getDuration()}}</span>
-                  </label>
-                  <select [(ngModel)]="model.duration"  class="select">
-                    <option  *ngFor="let option of durationIndirecte" [value]="option.value" >{{option.lable}}</option>
-                  </select>
+                <div class="row">
+                  <div class="col-4 float-right">Date : </div>
+                  <div class="col-8 centered-content">
+                    <input class="search" type="date" name="search" [(ngModel)]="model.date" placeholder="Date" autocomplete="off" >
+                  </div>
                 </div>
               </div>
               <div class="col-1" class="justify-content-center centered-content">
                 <div class="btn-group">
-                  <span class="fa fa-2x fa-chevron-right navigateWizard" nextStep></span>
+                  <span *ngIf="model.duration > 0" class="fa fa-2x fa-chevron-right navigateWizard" (click)="search='';" nextStep></span>
+                  <span *ngIf="model.duration <= 0 || model.duration === ''" class="fa fa-2x fa-chevron-right" style="color: grey"></span>
                 </div>
               </div>
             </div>
@@ -280,10 +279,6 @@
                     </thead>
                     <tbody>
                     <tr>
-                      <td>Type</td>
-                      <td>{{getCategorieType(model.categorie) }}</td>
-                    </tr>
-                    <tr>
                       <td>Categorie</td>
                       <td>{{getSelectedCategorie()}}</td>
                     </tr>
@@ -294,12 +289,27 @@
                     </tr>
 
                     <tr>
+                      <td>Code Serafin</td>
+                      <td>{{getSelectedSerafanCode()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Intitulé Serafin</td>
+                      <td>{{getSelectedSerafanIntitule()}}</td>
+                    </tr>
+
+                    <tr>
+                      <td>Type</td>
+                      <td>{{getActivityType()}}</td>
+                    </tr>
+
+                    <tr>
                       <td>Usager</td>
-                      <td>{{getUsagerType(model.usager)}}</td>
+                      <td>{{getUsagerType()}}</td>
                     </tr>
                     <tr>
                       <td>Durée</td>
-                      <td>{{getDuration()}}</td>
+                      <td>{{getLabel(model.duration)}}</td>
                     </tr>
                     </tbody>
                   </table>

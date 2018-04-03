@@ -40,12 +40,14 @@ class Activite extends Model
     public $fillable = [
         'professionnelle_id',
         'usager_id',
+        'groupe_id',
         'categorie_id',
         'sous_categorie_id',
         'acte_id',
         'duree',
         'cloture',
-        'planifie'
+        'planifie',
+        'date'
     ];
 
     /**
@@ -57,12 +59,14 @@ class Activite extends Model
         'id' => 'integer',
         'professionnelle_id' => 'integer',
         'usager_id' => 'integer',
+        'groupe_id' => 'integer',
         'categorie_id' => 'integer',
         'sous_categorie_id' => 'integer',
         'acte_id' => 'integer',
         'duree' => 'integer',
         'cloture' => 'boolean',
-        'planifie' => 'boolean'
+        'planifie' => 'boolean',
+        'date' => 'date'
     ];
 
     /**
@@ -88,6 +92,14 @@ class Activite extends Model
     public function usager()
     {
         return $this->belongsTo(\App\Models\Usager::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     **/
+
+    public function groupe()
+    {
+        return $this->belongsTo(\App\Models\Groupe::class);
     }
 
     /**

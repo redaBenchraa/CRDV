@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import {FontAwesomeModule, ThemifyModule} from 'ngx-icons';
 import { HeaderComponent } from './layers/header/header.component';
@@ -63,15 +61,18 @@ import { DeleteGroupComponent } from './administration/group/delete-group/delete
 import { EditGroupComponent } from './administration/group/edit-group/edit-group.component';
 import { ShowGroupComponent } from './administration/group/show-group/show-group.component';
 import {HttpService} from '../Service/HttpService';
-import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {HttpServiceInterceptor} from '../Service/interceptor';
 import { ActivityComponent } from './administration/category/activity/activity.component';
 import { AddActivityComponent } from './administration/category/activity/add-activity/add-activity.component';
 import { DeleteActivityComponent } from './administration/category/activity/delete-activity/delete-activity.component';
 import { EditActivityComponent } from './administration/category/activity/edit-activity/edit-activity.component';
 import { ListActivityComponent } from './administration/category/activity/list-activity/list-activity.component';
-
-
+import {OWL_DATE_TIME_FORMATS, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ValidateComponent } from './professional/validate/validate.component';
+import {AuthGuard} from "../Service/AuthGuard";
+import {LoginGuard} from "../Service/LoginGuard";
 @NgModule({
   imports: [
     FormsModule,
@@ -83,7 +84,10 @@ import { ListActivityComponent } from './administration/category/activity/list-a
     NgxDatatableModule,
     CommonModule,
     ArchwizardModule,
-    HttpClientModule
+    HttpClientModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
@@ -145,14 +149,20 @@ import { ListActivityComponent } from './administration/category/activity/list-a
     DeleteActivityComponent,
     EditActivityComponent,
     ListActivityComponent,
+    ValidateComponent,
   ],
   providers: [
+    AuthGuard,
+    LoginGuard,
     HttpService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpServiceInterceptor,
       multi: true,
     },
+    {provide: OWL_DATE_TIME_FORMATS, useValue: {
+      timePickerInput: 'LT',
+    }},
   ],
   bootstrap: [AppComponent]
 })

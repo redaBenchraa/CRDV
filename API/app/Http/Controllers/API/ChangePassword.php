@@ -8,6 +8,7 @@ use App\Models\Professionnelle;
 use App\Repositories\ProfessionnelleRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use Illuminate\Support\Facades\Hash;
 use InfyOm\Generator\Criteria\LimitOffsetCriteria;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -44,9 +45,8 @@ class ChangePassword extends AppBaseController
 
         $oldPassword = $request->old_password;
         $password = $request->password;
-        $confirmedPassword = $request->confirmed_password;
 
-        if($oldPassword == $professionnelle->password && $password == $confirmedPassword ){
+        if(Hash::check($oldPassword, $professionnelle->password)){
             $input['password'] = $password;
             $professionnelle = $this->professionnelleRepository->update($input->toArray(), $request->id);
             return $this->sendResponse($professionnelle->toArray(), 'Professionnelle updated successfully');

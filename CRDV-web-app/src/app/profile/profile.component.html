@@ -4,9 +4,15 @@
     <h6 class="c-grey-900 font-weight-bold">Profile</h6>
     <div class="mT-30">
       <form>
-        <div class="form-group"><label for="inputNom4">Nom</label><input type="text" class="form-control" id="inputNom4" placeholder="Nom"></div>
-        <div class="form-group"><label for="inputPrenom4">Prénom</label><input type="text" class="form-control" id="inputPrenom4" placeholder="Prénom"></div>
-        <button type="submit" class="btn btn-outline-success">Valider</button>
+        <div class="form-group">
+          <label for="inputNom4">Nom</label>
+          <input type="text" class="form-control" id="inputNom4" name="nom" [(ngModel)]="user.nom" placeholder="Nom">
+        </div>
+        <div class="form-group">
+          <label for="inputPrenom4">Prénom</label>
+          <input type="text" class="form-control" [(ngModel)]="user.prenom" name="prenom" id="inputPrenom4" placeholder="Prénom">
+        </div>
+        <button (click)="update()" type="submit" class="btn btn-outline-success">Valider</button>
       </form>
     </div>
   </div>
@@ -16,10 +22,10 @@
     <h6 class="c-grey-900 font-weight-bold">Mot de passe</h6>
     <div class="mT-30">
       <form>
-        <div class="form-group"><label for="inputoldPassword4">Ancien mot de passe</label><input type="password" class="form-control" id="inputoldPassword4" placeholder="Ancien mot de passe"></div>
-        <div class="form-group"><label for="inputnewPassword4">Nouveau mot de passe</label><input type="password" class="form-control" id="inputnewPassword4" placeholder="Nouveau mot de passe"></div>
-        <div class="form-group"><label for="inputrnewPassword4">Retaper le nouveau mot de passe</label><input type="password" class="form-control" id="inputrnewPassword4" placeholder="Nouveau mot de passe"></div>
-        <button class="btn btn-outline-warning">Valider</button>
+        <div class="form-group"><label for="inputoldPassword4">Ancien mot de passe</label><input type="password" class="form-control" id="inputoldPassword4" nom="odl_password" [(ngModel)]="odl_password"  placeholder="Ancien mot de passe"></div>
+        <div class="form-group"><label for="inputnewPassword4">Nouveau mot de passe</label><input type="password" class="form-control" id="inputnewPassword4" nom="password" [(ngModel)]="password"  placeholder="Nouveau mot de passe"></div>
+        <div class="form-group"><label for="inputrnewPassword4">Retaper le nouveau mot de passe</label><input type="password" class="form-control" id="inputrnewPassword4" nom="repassword" [(ngModel)]="repassword"  placeholder="Nouveau mot de passe"></div>
+        <button (click)="changePassword()" class="btn btn-outline-warning">Valider</button>
       </form>
     </div>
   </div>

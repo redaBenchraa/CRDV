@@ -24,7 +24,6 @@ class ProfessionnelleRepository extends BaseRepository
         'username',
         'nom',
         'prenom',
-        'password',
         'type'
     ];
 

@@ -9,7 +9,7 @@ import {HttpService} from '../../../../Service/HttpService';
   styleUrls: ['./show-group.component.scss'],
 })
 export class ShowGroupComponent implements OnInit {
-  group: any;
+  user: any;
   page = new Page();
   rowsOriginal = [];
   rows = [];
@@ -17,8 +17,8 @@ export class ShowGroupComponent implements OnInit {
   groupe: any;
   constructor(private httpService: HttpService, private activatedRoute: ActivatedRoute,
               private router: Router, private route: ActivatedRoute) {
-    this.group = JSON.parse(localStorage.getItem('user'));
-    if (this.group === null) {
+    this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.user === null) {
       this.router.navigate(['start']);
     }
   }
@@ -37,11 +37,11 @@ export class ShowGroupComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-        this.getUsers(params.get('id'));
+      this.getUsers(params.get('id'));
       this.httpService.getGroup(params.get('id')).subscribe(
         data => {
           console.log(data);
-          this.group = data['data'];
+          this.groupe = data['data'];
         }, error2 => {
           console.error(error2);
         }

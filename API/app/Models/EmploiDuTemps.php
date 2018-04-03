@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -50,8 +50,7 @@ class EmploiDuTemps extends Model
     protected $casts = [
         'id' => 'integer',
         'professionnelle_id' => 'integer',
-        'groupe_id' => 'integer',
-        'activite_id' => 'integer',
+        'sous_categorie_id' => 'integer',
         'jour' => 'integer'
     ];
 
@@ -65,19 +64,27 @@ class EmploiDuTemps extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
-    public function groupe()
+    public function groupes()
     {
-        return $this->belongsTo(\App\Models\Groupe::class);
+        return $this->belongsToMany(\App\Models\Groupe::class, 'emploiGroupe');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo|\Illuminate\Database\Eloquent\Relations\BelongsToMany
+     **/
+    public function usagers()
+    {
+        return $this->belongsToMany(\App\Models\Usager::class, 'emploiUsager');
     }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      **/
-    public function activite()
+    public function sousCategorie()
     {
-        return $this->belongsTo(\App\Models\Activite::class);
+        return $this->belongsTo(\App\Models\SousCategorie::class);
     }
 
     /**

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Page} from '../../../model/page';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpService} from '../../../../Service/HttpService';
 
 @Component({
   selector: 'app-edit-group',
@@ -8,35 +9,54 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./edit-group.component.scss']
 })
 export class EditGroupComponent implements OnInit {
+  form: FormGroup;
+  admin: any;
+  group: any;
+  groups: any = [];
+  constructor(private route: ActivatedRoute, private router: Router, private httpService: HttpService) {
+    this.admin = JSON.parse(localStorage.getItem('user'));
+    if (this.admin === null) {
+      this.router.navigate(['/login']);
+    }
+    this.form = new FormGroup({
+        nom : new FormControl('', Validators.required),
+      }
+    );
 
-  page = new Page();
-  selectedUsager = [];
-
-  rows = [
-    { id : 1, nom: 'Austin', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 2, nom: 'Dany', prenom : 'zzz', dateDeNaissance : '12/02/1465' },
-    { id : 3, nom: 'Molly', prenom : 'zzz', dateDeNaissance : '12/02/1465'},
-  ];
-
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
-    this.page.totalPages = 7;
-    this.page.totalElements = 21;
-    this.page.size = 3;
-    this.page.pageNumber = 0;
+  }
+  getGroup(id) {
+    this.httpService.getGroup(id).subscribe(
+      data => {
+        console.log(data);
+        this.group = data['data'];
+        this.form.controls['nom'].patchValue(this.group.nom);
+      }, error => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.getGroup(params.get('id'));
+    });
   }
-
-  setPage(pageInfo) {
-    this.page.pageNumber = pageInfo.offset;
-    alert(this.page.pageNumber);
-    console.log(pageInfo);
-  }
-
   goBack() {
-    this.router.navigate(['../../list'], {relativeTo: this.activatedRoute});
+    this.router.navigate(['../../list'], {relativeTo: this.route});
   }
-
+  insert() {
+    const u = {
+      nom : this.form.controls['nom'].value,
+      centre_id : this.group.centre_id,
+    };
+    this.httpService.updateGroup(this.group.id, u).subscribe(
+      data => {
+        console.log(data);
+        this.goBack();
+      }, error => {
+        console.error(error);
+      }
+    );
+  }
 
 }

@@ -45,8 +45,8 @@ class Parametre extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'nom' => 'integer',
-        'valeur' => 'integer',
+        'nom' => 'string',
+        'valeur' => 'string',
         'type' => 'integer',
         'centre_id' => 'integer'
     ];
