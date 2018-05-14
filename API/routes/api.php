@@ -121,6 +121,7 @@ Route::get('/parametres/{id}/centre', 'ParametreAPIController@centre');
 
 Route::prefix('professionnelles')->group(function () {
     Route::prefix('{id}')->group(function () {
+        Route::get('actes', 'ProfessionnelleAPIController@acte');
         Route::get('centre', 'ProfessionnelleAPIController@centre');
         Route::get('validated', 'ProfessionnelleAPIController@validated');
         Route::get('categories', 'ProfessionnelleAPIController@categories');

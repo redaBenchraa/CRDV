@@ -6,8 +6,13 @@
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Loaded="No" Name="UML Class Diagram_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML Class Diagram_1.moo"/>
 		<Model Expanded="Yes" ID="{43E13C3B-A5EA-48DF-A46B-59A709FA1450}" Loaded="No" Name="Diagramme de classes UML_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../../../S2/Architecture/TP/SMA/Diagramme de classes UML_1.moo"/>
-		<Model Expanded="Yes" ID="{786EC270-3D0B-45F1-8EDA-F80C7B9955DE}" Loaded="No" Name="Diagramme de séquence UML_1" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../../../S2/Architecture/TP/SMA/Diagramme de séquence.moo"/>
-		<Model ID="{B7A8E0EF-87C8-4C24-834B-7EBDBA05CFB5}" Name="Use Cases Defintiion_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Use Cases Defintiion_1.moo"/>
+		<Model Expanded="Yes" ID="{786EC270-3D0B-45F1-8EDA-F80C7B9955DE}" Loaded="No" Name="Diagramme de séquence UML_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="../../../../S2/Architecture/TP/SMA/Diagramme de séquence.moo"/>
+		<Model ID="{B7A8E0EF-87C8-4C24-834B-7EBDBA05CFB5}" Loaded="No" Name="Use Cases Defintiion_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="Use Cases Defintiion_1.moo"/>
+		<Model Expanded="Yes" ID="{680CF908-F644-4B32-B56C-2715C13D1755}" Loaded="No" Name="UML Class Diagram_1" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="UML Class Diagram_1.moo"/>
+		<Model Expanded="Yes" ID="{172E4606-0EA8-46AF-B3DA-1FC6C5667A95}" Loaded="No" Name="Model_conceptuel_de_donnees2" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Model_conceptuel_de_donnees2.mcd"/>
+		<Model Expanded="Yes" ID="{B808F503-8285-49B1-BD3A-8802D3F1C315}" Loaded="No" Name="Model_conceptuel_de_donnees2" Type="{5F45F978-C4F3-4E35-A3FC-AF3318663A0F}" URL="Model_conceptuel_de_donnees2.mld"/>
+		<Model Expanded="Yes" ID="{59470F08-E8FE-4D9F-ADE0-C772A976B04D}" Loaded="No" Name="Model_conceptuel_de_donnees" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Model_conceptuel_de_donnees.mcd"/>
+		<Model Expanded="Yes" ID="{59470F08-E8FE-4D9F-ADE0-C772A976B04D}" Name="Model_conceptuel_de_donnees" Selected="Yes" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="Model_conceptuel_de_donnees.mcd"/>
 	</Local>
 	<BrowserModule Name="Référentiel"/>
 </Workspace>

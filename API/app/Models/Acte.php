@@ -80,6 +80,11 @@ class Acte extends Model
         return $this->belongsTo(\App\Models\Usager::class);
     }
 
+    public function groupe()
+    {
+        return $this->belongsTo(\App\Models\Groupe::class);
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      **/

@@ -118,4 +118,9 @@ class Professionnelle extends Authenticatable
     {
         return $this->hasMany(\App\Models\EmploiDuTemps::class);
     }
+
+    public function actes()
+    {
+        return $this->hasMany(\App\Models\Acte::class);
+    }
 }

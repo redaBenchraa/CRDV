@@ -154,7 +154,12 @@ class ProfessionnelleAPIController extends AppBaseController
             return $this->sendError('Professionnelle not found');
         }
 
-        return $this->sendResponse($professionnelle->activites,'activites retrieved successfully');
+        foreach ($professionnelle->activites as $edt){
+            $edt->sousCategorie;
+            $data[] = $edt;
+        }
+
+        return $this->sendResponse($data,'activites retrieved successfully');
     }
 
     public function categories($id){
@@ -169,7 +174,7 @@ class ProfessionnelleAPIController extends AppBaseController
 
     public function emploiDuTemps($id){
         $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
-        
+
         if (empty($professionnelle)) {
             return $this->sendError('Professionnelle not found');
         }
@@ -178,6 +183,22 @@ class ProfessionnelleAPIController extends AppBaseController
             $edt->sousCategorie;
             $edt->groupes;
             $edt->usagers;
+            $data[] = $edt;
+        }
+        return $this->sendResponse($data,'emploiDuTemps retrieved successfully');
+    }
+
+    public function acte($id){
+        $professionnelle = $this->professionnelleRepository->findWithoutFail($id);
+
+        if (empty($professionnelle)) {
+            return $this->sendError('Professionnelle not found');
+        }
+
+        foreach ($professionnelle->actes as $edt){
+            $edt->usager;
+            $edt->activites;
+            $edt->groupe;
             $data[] = $edt;
         }
         return $this->sendResponse($data,'emploiDuTemps retrieved successfully');

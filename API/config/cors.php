@@ -17,8 +17,8 @@ return [
     */
     'supportsCredentials' => false,
     'allowedOrigins' => ['*'],
-    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'authorization'],
-    'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE', 'OPTION'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
-    'exposedHeaders' => [],
+    'allowedHeaders' => ['Content-Type', 'X-Requested-With', 'authorization', '*'],
+    'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE', 'OPTION', '*'], // ex: ['GET', 'POST', 'PUT',  'DELETE']
+    'exposedHeaders' => ['*'],
     'maxAge' => 0,
 ];
