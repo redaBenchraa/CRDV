@@ -34,6 +34,7 @@ export class DailyComponent implements OnInit {
     'novembre',
     'décembre'
   ];
+  tasks = [];
   timeTable: any = {
     '1' : [],
     '2' : [],
@@ -55,6 +56,16 @@ export class DailyComponent implements OnInit {
     '18' : [],
     '19' : [],
     '20' : [],
+    '21' : [],
+    '22' : [],
+    '23' : [],
+    '24' : [],
+    '25' : [],
+    '26' : [],
+    '27' : [],
+    '28' : [],
+    '29' : [],
+    '30' : [],
   };
   constructor(private router: Router, private httpService: HttpService) {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -66,6 +77,7 @@ export class DailyComponent implements OnInit {
       data => {
         for (const c of data['data']) {
           this.timeTable[c['jour']].push(c);
+          this.tasks = this.getTasks();
         }
         console.log(this.timeTable);
         console.log((Math.floor(this.getWeekNumber() / 4) - 1) * 5 + this.getDayNumber());

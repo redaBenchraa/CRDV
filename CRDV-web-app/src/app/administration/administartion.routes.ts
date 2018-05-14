@@ -13,6 +13,7 @@ import {USER_ROUTES} from './user/uset.routes';
 import {ProfileComponent} from '../profile/profile.component';
 import {Group_ROUTES} from './group/group.routes';
 import {GroupComponent} from './group/group.component';
+import {ImportComponent} from './import/import.component';
 
 export const ADMINISTRATION_ROUTES: Routes = [
   {path: 'group', component: GroupComponent, children: Group_ROUTES},
@@ -24,6 +25,7 @@ export const ADMINISTRATION_ROUTES: Routes = [
   {path: 'statistics', component: StatisticsComponent},
   {path: 'settings', component: SettingsComponent},
   {path: 'profile', component: ProfileComponent},
+  {path: 'import', component: ImportComponent},
   {path: '', redirectTo: 'dashboard',    pathMatch: 'full'},
 ];
 

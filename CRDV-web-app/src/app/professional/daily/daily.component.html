@@ -4,8 +4,8 @@
     <h3 class="c-white">{{getDay()}}</h3>
   </div>
   <div class="pos-r">
-    <ul class="m-0 p-0 mT-20" *ngIf=" getTasks().length > 0">
-      <li (click)="finish(c)"  *ngFor="let c of getTasks(), let i=index" class="bdB peers ai-c jc-sb fxw-nw">
+    <ul class="m-0 p-0 mT-20" *ngIf=" tasks.length > 0">
+      <li (click)="finish(c)"  *ngFor="let c of tasks, let i=index" class="bdB peers ai-c jc-sb fxw-nw">
         <div class="td-n p-20 peers fxw-nw mR-20 peer-greed c-grey-900" data-target="#calendar-edit">
           <div class="peer mR-15"><i class="fa fa-fw fa-clock-o "></i></div>
           <div class="peer">
@@ -26,7 +26,7 @@
         </div>
       </li>
     </ul>
-    <blockquote style="padding: 20px; font-weight: 300; font-family: Helvetica" *ngIf=" getTasks().length === 0">
+    <blockquote style="padding: 20px; font-weight: 300; font-family: Helvetica" *ngIf=" tasks.length === 0">
       Aucune tache aujourd'hui
     </blockquote>
   </div>

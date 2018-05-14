@@ -71,8 +71,10 @@ import { ListActivityComponent } from './administration/category/activity/list-a
 import {OWL_DATE_TIME_FORMATS, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ValidateComponent } from './professional/validate/validate.component';
-import {AuthGuard} from "../Service/AuthGuard";
-import {LoginGuard} from "../Service/LoginGuard";
+import {AuthGuard} from '../Service/AuthGuard';
+import {LoginGuard} from '../Service/LoginGuard';
+import { ImportComponent } from './administration/import/import.component';
+import {ActeComponent} from './professional/acte/acte.component';
 @NgModule({
   imports: [
     FormsModule,
@@ -150,6 +152,8 @@ import {LoginGuard} from "../Service/LoginGuard";
     EditActivityComponent,
     ListActivityComponent,
     ValidateComponent,
+    ImportComponent,
+    ActeComponent,
   ],
   providers: [
     AuthGuard,

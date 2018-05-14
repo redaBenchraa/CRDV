@@ -7,6 +7,7 @@ import {TIMETABLE_ROUTES} from './timetable/timetable.routes';
 import {ADAPTATION_ROUTES} from './adaptation/adaptation.routes';
 import {ProfileComponent} from '../profile/profile.component';
 import {ValidateComponent} from "./validate/validate.component";
+import {ActeComponent} from "./acte/acte.component";
 
 
 export const PROFESSIONAL_ROUTES: Routes = [
@@ -14,6 +15,7 @@ export const PROFESSIONAL_ROUTES: Routes = [
   {path: 'validate', component: ValidateComponent},
   // {path: 'adaptation', component: AdaptationComponent, children: ADAPTATION_ROUTES},
   {path: 'daily', component: DailyComponent},
+  {path: 'acte', component: ActeComponent},
   {path: 'timetable', component: TimetableComponent, children: TIMETABLE_ROUTES},
   {path: 'profile', component: ProfileComponent},
   {path: '', redirectTo: 'daily',    pathMatch: 'full'},

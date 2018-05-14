@@ -114,7 +114,7 @@
           </div>
         </div>
       </wizard-step>
-      <wizard-step stepTitle="Groupe" navigationSymbol="3">
+      <wizard-step stepTitle="Programme" navigationSymbol="3">
         <div class="masonry-item col-md-12">
           <div class="bgc-white p-20 bd">
             <div class="row">
@@ -130,7 +130,7 @@
                 <div style="width:100%; margin: 15px" class="centered-content justify-content-center align-content-center">
                   <div class="inline-radio centered-content justify-content-center align-content-center" >
                     <div><input type="radio" (click)="search=''; selectedUsager=[]; getUsers()" ng-control="usagers"  [value]="1"  [(ngModel)]="model.usager" name="usagers" checked><label>Individuel</label></div>
-                    <div><input type="radio" (click)="search=''; selectedUsager=[]" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Groupe</label></div>
+                    <div><input type="radio" (click)="search=''; selectedUsager=[]" ng-control="usagers"  [value]="2"  [(ngModel)]="model.usager" name="usagers"><label>Programme</label></div>
                   </div>
                 </div>
                 <input *ngIf="model.usager == 2" class="search" (keyup)="searchUsers(search)" type="search" name="search" [(ngModel)]="search" placeholder="Recherche par nom" autocomplete="off" >

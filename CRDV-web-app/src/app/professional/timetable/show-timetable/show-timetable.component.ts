@@ -37,7 +37,8 @@ export class ShowTimetableComponent implements OnInit, AfterViewInit, OnChanges 
     '25' : [],
     '26' : [],
     '27' : [],
-    '28' : [],
+    '29' : [],
+    '30' : [],
   };
   user: any;
   schedules = $('.cd-schedule');
