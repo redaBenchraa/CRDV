@@ -267,9 +267,6 @@ references usager (id) on delete restrict on update restrict;
 alter table emploiUsager add constraint fk_association_44 foreign key (emploi_du_temps_id)
 references emploiDuTemps (id) on delete restrict on update restrict;
 
-alter table categorieProfessionnelle add constraint fk_association_4 foreign key (professionnelle_id)
-references professionnelle (id) on delete restrict on update restrict;
-
 alter table categorie add constraint fk_association_15 foreign key (centre_id)
       references centre (id) on delete restrict on update restrict;
 
